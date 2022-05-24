@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900");
-@import url("fontawesome-all.min.css");
-
-/*
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+@import url("icon.css");
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -72,7 +66,7 @@ input, select, textarea {
 	appearance: none;
 }
 
-/* Basic */
+/* basic */
 
 	html {
 		box-sizing: border-box;
@@ -112,7 +106,7 @@ input, select, textarea {
 		-webkit-transition: border-color 0.1s ease-in-out;
 		-ms-transition: border-color 0.1s ease-in-out;
 		transition: border-color 0.1s ease-in-out;
-		/*edit: remove dots hyperlinks
+		/* edit: remove dots hyperlinks
 		border-bottom: dotted 1px; */
 		color: inherit;
 		outline: 0;
@@ -123,7 +117,7 @@ input, select, textarea {
 			border-color: transparent;
 		}
 
-/* Icon */
+/* icon */
 
 	.icon {
 		text-decoration: none;
@@ -155,7 +149,7 @@ input, select, textarea {
 			font-family: 'Font Awesome 5 Brands';
 		}
 
-/* Image (edit: added) */ 
+/* edit: added section image */ 
 
 	.image {
 		border-radius: 4px;
@@ -211,7 +205,7 @@ input, select, textarea {
 				width: 100%;
 			}
 
-/* Wrapper */
+/* wrapper */
 
 	@-moz-keyframes wrapper {
 		0% {
@@ -254,7 +248,7 @@ input, select, textarea {
 	}
 
 	#wrapper {
-		/*edit: timing*/
+		/* edit: timing */
 		-moz-animation: wrapper 1s forwards;
 		-webkit-animation: wrapper 1s forwards;
 		-ms-animation: wrapper 1s forwards;
@@ -267,10 +261,10 @@ input, select, textarea {
 		width: 100%;
 	}
 
-/* BG */
+/* bg */
 
 	#bg {
-	/*edit: remove bg repeat
+	/* edit: remove bg repeat
 		-moz-animation: bg 60s linear infinite;
 		-webkit-animation: bg 60s linear infinite;
 		-ms-animation: bg 60s linear infinite;
@@ -285,8 +279,8 @@ input, select, textarea {
 		transform: translate3d(0,0,0);
 	*/
 	
-	/* Set your background with this */
-		/*edit: personalized background */
+	/* set your background with this */
+		/* edit: personalized background */
 		background: #026C45 url("images/bg_green.jpg") bottom left;
 		background-repeat: repeat-x;
 		height: 100%;
@@ -296,7 +290,7 @@ input, select, textarea {
 		top: 0;
 	}
 
-	/*edit: the following lines became useless
+	/* edit: the following lines became useless
 	@-moz-keyframes bg {
 		0% {
 			-moz-transform: translate3d(0,0,0);
@@ -366,9 +360,8 @@ input, select, textarea {
 		width: 6750px;
 	}
 
-/* Overlay */
-
-	/*edit: removed overlay
+/* edit: removed overlay 
+ 
 	@-moz-keyframes overlay {
 		0% {
 			opacity: 0;
@@ -425,9 +418,9 @@ input, select, textarea {
 		position: fixed;
 		top: 0;
 		width: 100%;
-	}*/
+	} */
 
-/* Main */
+/* main */
 
 	#main {
 		height: 100%;
@@ -447,7 +440,7 @@ input, select, textarea {
 			width: 1px;
 		}
 
-/* Header */
+/* header */
 
 	@-moz-keyframes header {
 		0% {
@@ -608,7 +601,7 @@ input, select, textarea {
 	}
 
 	#header {
-		/*edit: timing*/
+		/* edit: timing */
 		-moz-animation: header 0.25s 0.75s forwards;
 		-webkit-animation: header 0.25s 0.75s forwards;
 		-ms-animation: header 0.25s 0.75s forwards;
@@ -632,7 +625,7 @@ input, select, textarea {
 	}
 
 		#header h1 {
-			/*edit: font changes */
+			/* edit: font changes */
 			font-variant: small-caps;
 			font-size: 3em;
 			font-weight: 900;
@@ -640,7 +633,7 @@ input, select, textarea {
 		}
 
 		#header p {
-			/*edit: font changes */
+			/* edit: font changes */
 			font-variant: small-caps;
 			font-weight: 700;
 			font-size: 1.5em;
@@ -791,10 +784,10 @@ input, select, textarea {
 					display: none;
 				}
 
-/* Footer */
+/* footer */
 
 	#footer {
-		/*edit: removed shaded footer
+		/* edit: removed shaded footer
 		background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
@@ -810,19 +803,19 @@ input, select, textarea {
 		width: 100%;
 	}
 
-/* Wide */
+/* wide */
 
 	@media screen and (max-width: 1680px) {
 
-		/* Basic */
+		/* basic */
 
 			body, input, select, textarea {
 				font-size: 13pt;
 			}
 
-		/* BG */
+		/* bg */
 
-			/*edit: the following lines became useless
+			/* edit: the following lines became useless
 			@-moz-keyframes bg {
 				0% {
 					-moz-transform: translate3d(0,0,0);
@@ -886,26 +879,26 @@ input, select, textarea {
 					-ms-transform: translate3d(-1500px,0,0);
 					transform: translate3d(-1500px,0,0);
 				}
-			}*/
+			} */
 
 			#bg {
 				background-size: 1500px auto;
 				width: 4500px;
 			} }
 
-/* Normal */
+/* normal */
 
 	@media screen and (max-width: 1280px) {
 
-		/* Basic */
+		/* basic */
 
 			body, input, select, textarea {
 				font-size: 12pt;
 			}
 
-		/* BG */
+		/* bg */
 
-			/*edit: the following lines became useless
+			/* edit: the following lines became useless
 			@-moz-keyframes bg {
 				0% {
 					-moz-transform: translate3d(0,0,0);
@@ -969,18 +962,18 @@ input, select, textarea {
 					-ms-transform: translate3d(-750px,0,0);
 					transform: translate3d(-750px,0,0);
 				}
-			}*/
+			} */
 
 			#bg {
 				background-size: 750px auto;
 				width: 2250px;
 			} }
 
-/* Mobile */
+/* mobile */
 
 	@media screen and (max-width: 736px) {
 
-		/* Basic */
+		/* basic */
 
 			body {
 				min-width: 320px;
@@ -990,9 +983,9 @@ input, select, textarea {
 				font-size: 11pt;
 			}
 
-		/* BG */
+		/* bg */
 
-			/*edit: the following lines became useless
+			/* edit: the following lines became useless
 			@-moz-keyframes bg {
 				0% {
 					-moz-transform: translate3d(0,0,0);
@@ -1056,14 +1049,14 @@ input, select, textarea {
 					-ms-transform: translate3d(-300px,0,0);
 					transform: translate3d(-300px,0,0);
 				}
-			}*/
+			} */
 
 			#bg {
 				background-size: 300px auto;
 				width: 900px;
 			}
 
-	/* Header */
+	/* header */
 
 		/* edit: font changes */
 
@@ -1082,28 +1075,28 @@ input, select, textarea {
 		}
 
 			#header nav a:hover {
-				font-size: 0.85em;
+				font-size: 1em;
 			}
 
 			#header nav a:active {
-				font-size: 0.85em;
+				font-size: 1em;
 			} 
 
-	/* Footer */
+	/* footer */
 
-		/*edit: font changes*/
+		/* edit: font changes */
 
 		#footer {			
 			font-size: 0.75em;
 	} }
 
-/* Mobile (Portrait) */
+/* mobile (portrait) */
 
 	@media screen and (max-width: 480px) {
 
-		/* BG */
+		/* bg */
 
-			/*edit: the following lines became useless
+			/* edit: the following lines became useless
 			@-moz-keyframes bg {
 				0% {
 					-moz-transform: translate3d(0,0,0);
@@ -1167,14 +1160,14 @@ input, select, textarea {
 					-ms-transform: translate3d(-412.5px,0,0);
 					transform: translate3d(-412.5px,0,0);
 				}
-			}*/
+			} */
 
 			#bg {
 				background-size: 412.5px auto;
 				width: 1237.5px;
 			}
 
-	/* Header */
+	/* header */
 
 		#header nav {
 			padding: 0 1em;
