@@ -586,14 +586,15 @@ input, select, textarea {
 		}
 	}
 
-	/* edit: added image */
+	/* edit: added image and margin editing */
 	#header .image {
-			border-radius: 100%;
-			display: inline-block;
-			height: 10em;
-			width: 10em;
-			text-align: center;
-		}
+		border-radius: 100%;
+		display: inline-block;
+		height: 10em;
+		width: 10em;
+		text-align: center;
+		margin: 4em 0 0 0;
+	}
 
 	#header .image img {
 		border-radius: 100%;
@@ -620,7 +621,8 @@ input, select, textarea {
 		opacity: 0;
 		position: relative;
 		text-align: center;
-		top: -1em;
+		/* edit: margin editing */
+		top: -3.25em;
 		vertical-align: middle;
 		width: 90%;
 	}
@@ -1059,11 +1061,11 @@ input, select, textarea {
 
 	/* header */
 
-		/* edit: image smaller */
+		/* edit: image smaller and margin editing */
 		#header .image {
 			height: 7.5em;
 			width: 7.5em;
-			margin: 0em 0 -1em 0;
+			margin: 4em 0 -1em 0;
 		}
 
 		/*#header .image img {
