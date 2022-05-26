@@ -586,6 +586,7 @@ input, select, textarea {
 		}
 	}
 
+	/* edit: added image */
 	#header .image {
 			border-radius: 100%;
 			display: inline-block;
@@ -1058,6 +1059,19 @@ input, select, textarea {
 
 	/* header */
 
+		/* edit: image smaller */
+		#header .image {
+			height: 7.5em;
+			width: 7.5em;
+			margin: 0em 0 -1em 0;
+		}
+
+		/*#header .image img {
+			border-radius: 100%;
+			display: block;
+			width: 100%;
+		}*/
+
 		/* edit: font changes */
 
 		#header h1 {
@@ -1071,7 +1085,7 @@ input, select, textarea {
 		}
 
 		#header nav {
-			font-size: 0.85em;
+			font-size: 0.8em;
 		}
 
 			#header nav a:hover {
@@ -1171,4 +1185,15 @@ input, select, textarea {
 
 		#header nav {
 			padding: 0 1em;
+		} }
+
+/* edit: added section horizontal small screen */
+
+	@media screen and (max-height: 450px) {
+
+		/* edit: image removed */
+		#header .image {
+			height: 0em;
+			width: 0em;
+			margin: 0 0 0 0;
 		} }
