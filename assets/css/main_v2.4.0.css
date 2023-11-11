@@ -93,7 +93,8 @@ input, select, textarea {
 		}
 
 	body, input, select, textarea {
-		color: #fff;
+		/* edit: font color */
+		color: #000;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 15pt;
 		font-weight: 300 !important;
@@ -153,7 +154,6 @@ input, select, textarea {
 
 	.image {
 		border-radius: 4px;
-		border: 0;
 		display: inline-block;
 		position: relative;
 		overflow: hidden;
@@ -172,6 +172,8 @@ input, select, textarea {
 
 		.image img {
 			border-radius: 4px;
+			/* edit: font color */
+			border: 3px solid #000;
 			display: block;
 		}
 
@@ -281,7 +283,7 @@ input, select, textarea {
 	
 	/* set your background with this */
 		/* edit: personalized background */
-		background: #026C45 url("images/bg_green.jpg") bottom left;
+		background: #f2f3f3 url("images/bg_lightgray.jpg") bottom left;
 		background-repeat: repeat-x;
 		height: 100%;
 		left: 0;
@@ -753,7 +755,8 @@ input, select, textarea {
 					-ms-transition: all 0.05s ease-in-out;
 					transition: all 0.05s ease-in-out;
 					border-radius: 100%;
-					border: solid 1px #fff;
+					/* edit: size and color of nav border */
+					border: solid 2px #000;
 					display: block;
 					font-size: 1.75em;
 					height: 2.5em;
@@ -769,8 +772,9 @@ input, select, textarea {
 				}
 
 					#header nav a:hover:before {
-						background-color: rgba(255, 255, 255, 0.175);
-						color: #fff;
+						/* edit: nav color */
+						background-color: rgba(0, 0, 0, 0.175);
+						color: #000;
 					}
 
 				#header nav a:active {
@@ -779,8 +783,9 @@ input, select, textarea {
 				}
 
 					#header nav a:active:before {
-						background-color: rgba(255, 255, 255, 0.35);
-						color: #fff;
+						/* edit: nav color */
+						background-color: rgba(0, 0, 0, 0.35);
+						color: #000;
 					}
 
 				#header nav a span {
@@ -795,7 +800,8 @@ input, select, textarea {
 		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%); */
-		opacity: 0.75;
+		/* edit: modified opacity */		
+		opacity: 0.9;
 		bottom: 0;
 		cursor: default;
 		height: 6em;
