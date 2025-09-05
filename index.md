@@ -2,44 +2,29 @@
 layout: default
 ---
 
-## About Me
+<img class = "profile-picture" src = "profile_pic_caporali.jpg">
 
-<img class = "profile-picture" src = "profile_pic.jpg">
+I'm a 2<sup>nd</sup> year Ph.D. student in **Operations Research and Financial Engineering (ORFE)** at **Princeton University**. <br>
+My work lies at the intersection of **probabilistic machine learning** and **non-convex optimization**.  
 
-Hi! I am a junior year student of B.E. Computer Science at Birla Institute of Technology and Science, Pilani.
 
-This is a jekyll based resume template. You can find the full source code on [GitHub](https://github.com/bk2dcradle/researcher)
+Before my Ph.D. I obtained a Master degree in Mathematics (track Stochastics and Data Science) from University of Turin and I was a Senior Allievo at Collegio Carlo Alberto.
+I used to have a strong focus on Probability Theory and my research has focused on **Bayesian neural networks** and their infinite-width prior and posterior limits. I was fortunate to work with prof. [Stefano Favaro](https://sites.carloalberto.org/favaro/) and [Dario Trevisan](https://web.dm.unipi.it/trevisan/en/).
+I got my Bachelor in Mathematics (track Computational Math) from University of Pisa, with a [thesis](https://github.com/caporali/bsc_thesis/blob/main/thesis.pdf) on **universality of neural networks**.
 
-## Research Interest
+- Email: `fc4978 [at] g.princeton.edu`
+- GitHub: [caporali](https://github.com/caporali)]
+- [LinkedIn](https://www.linkedin.com/in/francescocaporali/) 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio pharetra quis. Mauris id urna ante. Fusce pharetra diam ac nisi aliquet, vel egestas ex iaculis. Pellentesque laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit. Nunc ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.
+## News
+- Jul. 2025 - Attending *COLT 2025 (Lyon)* to present a poster at the *TASC Workshop*.
+- Jun. 2025: Working on minimax step-size selection for the map $f(x,y) = \tfrac{1}{2}(xy - 1)^2$ with trimmed domains.
 
-## Publications
+## Publications / Preprints
+1. *F. Caporali*, S. Favaro, D. Trevisan, 
+	[Student-\texorpdfstring{$t$}{t} processes as infinite-width limits of posterior Bayesian NNs](https://openreview.net/pdf?id=iUppQcPAMK),
+	In: *TASC workshop, COLT 2025*
 
-1. F.Bar, J.Doe: Effects of having a placeholder of a name
-2. S.Holmes, J.Watson: Consequences of living with a sociopath in London
-
-## Typography
-
-This is a [link](http://google.com). Something *italics* and something **bold**.
-
-Here is a table
-
-Year | Award | Category
------|-------|--------
-2014 | Emmy  | Won Outstanding Lead Actor in a miniseries or a movie
-2015 | BAFTA | Nominated for Best Leading Actor for Sherlock
-2014 | Satellite | Won Best Actor miniseries or television film
-
-Here is a horizontal rule
-
----
-
-Here is a blockquote
-
-> To a great mind, nothing is little
-
-## References
-
-* Foo Bar: Head of Department, Placeholder Names, Lorem
-* John Doe: Associate Professor, Department of Computer Science, Ipsum
+## Teaching
+- Tutorial Instructor, *Probability and Statistics*, B.Sc. Mathematics for Finance and Insurance (Mar. 2023 - June 2023).
+- Teaching Assistant, *Probability Theory (ORF526)* (Sep. 2025 - Dec. 2025).

@@ -2,6 +2,9 @@ title: "Francesco Caporali"
 url: "https://caporali.github.io"
 baseurl: ""
 markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
 description: "Ph.D. student at Princeton ORFE"
 # ins_logo: "./..."
 tracking_id:

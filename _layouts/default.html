@@ -2,8 +2,18 @@
 <html lang="en">
 <head>
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-
     <meta charset="utf-8">
+    <script>
+    window.MathJax = {
+        tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+        }
+    };
+    </script>
+    <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="blog, accent, {{ site.author }}, {{ site.title }}, jekyll">
     <meta name="author" content="{{ site.author }}">
