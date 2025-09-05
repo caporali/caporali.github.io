@@ -1,10 +1,20 @@
 title: "Francesco Caporali"
-url: "https://caporali.github.io"   # no trailing slash
-baseurl: ""                         # user sites must leave this empty
+url: "https://caporali.github.io"
+baseurl: ""
+markdown: kramdown
+description: "Ph.D. student at Princeton ORFE"
+# ins_logo: "./..."
+tracking_id:
+footer: yes
+footer_url: "https://github.com/ankitsultana/researcher"
+footer_text: "© 2025, Francesco Caporali (theme: researcher by Ankit Sultana)."
+sass:
+	style: compressed
+	sass_dir: _sass
 nav:
-  - name: "About"
-    link: "/"                       # home
-  - name: "Resume"
-    link: "resume.pdf"
-  - name: "Contact"
-    link: "contact"
+	- name: "Main"
+		link: "/"
+	- name: "Resume"
+		link: "/cv_caporali.pdf"
+	# - name: "Example"
+	# 	link: "/example"
