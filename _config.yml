@@ -6,7 +6,7 @@ kramdown:
   input: GFM
   math_engine: mathjax
 description: "Ph.D. student at Princeton ORFE"
-ins_logo: "/files/princeton_logo.png"
+# ins_logo: "./..."
 tracking_id:
 footer: yes
 footer_url: "https://github.com/ankitsultana/researcher"
@@ -18,6 +18,6 @@ nav:
   - name: "Main"
     link: "/"
   - name: "Resume"
-    link: "./files/cv_caporali.pdf"
+    link: "/files/cv_caporali.pdf"
   # - name: "Example"
   #   link: "/example"
