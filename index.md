@@ -12,7 +12,7 @@ Before my Ph.D. I obtained a Master degree in Mathematics (track Stochastics and
 I used to have a strong focus on Probability Theory and my research has deepened *Bayesian neural networks* and their infinite-width prior and posterior limits. I was fortunate to work with prof. [Stefano Favaro](https://sites.carloalberto.org/favaro/) and prof. [Dario Trevisan](https://web.dm.unipi.it/trevisan/en/). <br>
 I got my Bachelor in Mathematics (track Computational Math) from University of Pisa, with a [thesis](https://github.com/caporali/bsc_thesis/blob/main/thesis.pdf) on *universality of neural networks*.
 
-- e-mail: `fc4978 [at] g.princeton.edu`
+- e-mail: `fc4978 [at] princeton.edu`
 - GitHub: [caporali](https://github.com/caporali)
 - [LinkedIn](https://www.linkedin.com/in/francescocaporali/) 
 
