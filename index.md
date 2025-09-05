@@ -9,7 +9,7 @@ My work lies at the intersection of *probabilistic machine learning* and *non-co
 I am fortunate to be advised by prof. [Boris Hanin](https://boris-hanin.github.io/).
 
 Before my Ph.D. I obtained a Master degree in Mathematics (track Stochastics and Data Science) from University of Turin and I was a Senior Allievo at Collegio Carlo Alberto. <br>
-I used to have a strong focus on Probability Theory and my research has deepened *Bayesian neural networks* and their infinite-width prior and posterior limits. I was fortunate to work with prof. [Stefano Favaro](https://sites.carloalberto.org/favaro/) and [Dario Trevisan](https://web.dm.unipi.it/trevisan/en/). <br>
+I used to have a strong focus on Probability Theory and my research has deepened *Bayesian neural networks* and their infinite-width prior and posterior limits. I was fortunate to work with prof. [Stefano Favaro](https://sites.carloalberto.org/favaro/) and prof. [Dario Trevisan](https://web.dm.unipi.it/trevisan/en/). <br>
 I got my Bachelor in Mathematics (track Computational Math) from University of Pisa, with a [thesis](https://github.com/caporali/bsc_thesis/blob/main/thesis.pdf) on *universality of neural networks*.
 
 - e-mail: `fc4978 [at] g.princeton.edu`
