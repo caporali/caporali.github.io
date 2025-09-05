@@ -9,10 +9,10 @@ footer: yes
 footer_url: "https://github.com/ankitsultana/researcher"
 footer_text: "© 2025, Francesco Caporali (theme: researcher by Ankit Sultana)."
 sass:
-	style: compressed
-	sass_dir: _sass
+    style: compressed
+    sass_dir: _sass
 nav:
-	- name: "Main"
-		link: "/"
-	- name: "Resume"
-		link: "/cv_caporali.pdf"
+    - name: "Main"
+        link: "/"
+    - name: "Resume"
+        link: "/cv_caporali.pdf"
