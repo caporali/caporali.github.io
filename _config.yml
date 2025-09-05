@@ -6,12 +6,11 @@ kramdown:
   input: GFM
   math_engine: mathjax
 description: "Ph.D. student at Princeton ORFE"
-favicon: true
-favicon_location: "/files/princeton_logo.png"
+# favicon: true
+# favicon_location: "/files/princeton_logo.png"
 tracking_id:
 footer: yes
 footer_url: "https://github.com/ankitsultana/researcher"
-footer_text: "© 2025, Francesco Caporali (theme: researcher by Ankit Sultana)."
 sass:
   style: compressed
   sass_dir: _sass
