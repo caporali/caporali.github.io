@@ -5,7 +5,8 @@ layout: default
 <img class = "profile-picture" src = "files/profile_pic_caporali.jpg">
 
 I'm a 2<sup>nd</sup> year Ph.D. student in **Operations Research and Financial Engineering (ORFE)** at **Princeton University**. <br>
-My work lies at the intersection of *probabilistic machine learning* and *non-convex optimization*.  
+My work lies at the intersection of *probabilistic machine learning* and *non-convex optimization*. 
+I am fortunate to be advised by prof. [Boris Hanin](https://boris-hanin.github.io/).
 
 Before my Ph.D. I obtained a Master degree in Mathematics (track Stochastics and Data Science) from University of Turin and I was a Senior Allievo at Collegio Carlo Alberto. <br>
 I used to have a strong focus on Probability Theory and my research has deepened *Bayesian neural networks* and their infinite-width prior and posterior limits. I was fortunate to work with prof. [Stefano Favaro](https://sites.carloalberto.org/favaro/) and [Dario Trevisan](https://web.dm.unipi.it/trevisan/en/). <br>
