@@ -27,9 +27,9 @@ reliable training.
 	In: *TASC workshop, COLT 2025*
 
 ## Teaching
-Tutorial Instructor, *University of Turin*:
-- *Probability and Statistics*, B.Sc. Mathematics for Finance and Insurance (Mar. 2023 - June 2023).
+Tutorial Instructor, *University of Turin*: <br>
+- *Probability and Statistics*, B.Sc. Mathematics for Finance and Insurance (Mar.-Jun. 2023).
 
-Teaching Assistant (TA), *Princeton University*:
-- *Probability Theory (ORF526)* (Sep. 2025 - Dec. 2025);
-- *Probability and Stochastic Systems (MAT380/ORF309/EGR309)* (Jan. 2026 - May. 2026).
+Teaching Assistant (TA), *Princeton University*: <br>
+- *Probability Theory (ORF526)* (Sep.-Dec. 2025);
+- *Probability and Stochastic Systems (MAT380/ORF309/EGR309)* (Jan.-May. 2026).
