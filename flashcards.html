@@ -1,0 +1,1049 @@
+---
+layout: default
+title: "Flashcards"
+---
+
+<div class="flashcards-app">
+    <h1>Flashcards</h1>
+    <p>Create and study flashcards directly on this website!</p>
+    
+    <!-- Mode Selection -->
+    <div class="mode-selector">
+        <button class="mode-btn active" data-mode="create">Create</button>
+        <button class="mode-btn" data-mode="study">Study</button>
+        <button class="mode-btn" data-mode="quiz">Quiz</button>
+    </div>
+
+    <!-- Create Mode -->
+    <div id="create-mode" class="mode-content active">
+        <div class="deck-selector">
+            <label for="deck-name">Deck Name:</label>
+            <input type="text" id="deck-name" placeholder="Enter deck name (e.g., Math Terms)">
+            <button id="create-deck-btn">Create/Select Deck</button>
+            <select id="existing-decks" style="margin-left: 10px;">
+                <option value="">-- Select existing deck --</option>
+            </select>
+        </div>
+        
+        <div id="deck-info" style="display: none; margin: 20px 0;">
+            <h3>Current Deck: <span id="current-deck-name"></span></h3>
+            <p>Cards in deck: <span id="card-count">0</span></p>
+        </div>
+
+        <div class="card-form">
+            <h3>Add New Card</h3>
+            <div class="form-group">
+                <label for="front-text">Front (Question):</label>
+                <textarea id="front-text" rows="3" placeholder="Enter the question or term"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="back-text">Back (Answer):</label>
+                <textarea id="back-text" rows="3" placeholder="Enter the answer or definition"></textarea>
+            </div>
+            <button id="add-card-btn">Add Card</button>
+        </div>
+
+        <div id="cards-list" class="cards-list">
+            <h3>Cards in Current Deck</h3>
+            <div id="cards-container"></div>
+        </div>
+    </div>
+
+    <!-- Study Mode -->
+    <div id="study-mode" class="mode-content">
+        <div class="study-controls">
+            <select id="study-deck-select">
+                <option value="">-- Select a deck to study --</option>
+            </select>
+            <button id="start-study-btn" disabled>Start Studying</button>
+        </div>
+        
+        <div id="study-area" style="display: none;">
+            <div class="study-progress">
+                <span>Card <span id="current-card-num">1</span> of <span id="total-cards">0</span></span>
+            </div>
+            <div class="flashcard-container">
+                <div class="flashcard" id="study-card">
+                    <div class="card-front">
+                        <div class="card-content" id="study-front"></div>
+                    </div>
+                    <div class="card-back" style="display: none;">
+                        <div class="card-content" id="study-back"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="study-actions">
+                <button id="flip-card-btn">Flip Card</button>
+                <button id="prev-card-btn">Previous</button>
+                <button id="next-card-btn">Next</button>
+                <button id="shuffle-btn">Shuffle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Mode -->
+    <div id="quiz-mode" class="mode-content">
+        <div class="quiz-controls">
+            <select id="quiz-deck-select">
+                <option value="">-- Select a deck for quiz --</option>
+            </select>
+            <button id="start-quiz-btn" disabled>Start Quiz</button>
+        </div>
+        
+        <div id="quiz-area" style="display: none;">
+            <div class="quiz-progress">
+                <span>Question <span id="quiz-current-num">1</span> of <span id="quiz-total">0</span></span>
+                <span class="score">Score: <span id="quiz-score">0</span>/<span id="quiz-max-score">0</span></span>
+            </div>
+            <div class="quiz-question">
+                <h3 id="quiz-question-text"></h3>
+                <div id="quiz-options"></div>
+                <div id="quiz-answer-input" style="display: none;">
+                    <input type="text" id="quiz-text-answer" placeholder="Type your answer">
+                    <button id="submit-answer-btn">Submit</button>
+                </div>
+                <div id="quiz-feedback" style="display: none;"></div>
+            </div>
+            <div class="quiz-actions">
+                <button id="quiz-next-btn" disabled>Next Question</button>
+                <button id="finish-quiz-btn" style="display: none;">Finish Quiz</button>
+            </div>
+        </div>
+        
+        <div id="quiz-results" style="display: none;">
+            <h2>Quiz Results</h2>
+            <p>You scored <span id="final-score">0</span> out of <span id="final-total">0</span>!</p>
+            <p>Percentage: <span id="final-percentage">0</span>%</p>
+            <button id="retake-quiz-btn">Retake Quiz</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.flashcards-app {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.mode-btn {
+    padding: 10px 20px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.mode-btn:hover {
+    background: #e0e0e0;
+}
+
+.mode-btn.active {
+    background: #FF0F00;
+    color: white;
+}
+
+.mode-content {
+    display: none;
+    margin-top: 20px;
+}
+
+.mode-content.active {
+    display: block;
+}
+
+.deck-selector {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+.deck-selector label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.deck-selector input,
+.deck-selector select {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-family: "Inconsolata", monospace;
+}
+
+.deck-selector button {
+    padding: 8px 15px;
+    background: #FF0F00;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+}
+
+.deck-selector button:hover {
+    background: #cc0c00;
+}
+
+.card-form {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-family: "Inconsolata", monospace;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+#add-card-btn {
+    padding: 10px 20px;
+    background: #FF0F00;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+    font-size: 14px;
+}
+
+#add-card-btn:hover {
+    background: #cc0c00;
+}
+
+.cards-list {
+    margin-top: 30px;
+}
+
+.cards-list h3 {
+    margin-bottom: 15px;
+}
+
+.card-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.card-item-content {
+    flex: 1;
+}
+
+.card-item-content strong {
+    color: #FF0F00;
+}
+
+.card-item-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.card-item-actions button {
+    padding: 5px 10px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+    font-size: 12px;
+}
+
+.card-item-actions button:hover {
+    background: #e0e0e0;
+}
+
+.card-item-actions .delete-btn {
+    background: #ff4444;
+    color: white;
+    border-color: #ff4444;
+}
+
+.card-item-actions .delete-btn:hover {
+    background: #cc0000;
+}
+
+.study-controls,
+.quiz-controls {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+.study-controls select,
+.quiz-controls select {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-family: "Inconsolata", monospace;
+}
+
+.study-controls button,
+.quiz-controls button {
+    padding: 8px 15px;
+    background: #FF0F00;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+}
+
+.study-controls button:hover,
+.quiz-controls button:hover {
+    background: #cc0c00;
+}
+
+.study-controls button:disabled,
+.quiz-controls button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.flashcard-container {
+    perspective: 1000px;
+    margin: 30px 0;
+    min-height: 300px;
+}
+
+.flashcard {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 2px solid #FF0F00;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card-content {
+    padding: 30px;
+    text-align: center;
+    font-size: 18px;
+    word-wrap: break-word;
+    max-width: 90%;
+}
+
+.study-progress,
+.quiz-progress {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.quiz-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.score {
+    color: #FF0F00;
+}
+
+.study-actions,
+.quiz-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.study-actions button,
+.quiz-actions button {
+    padding: 10px 20px;
+    background: #FF0F00;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+}
+
+.study-actions button:hover,
+.quiz-actions button:hover {
+    background: #cc0c00;
+}
+
+.study-actions button:disabled,
+.quiz-actions button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.quiz-question {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.quiz-question h3 {
+    margin-bottom: 20px;
+    color: #FF0F00;
+}
+
+.quiz-option {
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.quiz-option:hover {
+    border-color: #FF0F00;
+    background: #fff5f5;
+}
+
+.quiz-option.selected {
+    border-color: #FF0F00;
+    background: #fff5f5;
+}
+
+.quiz-option.correct {
+    border-color: #00cc00;
+    background: #f0fff0;
+}
+
+.quiz-option.incorrect {
+    border-color: #ff4444;
+    background: #fff0f0;
+}
+
+#quiz-answer-input {
+    margin-top: 20px;
+}
+
+#quiz-answer-input input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-family: "Inconsolata", monospace;
+    font-size: 14px;
+}
+
+#quiz-answer-input button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background: #FF0F00;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+}
+
+#quiz-feedback {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#quiz-feedback.correct {
+    background: #f0fff0;
+    color: #00cc00;
+    border: 2px solid #00cc00;
+}
+
+#quiz-feedback.incorrect {
+    background: #fff0f0;
+    color: #ff4444;
+    border: 2px solid #ff4444;
+}
+
+#quiz-results {
+    text-align: center;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#quiz-results h2 {
+    color: #FF0F00;
+    margin-bottom: 20px;
+}
+
+#quiz-results p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+#retake-quiz-btn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background: #FF0F00;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+    font-size: 14px;
+}
+
+#retake-quiz-btn:hover {
+    background: #cc0c00;
+}
+</style>
+
+<script>
+// Flashcard App State
+let currentDeck = null;
+let currentCards = [];
+let studyCards = [];
+let studyIndex = 0;
+let quizCards = [];
+let quizIndex = 0;
+let quizScore = 0;
+let quizMode = 'multiple'; // 'multiple' or 'type'
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    loadDecks();
+    setupEventListeners();
+    updateDeckSelectors();
+});
+
+// Storage Functions
+function saveDecks() {
+    const decks = JSON.parse(localStorage.getItem('flashcardDecks') || '{}');
+    if (currentDeck) {
+        decks[currentDeck] = currentCards;
+        localStorage.setItem('flashcardDecks', JSON.stringify(decks));
+    }
+}
+
+function loadDecks() {
+    const decks = JSON.parse(localStorage.getItem('flashcardDecks') || '{}');
+    return decks;
+}
+
+function deleteDeck(deckName) {
+    const decks = loadDecks();
+    delete decks[deckName];
+    localStorage.setItem('flashcardDecks', JSON.stringify(decks));
+    if (currentDeck === deckName) {
+        currentDeck = null;
+        currentCards = [];
+        document.getElementById('deck-info').style.display = 'none';
+        document.getElementById('cards-container').innerHTML = '';
+    }
+    updateDeckSelectors();
+}
+
+// UI Functions
+function updateDeckSelectors() {
+    const decks = loadDecks();
+    const deckNames = Object.keys(decks);
+    
+    // Update existing decks dropdown
+    const existingDecks = document.getElementById('existing-decks');
+    existingDecks.innerHTML = '<option value="">-- Select existing deck --</option>';
+    deckNames.forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name + ` (${decks[name].length} cards)`;
+        existingDecks.appendChild(option);
+    });
+    
+    // Update study deck selector
+    const studyDeckSelect = document.getElementById('study-deck-select');
+    studyDeckSelect.innerHTML = '<option value="">-- Select a deck to study --</option>';
+    deckNames.forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name + ` (${decks[name].length} cards)`;
+        studyDeckSelect.appendChild(option);
+    });
+    
+    // Update quiz deck selector
+    const quizDeckSelect = document.getElementById('quiz-deck-select');
+    quizDeckSelect.innerHTML = '<option value="">-- Select a deck for quiz --</option>';
+    deckNames.forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name + ` (${decks[name].length} cards)`;
+        quizDeckSelect.appendChild(option);
+    });
+}
+
+function displayCards() {
+    const container = document.getElementById('cards-container');
+    container.innerHTML = '';
+    
+    if (currentCards.length === 0) {
+        container.innerHTML = '<p>No cards in this deck yet. Add some cards above!</p>';
+        return;
+    }
+    
+    currentCards.forEach((card, index) => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card-item';
+        cardDiv.innerHTML = `
+            <div class="card-item-content">
+                <strong>Front:</strong> ${escapeHtml(card.front)}<br>
+                <strong>Back:</strong> ${escapeHtml(card.back)}
+            </div>
+            <div class="card-item-actions">
+                <button onclick="editCard(${index})">Edit</button>
+                <button class="delete-btn" onclick="deleteCard(${index})">Delete</button>
+            </div>
+        `;
+        container.appendChild(cardDiv);
+    });
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Card Management
+function addCard() {
+    const front = document.getElementById('front-text').value.trim();
+    const back = document.getElementById('back-text').value.trim();
+    
+    if (!currentDeck) {
+        alert('Please create or select a deck first!');
+        return;
+    }
+    
+    if (!front || !back) {
+        alert('Please fill in both front and back of the card!');
+        return;
+    }
+    
+    currentCards.push({ front, back });
+    saveDecks();
+    displayCards();
+    updateCardCount();
+    
+    // Clear form
+    document.getElementById('front-text').value = '';
+    document.getElementById('back-text').value = '';
+}
+
+function deleteCard(index) {
+    if (confirm('Are you sure you want to delete this card?')) {
+        currentCards.splice(index, 1);
+        saveDecks();
+        displayCards();
+        updateCardCount();
+    }
+}
+
+function editCard(index) {
+    const card = currentCards[index];
+    document.getElementById('front-text').value = card.front;
+    document.getElementById('back-text').value = card.back;
+    
+    // Delete the old card and add new one
+    deleteCard(index);
+}
+
+function updateCardCount() {
+    document.getElementById('card-count').textContent = currentCards.length;
+}
+
+// Deck Management
+function createOrSelectDeck() {
+    const deckName = document.getElementById('deck-name').value.trim();
+    const existingDeck = document.getElementById('existing-decks').value;
+    
+    const selectedDeck = existingDeck || deckName;
+    
+    if (!selectedDeck) {
+        alert('Please enter a deck name or select an existing deck!');
+        return;
+    }
+    
+    // Save current deck if exists
+    if (currentDeck) {
+        saveDecks();
+    }
+    
+    // Load or create new deck
+    const decks = loadDecks();
+    if (decks[selectedDeck]) {
+        currentCards = [...decks[selectedDeck]];
+    } else {
+        currentCards = [];
+    }
+    
+    currentDeck = selectedDeck;
+    document.getElementById('current-deck-name').textContent = currentDeck;
+    document.getElementById('deck-info').style.display = 'block';
+    document.getElementById('deck-name').value = selectedDeck;
+    document.getElementById('existing-decks').value = selectedDeck;
+    
+    saveDecks();
+    displayCards();
+    updateCardCount();
+    updateDeckSelectors();
+}
+
+// Study Mode
+function startStudy() {
+    const deckName = document.getElementById('study-deck-select').value;
+    if (!deckName) {
+        alert('Please select a deck!');
+        return;
+    }
+    
+    const decks = loadDecks();
+    studyCards = [...decks[deckName]];
+    
+    if (studyCards.length === 0) {
+        alert('This deck has no cards!');
+        return;
+    }
+    
+    studyIndex = 0;
+    document.getElementById('study-area').style.display = 'block';
+    showStudyCard();
+}
+
+function showStudyCard() {
+    if (studyCards.length === 0) return;
+    
+    const card = studyCards[studyIndex];
+    document.getElementById('study-front').textContent = card.front;
+    document.getElementById('study-back').textContent = card.back;
+    document.getElementById('current-card-num').textContent = studyIndex + 1;
+    document.getElementById('total-cards').textContent = studyCards.length;
+    
+    // Reset card flip
+    const flashcard = document.getElementById('study-card');
+    flashcard.classList.remove('flipped');
+    document.querySelector('.card-back').style.display = 'none';
+}
+
+function flipCard() {
+    const flashcard = document.getElementById('study-card');
+    const cardBack = document.querySelector('.card-back');
+    
+    if (flashcard.classList.contains('flipped')) {
+        flashcard.classList.remove('flipped');
+        cardBack.style.display = 'none';
+    } else {
+        flashcard.classList.add('flipped');
+        cardBack.style.display = 'flex';
+    }
+}
+
+function nextCard() {
+    studyIndex = (studyIndex + 1) % studyCards.length;
+    showStudyCard();
+}
+
+function prevCard() {
+    studyIndex = (studyIndex - 1 + studyCards.length) % studyCards.length;
+    showStudyCard();
+}
+
+function shuffleCards() {
+    for (let i = studyCards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [studyCards[i], studyCards[j]] = [studyCards[j], studyCards[i]];
+    }
+    studyIndex = 0;
+    showStudyCard();
+}
+
+// Quiz Mode
+function startQuiz() {
+    const deckName = document.getElementById('quiz-deck-select').value;
+    if (!deckName) {
+        alert('Please select a deck!');
+        return;
+    }
+    
+    const decks = loadDecks();
+    quizCards = [...decks[deckName]];
+    
+    if (quizCards.length === 0) {
+        alert('This deck has no cards!');
+        return;
+    }
+    
+    // Shuffle cards
+    for (let i = quizCards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [quizCards[i], quizCards[j]] = [quizCards[j], quizCards[i]];
+    }
+    
+    quizIndex = 0;
+    quizScore = 0;
+    document.getElementById('quiz-area').style.display = 'block';
+    document.getElementById('quiz-results').style.display = 'none';
+    showQuizQuestion();
+}
+
+function showQuizQuestion() {
+    if (quizIndex >= quizCards.length) {
+        finishQuiz();
+        return;
+    }
+    
+    const card = quizCards[quizIndex];
+    document.getElementById('quiz-question-text').textContent = card.front;
+    document.getElementById('quiz-current-num').textContent = quizIndex + 1;
+    document.getElementById('quiz-total').textContent = quizCards.length;
+    document.getElementById('quiz-max-score').textContent = quizCards.length;
+    document.getElementById('quiz-score').textContent = quizScore;
+    
+    // Determine quiz mode based on deck size
+    if (quizCards.length >= 4) {
+        quizMode = 'multiple';
+        showMultipleChoice(card);
+    } else {
+        quizMode = 'type';
+        showTypeAnswer();
+    }
+    
+    document.getElementById('quiz-feedback').style.display = 'none';
+    document.getElementById('quiz-next-btn').disabled = true;
+}
+
+function showMultipleChoice(correctCard) {
+    document.getElementById('quiz-options').style.display = 'block';
+    document.getElementById('quiz-answer-input').style.display = 'none';
+    
+    const optionsContainer = document.getElementById('quiz-options');
+    optionsContainer.innerHTML = '';
+    
+    // Get 3 random wrong answers
+    const wrongAnswers = [];
+    while (wrongAnswers.length < 3 && wrongAnswers.length < quizCards.length - 1) {
+        const randomCard = quizCards[Math.floor(Math.random() * quizCards.length)];
+        if (randomCard !== correctCard && !wrongAnswers.includes(randomCard.back)) {
+            wrongAnswers.push(randomCard.back);
+        }
+    }
+    
+    // Combine correct and wrong answers, shuffle
+    const allAnswers = [correctCard.back, ...wrongAnswers];
+    for (let i = allAnswers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allAnswers[i], allAnswers[j]] = [allAnswers[j], allAnswers[i]];
+    }
+    
+    allAnswers.forEach(answer => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'quiz-option';
+        optionDiv.textContent = answer;
+        optionDiv.onclick = function() {
+            if (document.getElementById('quiz-next-btn').disabled) {
+                selectAnswer(optionDiv, answer === correctCard.back);
+            }
+        };
+        optionsContainer.appendChild(optionDiv);
+    });
+}
+
+function showTypeAnswer() {
+    document.getElementById('quiz-options').style.display = 'none';
+    document.getElementById('quiz-answer-input').style.display = 'block';
+    document.getElementById('quiz-text-answer').value = '';
+    document.getElementById('quiz-text-answer').focus();
+}
+
+function selectAnswer(optionElement, isCorrect) {
+    // Disable all options
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.style.pointerEvents = 'none';
+    });
+    
+    if (isCorrect) {
+        optionElement.classList.add('correct');
+        quizScore++;
+        document.getElementById('quiz-score').textContent = quizScore;
+        showFeedback(true);
+    } else {
+        optionElement.classList.add('incorrect');
+        // Highlight correct answer
+        document.querySelectorAll('.quiz-option').forEach(opt => {
+            if (opt.textContent === quizCards[quizIndex].back) {
+                opt.classList.add('correct');
+            }
+        });
+        showFeedback(false);
+    }
+    
+    document.getElementById('quiz-next-btn').disabled = false;
+}
+
+function submitTextAnswer() {
+    const userAnswer = document.getElementById('quiz-text-answer').value.trim().toLowerCase();
+    const correctAnswer = quizCards[quizIndex].back.trim().toLowerCase();
+    const isCorrect = userAnswer === correctAnswer;
+    
+    if (isCorrect) {
+        quizScore++;
+        document.getElementById('quiz-score').textContent = quizScore;
+    }
+    
+    showFeedback(isCorrect, correctAnswer);
+    document.getElementById('quiz-text-answer').disabled = true;
+    document.getElementById('quiz-next-btn').disabled = false;
+}
+
+function showFeedback(isCorrect, correctAnswer = null) {
+    const feedback = document.getElementById('quiz-feedback');
+    feedback.style.display = 'block';
+    feedback.className = isCorrect ? 'correct' : 'incorrect';
+    
+    if (isCorrect) {
+        feedback.textContent = '✓ Correct!';
+    } else {
+        if (correctAnswer) {
+            feedback.textContent = `✗ Incorrect. The correct answer is: ${correctAnswer}`;
+        } else {
+            feedback.textContent = '✗ Incorrect.';
+        }
+    }
+}
+
+function nextQuizQuestion() {
+    quizIndex++;
+    document.getElementById('quiz-text-answer').disabled = false;
+    showQuizQuestion();
+}
+
+function finishQuiz() {
+    document.getElementById('quiz-area').style.display = 'none';
+    document.getElementById('quiz-results').style.display = 'block';
+    document.getElementById('final-score').textContent = quizScore;
+    document.getElementById('final-total').textContent = quizCards.length;
+    const percentage = Math.round((quizScore / quizCards.length) * 100);
+    document.getElementById('final-percentage').textContent = percentage;
+}
+
+function retakeQuiz() {
+    startQuiz();
+}
+
+// Mode Switching
+function switchMode(mode) {
+    // Update buttons
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+    
+    // Update content
+    document.querySelectorAll('.mode-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById(`${mode}-mode`).classList.add('active');
+}
+
+// Event Listeners
+function setupEventListeners() {
+    // Mode buttons
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            switchMode(this.dataset.mode);
+        });
+    });
+    
+    // Deck management
+    document.getElementById('create-deck-btn').addEventListener('click', createOrSelectDeck);
+    document.getElementById('existing-decks').addEventListener('change', function() {
+        if (this.value) {
+            document.getElementById('deck-name').value = this.value;
+            createOrSelectDeck();
+        }
+    });
+    
+    // Card management
+    document.getElementById('add-card-btn').addEventListener('click', addCard);
+    
+    // Study mode
+    document.getElementById('start-study-btn').addEventListener('click', startStudy);
+    document.getElementById('study-deck-select').addEventListener('change', function() {
+        document.getElementById('start-study-btn').disabled = !this.value;
+    });
+    document.getElementById('flip-card-btn').addEventListener('click', flipCard);
+    document.getElementById('next-card-btn').addEventListener('click', nextCard);
+    document.getElementById('prev-card-btn').addEventListener('click', prevCard);
+    document.getElementById('shuffle-btn').addEventListener('click', shuffleCards);
+    
+    // Quiz mode
+    document.getElementById('start-quiz-btn').addEventListener('click', startQuiz);
+    document.getElementById('quiz-deck-select').addEventListener('change', function() {
+        document.getElementById('start-quiz-btn').disabled = !this.value;
+    });
+    document.getElementById('submit-answer-btn').addEventListener('click', submitTextAnswer);
+    document.getElementById('quiz-text-answer').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            submitTextAnswer();
+        }
+    });
+    document.getElementById('quiz-next-btn').addEventListener('click', nextQuizQuestion);
+    document.getElementById('finish-quiz-btn').addEventListener('click', finishQuiz);
+    document.getElementById('retake-quiz-btn').addEventListener('click', retakeQuiz);
+}
+</script>
