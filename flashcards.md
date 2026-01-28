@@ -12,7 +12,7 @@ title: "Flashcards"
 </div>
 
 <div id = "flashcards-content" style = "display: none;">
-*Flashcards.* Study flashcards from your decks.
+<i>Flashcards.</i> Study flashcards from your decks.
 
 <div class = "mode-selector">
     <button class = "mode-btn active" data-mode = "study">study</button>
@@ -61,6 +61,7 @@ title: "Flashcards"
         </div>
         <div class = "quiz-question">
             <div class = "quiz-counter"><span id = "quiz-current-num">1</span>/<span id = "quiz-total">0</span></div>
+            <button class = "quiz-next-btn-top" id = "quiz-next-btn" disabled>›</button>
             <h3 id = "quiz-question-text"></h3>
             <div id = "quiz-options"></div>
             <div id = "quiz-answer-input" style = "display: none;">
@@ -69,13 +70,9 @@ title: "Flashcards"
                 <div id = "correct-answer-display" style = "display: none; margin-top: 10px; color: #00cc00; font-weight: bold;"></div>
             </div>
         </div>
-        <div class = "actions">
-            <button id = "quiz-next-btn" disabled>next</button>
-        </div>
     </div>
     <div id = "quiz-results" style = "display: none;">
-        <h2>Results</h2>
-        <p>Score: <span id = "final-score">0</span>/<span id = "final-total">0</span> (<span id = "final-percentage">0</span>%)</p>
+        <p>score = <span id = "final-score">0</span>/<span id = "final-total">0</span> (<span id = "final-percentage">0</span>%).</p>
         <button id = "retake-quiz-btn">retake</button>
     </div>
 </div>
@@ -109,11 +106,15 @@ title: "Flashcards"
 .shuffle-btn:hover { background: #f5f5f5; border-color: #4a4a4a; transform: rotate(90deg); }
 .shuffle-btn:active { transform: rotate(90deg) scale(0.95); }
 .quiz-progress { margin-bottom: 20px; display: flex; justify-content: center; }
-.progress-bar { width: 300px; height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; display: flex; }
-.progress-fill-correct { height: 100%; background: #00cc00; transition: width 0.3s; width: 0%; }
-.progress-fill-incorrect { height: 100%; background: #ff4444; transition: width 0.3s; width: 0%; }
+.progress-bar { width: 300px; height: 8px; background: #e0e0e0; border-radius: 4px; border: 1px solid #999; display: flex; position: relative; overflow: visible; }
+.progress-fill-correct { height: 100%; background: #00cc00; transition: width 0.3s; width: 0%; border-right: 1px solid #999; box-sizing: border-box; }
+.progress-fill-incorrect { height: 100%; background: #ff4444; transition: width 0.3s; width: 0%; border-right: 1px solid #999; box-sizing: border-box; }
 .quiz-question { background: #f9f9f9; padding: 30px; border-radius: 5px; margin: 20px 0; position: relative; }
-.quiz-counter { position: absolute; top: 10px; right: 10px; font-size: 14px; color: #666; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 3px; }
+.quiz-counter { position: absolute; top: 10px; left: 10px; font-size: 14px; color: #4a4a4a; background: rgba(255,255,255,0.95); padding: 5px 10px; border-radius: 3px; border: 1px solid #ddd; }
+.quiz-next-btn-top { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ddd; background: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: #4a4a4a; }
+.quiz-next-btn-top:hover { background: #f5f5f5; border-color: #4a4a4a; }
+.quiz-next-btn-top:active { transform: scale(0.95); }
+.quiz-next-btn-top:disabled { background: #ccc; border-color: #ccc; color: #999; cursor: not-allowed; }
 .quiz-question h3 { margin-bottom: 20px; color: #4a4a4a; white-space: pre-wrap; }
 .quiz-option { padding: 15px; margin: 10px 0; background: white; border: 2px solid #ddd; border-radius: 5px; cursor: pointer; transition: all 0.3s; white-space: pre-wrap; }
 .quiz-option:hover { border-color: #4a4a4a; background: #f5f5f5; }
