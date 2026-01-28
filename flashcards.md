@@ -3,6 +3,17 @@ layout: default
 title: "Flashcards"
 ---
 
+<div id = "password-overlay" style = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10000; display: flex; align-items: center; justify-content: center;">
+    <div style = "text-align: center; padding: 30px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9;">
+        <h3 style = "margin-bottom: 20px;">Enter Password</h3>
+        <input type = "password" id = "password-input" placeholder = "Password" style = "padding: 10px; border: 1px solid #ddd; border-radius: 3px; font-family: 'Inconsolata', monospace; margin-bottom: 10px; width: 200px;">
+        <br>
+        <button id = "password-submit" style = "padding: 8px 15px; background: #4a4a4a; color: white; border: none; border-radius: 3px; cursor: pointer; font-family: 'Inconsolata', monospace;">Submit</button>
+        <p id = "password-error" style = "color: #ff4444; margin-top: 10px; display: none;">Incorrect password</p>
+    </div>
+</div>
+
+<div id = "flashcards-content" style = "display: none;">
 *Flashcards.* Study flashcards from your decks.
 
 <div class = "mode-selector">
@@ -45,12 +56,13 @@ title: "Flashcards"
     </div>
     <div id = "quiz-area" style = "display: none;">
         <div class = "quiz-progress">
-            <span>Question <span id = "quiz-current-num">1</span> of <span id = "quiz-total">0</span></span>
             <div class = "progress-bar">
-                <div class = "progress-fill" id = "progress-fill"></div>
+                <div class = "progress-fill-correct" id = "progress-fill-correct"></div>
+                <div class = "progress-fill-incorrect" id = "progress-fill-incorrect"></div>
             </div>
         </div>
         <div class = "quiz-question">
+            <div class = "quiz-counter"><span id = "quiz-current-num">1</span>/<span id = "quiz-total">0</span></div>
             <h3 id = "quiz-question-text"></h3>
             <div id = "quiz-options"></div>
             <div id = "quiz-answer-input" style = "display: none;">
@@ -68,6 +80,7 @@ title: "Flashcards"
         <p>Score: <span id = "final-score">0</span>/<span id = "final-total">0</span> (<span id = "final-percentage">0</span>%)</p>
         <button id = "retake-quiz-btn">retake</button>
     </div>
+</div>
 </div>
 
 <style>
@@ -97,10 +110,12 @@ title: "Flashcards"
 .shuffle-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd; background: white; font-size: 20px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; color: #4a4a4a; }
 .shuffle-btn:hover { background: #f5f5f5; border-color: #4a4a4a; transform: rotate(90deg); }
 .shuffle-btn:active { transform: rotate(90deg) scale(0.95); }
-.quiz-progress { margin-bottom: 20px; font-weight: bold; color: #4a4a4a; display: flex; align-items: center; gap: 15px; }
-.progress-bar { flex: 1; height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; }
-.progress-fill { height: 100%; background: #4a4a4a; transition: width 0.3s; width: 0%; }
-.quiz-question { background: #f9f9f9; padding: 30px; border-radius: 5px; margin: 20px 0; }
+.quiz-progress { margin-bottom: 20px; display: flex; justify-content: center; }
+.progress-bar { width: 300px; height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; display: flex; }
+.progress-fill-correct { height: 100%; background: #00cc00; transition: width 0.3s; width: 0%; }
+.progress-fill-incorrect { height: 100%; background: #ff4444; transition: width 0.3s; width: 0%; }
+.quiz-question { background: #f9f9f9; padding: 30px; border-radius: 5px; margin: 20px 0; position: relative; }
+.quiz-counter { position: absolute; top: 10px; right: 10px; font-size: 14px; color: #666; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 3px; }
 .quiz-question h3 { margin-bottom: 20px; color: #4a4a4a; white-space: pre-wrap; }
 .quiz-option { padding: 15px; margin: 10px 0; background: white; border: 2px solid #ddd; border-radius: 5px; cursor: pointer; transition: all 0.3s; white-space: pre-wrap; }
 .quiz-option:hover { border-color: #4a4a4a; background: #f5f5f5; }
@@ -123,9 +138,34 @@ title: "Flashcards"
 </style>
 
 <script>
+const FLASHCARDS_PASSWORD = 'fands_2025'; // password setup
 let decks = [], study_cards = [], study_idx = 0, quiz_cards = [], quiz_idx = 0, quiz_score = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
+function checkPassword() {
+    // Check if already authenticated in this session
+    if (sessionStorage.getItem('flashcards_authenticated') === 'true') {
+        document.getElementById('password-overlay').style.display = 'none';
+        document.getElementById('flashcards-content').style.display = 'block';
+        return true;
+    }
+    return false;
+}
+
+function authenticate() {
+    const input = document.getElementById('password-input').value;
+    if (input === FLASHCARDS_PASSWORD) {
+        sessionStorage.setItem('flashcards_authenticated', 'true');
+        document.getElementById('password-overlay').style.display = 'none';
+        document.getElementById('flashcards-content').style.display = 'block';
+        initializeApp();
+    } else {
+        document.getElementById('password-error').style.display = 'block';
+        document.getElementById('password-input').value = '';
+        document.getElementById('password-input').focus();
+    }
+}
+
+function initializeApp() {
     loadDecks();
     document.querySelectorAll('.mode-btn').forEach(b => b.onclick = () => switchMode(b.dataset.mode));
     document.getElementById('start-study-btn').onclick = startStudy;
@@ -168,6 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
         showQuiz(); 
     };
     document.getElementById('retake-quiz-btn').onclick = startQuiz;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (!checkPassword()) {
+        document.getElementById('password-input').focus();
+        document.getElementById('password-submit').onclick = authenticate;
+        document.getElementById('password-input').onkeypress = (e) => {
+            if (e.key === 'Enter') authenticate();
+        };
+        return;
+    }
+    initializeApp();
 });
 
 async function loadDecks() {
@@ -252,6 +304,8 @@ async function startQuiz() {
         quiz_score = 0;
         document.getElementById('quiz-area').style.display = 'block';
         document.getElementById('quiz-results').style.display = 'none';
+        document.getElementById('progress-fill-correct').style.width = '0%';
+        document.getElementById('progress-fill-incorrect').style.width = '0%';
         showQuiz();
     } catch (e) {
         document.getElementById('quiz-area').innerHTML = `<div class = "error">Error: ${e.message}</div>`;
@@ -273,8 +327,7 @@ function showQuiz() {
     const total = quiz_cards.length;
     document.getElementById('quiz-current-num').textContent = current;
     document.getElementById('quiz-total').textContent = total;
-    const percentage = (current / total) * 100;
-    document.getElementById('progress-fill').style.width = percentage + '%';
+    updateProgressBar(false); // false = haven't answered current question yet
     document.getElementById('quiz-next-btn').disabled = true;
     
     if (quiz_cards.length >= 4) {
@@ -321,6 +374,7 @@ function selectAnswer(el, correct) {
         else if (o === el && !correct) o.classList.add('incorrect');
     });
     if (correct) quiz_score++;
+    updateProgressBar(true); // true = just answered current question
     document.getElementById('quiz-next-btn').disabled = false;
 }
 
@@ -338,7 +392,17 @@ function submitAnswer() {
     } else {
         document.getElementById('correct-answer-display').style.display = 'none';
     }
+    updateProgressBar(true); // true = just answered current question
     document.getElementById('quiz-next-btn').disabled = false;
+}
+
+function updateProgressBar(include_current = true) {
+    const total = quiz_cards.length;
+    const answered = include_current ? quiz_idx + 1 : quiz_idx; // number of questions answered
+    const correct_percentage = answered > 0 ? (quiz_score / total) * 100 : 0;
+    const incorrect_percentage = answered > 0 ? ((answered - quiz_score) / total) * 100 : 0;
+    document.getElementById('progress-fill-correct').style.width = correct_percentage + '%';
+    document.getElementById('progress-fill-incorrect').style.width = incorrect_percentage + '%';
 }
 
 function switchMode(mode) {
