@@ -221,7 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadDecks() {
-    const known_decks = [{ name: 'ddd_1_1', file: 'flashcards/ddd_1_1.txt' }];
+    const known_decks = [
+        { name: 'ddd_1_1', file: 'flashcards/ddd_1_1.txt' },
+        { name: 'ddd_1_2', file: 'flashcards/ddd_1_2.txt' }
+    ];
     decks = [];
     for (const d of known_decks) {
         try { 
