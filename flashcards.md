@@ -5,11 +5,9 @@ title: "Flashcards"
 
 <div id = "password-overlay" style = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10000; display: flex; align-items: center; justify-content: center;">
     <div style = "text-align: center; padding: 30px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9;">
-        <h3 style = "margin-bottom: 20px;">Enter Password</h3>
-        <input type = "password" id = "password-input" placeholder = "Password" style = "padding: 10px; border: 1px solid #ddd; border-radius: 3px; font-family: 'Inconsolata', monospace; margin-bottom: 10px; width: 200px;">
-        <br>
-        <button id = "password-submit" style = "padding: 8px 15px; background: #4a4a4a; color: white; border: none; border-radius: 3px; cursor: pointer; font-family: 'Inconsolata', monospace;">Submit</button>
-        <p id = "password-error" style = "color: #ff4444; margin-top: 10px; display: none;">Incorrect password</p>
+        <h3 style = "margin-bottom: 20px;">enter password</h3>
+        <input type = "password" id = "password-input" placeholder = "password (press enter)" style = "padding: 10px; border: 1px solid #ddd; border-radius: 3px; font-family: 'Inconsolata', monospace; margin-bottom: 10px; width: 200px;">
+        <p id = "password-error" style = "color: #ff4444; margin-top: 10px; display: none;">incorrect password</p>
     </div>
 </div>
 
@@ -213,7 +211,6 @@ function initializeApp() {
 document.addEventListener('DOMContentLoaded', () => {
     if (!checkPassword()) {
         document.getElementById('password-input').focus();
-        document.getElementById('password-submit').onclick = authenticate;
         document.getElementById('password-input').onkeypress = (e) => {
             if (e.key === 'Enter') authenticate();
         };
