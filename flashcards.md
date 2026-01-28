@@ -97,9 +97,9 @@ title: "Flashcards"
 .flashcard-container { flex: 1; perspective: 1000px; min-height: 300px; position: relative; }
 .flashcard { width: 100%; height: 300px; position: relative; transform-style: preserve-3d; transition: transform 0.6s; cursor: pointer; }
 .flashcard.flipped { transform: rotateY(180deg); }
-.card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border: 1px solid #ddd; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border: 1px solid #ddd; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transform-style: preserve-3d; }
 .card-back { transform: rotateY(180deg); }
-.card-counter { position: absolute; top: 10px; right: 10px; font-size: 14px; color: #666; z-index: 10; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 3px; }
+.card-counter { position: absolute; top: 10px; right: 10px; font-size: 14px; color: #666; z-index: 1; background: rgba(255,255,255,0.95); padding: 5px 10px; border-radius: 3px; backface-visibility: hidden; transform: translateZ(1px); }
 .card-content { padding: 30px; text-align: center; font-size: 18px; word-wrap: break-word; max-width: 90%; white-space: pre-wrap; }
 .shuffle-container { text-align: center; margin-top: 20px; }
 .shuffle-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd; background: white; font-size: 20px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; color: #4a4a4a; }
