@@ -193,13 +193,13 @@ body.study-fullscreen #study-area {
     min-height: 0;
     height: 100%;
     overflow: hidden;
+    justify-content: center;
 }
 body.study-fullscreen .flashcard-wrapper {
-    flex: 1;
+    flex: 0 1 auto;
     display: flex;
     margin: 0;
     min-height: 0;
-    height: 100%;
     gap: 20px;
 }
 body.study-fullscreen .flashcard-container {
