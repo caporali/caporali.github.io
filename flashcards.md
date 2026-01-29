@@ -217,7 +217,7 @@ body.study-fullscreen .flashcard {
     position: relative;
 }
 body.study-fullscreen .shuffle-container {
-    margin-top: 12px;
+    margin-top: 6px;
     padding-bottom: 4px;
     flex-shrink: 0;
 }
