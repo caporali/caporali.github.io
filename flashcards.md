@@ -100,8 +100,12 @@ title: "Flashcards"
 .flashcard.flipped { transform: rotateY(180deg); }
 .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border: 1px solid #ddd; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transform-style: preserve-3d; }
 .card-back { transform: rotateY(180deg); }
-.card-counter { position: absolute; top: 10px; right: 10px; font-size: 16px; color: #666; z-index: 1; background: rgba(255,255,255,0.95); padding: 5px 10px; border-radius: 3px; backface-visibility: hidden; transform: translateZ(1px); }
-.card-content { padding: 30px; text-align: center; font-size: 22px; word-wrap: break-word; max-width: 90%; white-space: pre-wrap; }
+.card-counter { position: absolute; top: 10px; right: 10px; font-size: 17px; color: #666; z-index: 1; background: rgba(255,255,255,0.95); padding: 5px 10px; border-radius: 3px; backface-visibility: hidden; transform: translateZ(1px); }
+.card-content { padding: 30px; text-align: center; font-size: 24px; word-wrap: break-word; max-width: 90%; white-space: pre-wrap; }
+@media (min-width: 769px) {
+    .card-content { font-size: 26px; }
+    .card-counter { font-size: 18px; }
+}
 .shuffle-container { text-align: center; margin-top: 20px; }
 .shuffle-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd; background: white; font-size: 20px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; color: #4a4a4a; }
 .shuffle-btn:hover { background: #f5f5f5; border-color: #4a4a4a; transform: rotate(90deg); }
@@ -229,8 +233,8 @@ body.study-fullscreen .fullscreen-btn { width: 56px; height: 56px; font-size: 26
 body.study-fullscreen .flashcard-wrapper { align-items: center; justify-content: center; }
 body.study-fullscreen .flashcard-container { flex: 1 1 auto; min-width: 50%; max-width: 82%; max-height: 70%; min-height: 65vh; }
 body.study-fullscreen .flashcard { flex: 1 1 auto; width: 100%; max-height: 100%; }
-body.study-fullscreen .card-content { font-size: 30px; padding: 40px; }
-body.study-fullscreen .card-counter { font-size: 20px; }
+body.study-fullscreen .card-content { font-size: 34px; padding: 40px; }
+body.study-fullscreen .card-counter { font-size: 22px; }
 
 @media (max-width: 768px) {
     html.study-fullscreen,
@@ -248,8 +252,8 @@ body.study-fullscreen .card-counter { font-size: 20px; }
     body.study-fullscreen .fullscreen-btn { width: 44px; height: 44px; font-size: 20px; margin-left: 8px; }
     body.study-fullscreen .shuffle-container { margin-top: 24px; }
     body.study-fullscreen .flashcard-container { min-width: 70%; max-width: 95%; min-height: 50vh; max-height: 65%; }
-    body.study-fullscreen .card-content { font-size: 26px; padding: 24px; }
-    body.study-fullscreen .card-counter { font-size: 18px; }
+    body.study-fullscreen .card-content { font-size: 28px; padding: 24px; }
+    body.study-fullscreen .card-counter { font-size: 20px; }
 }
 @media (orientation: landscape) {
     body.study-fullscreen #flashcards-content,
