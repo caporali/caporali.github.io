@@ -160,6 +160,7 @@ body.study-fullscreen #study-mode { display: block; }
 body.study-fullscreen #study-area { display: block !important; }
 body.study-fullscreen .flashcard-wrapper { margin-top: 40px; }
 body.study-fullscreen .study-intro { display: none; }
+body.study-fullscreen hr { display: none; }
 </style>
 
 <script>
