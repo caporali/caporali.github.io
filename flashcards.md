@@ -12,7 +12,7 @@ title: "Flashcards"
 </div>
 
 <div id = "flashcards-content" style = "display: none;">
-<i>Flashcards.</i> Study flashcards from your decks.
+<p class = "study-intro"><i>Flashcards.</i> Study flashcards from your decks.</p>
 
 <div class = "mode-selector">
     <button class = "mode-btn active" data-mode = "study">study</button>
@@ -139,7 +139,19 @@ title: "Flashcards"
 .actions button:disabled { background: #ccc; cursor: not-allowed; }
 .error { background: #fff0f0; color: #ff4444; padding: 15px; border-radius: 5px; margin: 20px 0; border: 2px solid #ff4444; }
 
-body.study-fullscreen #flashcards-content { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 9000; overflow: auto; padding-top: 40px; }
+body.study-fullscreen #flashcards-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffff;
+    z-index: 9000;
+    overflow: auto;
+    padding-top: 40px;
+    max-width: 700px;
+    margin: 0 auto;
+}
 body.study-fullscreen .navbar,
 body.study-fullscreen .mode-selector,
 body.study-fullscreen .controls,
@@ -147,6 +159,7 @@ body.study-fullscreen #quiz-mode { display: none !important; }
 body.study-fullscreen #study-mode { display: block; }
 body.study-fullscreen #study-area { display: block !important; }
 body.study-fullscreen .flashcard-wrapper { margin-top: 40px; }
+body.study-fullscreen .study-intro { display: none; }
 </style>
 
 <script>
