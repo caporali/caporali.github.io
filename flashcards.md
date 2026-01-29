@@ -223,6 +223,14 @@ body.study-fullscreen .shuffle-container {
 }
 body.study-fullscreen .study-intro { display: none; }
 body.study-fullscreen hr { display: none; }
+body.study-fullscreen .arrow-btn { width: 56px; height: 56px; font-size: 30px; }
+body.study-fullscreen .shuffle-btn,
+body.study-fullscreen .fullscreen-btn { width: 56px; height: 56px; font-size: 26px; }
+body.study-fullscreen .flashcard-wrapper { align-items: center; justify-content: center; }
+body.study-fullscreen .flashcard-container { flex: 0 1 auto; max-width: 90%; max-height: 70%; min-height: 200px; }
+body.study-fullscreen .flashcard { flex: 0 1 auto; max-height: 100%; }
+body.study-fullscreen .card-content { font-size: 24px; padding: 40px; }
+body.study-fullscreen .card-counter { font-size: 18px; }
 </style>
 
 <script>
