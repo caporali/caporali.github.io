@@ -194,20 +194,17 @@ body.study-fullscreen .flashcard-wrapper {
     margin: 0;
     min-height: 0;
     gap: 20px;
-    overflow: hidden;
 }
 body.study-fullscreen .flashcard-container {
     flex: 1;
-    min-height: 0;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 body.study-fullscreen .flashcard {
     flex: 1;
-    min-height: 0;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
+    width: 100%;
 }
 body.study-fullscreen .shuffle-container {
     margin-top: 24px;
@@ -514,33 +511,25 @@ function applyStudyFullscreenUI(enable) {
 }
 
 function toggleStudyFullscreen(force_off) {
-    const body = document.body;
     const el = document.getElementById('flashcards-content');
-    const btn = document.getElementById('study-fullscreen-btn');
-    const isActive = body.classList.contains('study-fullscreen');
-    const req = el && (el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen || el.mozRequestFullScreen);
-    const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen;
-    let enable;
-    if (force_off === false) enable = false;
-    else if (typeof force_off === 'boolean') enable = force_off;
-    else enable = !isActive;
-    if (enable && req) {
+    const isActive = document.body.classList.contains('study-fullscreen');
+    const reqFs = el && (el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen || el.mozRequestFullScreen);
+    const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen;
+    const enable = force_off === undefined ? !isActive : !!force_off;
+    if (enable && reqFs) {
         (el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen || el.mozRequestFullScreen).call(el)
             .then(() => applyStudyFullscreenUI(true))
             .catch(() => {});
-    } else if (!enable && exit) {
-        (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen).call(document)
-            .then(() => applyStudyFullscreenUI(false))
-            .catch(() => applyStudyFullscreenUI(false));
-    } else if (!req) {
+    } else if (!enable && exitFs) {
+        exitFs.call(document).then(() => applyStudyFullscreenUI(false)).catch(() => applyStudyFullscreenUI(false));
+    } else if (!reqFs) {
         applyStudyFullscreenUI(enable);
     }
 }
 
 function onFullscreenChange() {
-    const el = document.getElementById('flashcards-content');
-    const fullscreenEl = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement || document.mozFullScreenElement;
-    if (!fullscreenEl && document.body.classList.contains('study-fullscreen')) {
+    const fsEl = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement || document.mozFullScreenElement;
+    if (!fsEl && document.body.classList.contains('study-fullscreen')) {
         applyStudyFullscreenUI(false);
     }
 }
