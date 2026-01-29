@@ -192,12 +192,12 @@ body.study-fullscreen .flashcard-wrapper {
     flex: 1;
     display: flex;
     margin: 0;
-    min-height: 0;
+    min-height: 70vh;
     gap: 20px;
 }
 body.study-fullscreen .flashcard-container {
     flex: 1;
-    min-height: 200px;
+    min-height: 0;
     display: flex;
     flex-direction: column;
 }
@@ -278,10 +278,7 @@ function initializeApp() {
                 flipCard(); 
             }
             if (e.key === 'Escape' && document.body.classList.contains('study-fullscreen')) {
-                const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen;
-                const fsEl = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement || document.mozFullScreenElement;
-                if (exit && fsEl) exit.call(document).catch(() => applyStudyFullscreenUI(false));
-                else applyStudyFullscreenUI(false);
+                toggleStudyFullscreen(false);
             }
         }
     });
@@ -512,18 +509,22 @@ function applyStudyFullscreenUI(enable) {
 
 function toggleStudyFullscreen(force_off) {
     const el = document.getElementById('flashcards-content');
-    const isActive = document.body.classList.contains('study-fullscreen');
+    const fsEl = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement || document.mozFullScreenElement;
     const reqFs = el && (el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen || el.mozRequestFullScreen);
     const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen;
-    const enable = force_off === undefined ? !isActive : !!force_off;
-    if (enable && reqFs) {
-        (el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen || el.mozRequestFullScreen).call(el)
-            .then(() => applyStudyFullscreenUI(true))
-            .catch(() => {});
-    } else if (!enable && exitFs) {
+    const inFullscreen = !!fsEl;
+    const wantExit = force_off === false || (force_off === undefined && inFullscreen);
+    if (wantExit && exitFs) {
         exitFs.call(document).then(() => applyStudyFullscreenUI(false)).catch(() => applyStudyFullscreenUI(false));
-    } else if (!reqFs) {
-        applyStudyFullscreenUI(enable);
+        return;
+    }
+    const wantEnter = force_off === true || (force_off === undefined && !inFullscreen);
+    if (wantEnter && reqFs) {
+        reqFs.call(el).then(() => applyStudyFullscreenUI(true)).catch(() => {});
+        return;
+    }
+    if (!reqFs) {
+        applyStudyFullscreenUI(force_off === undefined ? !document.body.classList.contains('study-fullscreen') : !!force_off);
     }
 }
 
