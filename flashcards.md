@@ -251,6 +251,15 @@ body.study-fullscreen .card-counter { font-size: 20px; }
     body.study-fullscreen .card-content { font-size: 26px; padding: 24px; }
     body.study-fullscreen .card-counter { font-size: 18px; }
 }
+@media (orientation: landscape) {
+    body.study-fullscreen #flashcards-content,
+    body.study-fullscreen #study-mode,
+    body.study-fullscreen #study-area,
+    body.study-fullscreen .flashcard-wrapper,
+    body.study-fullscreen .flashcard-container {
+        overflow: visible;
+    }
+}
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
     body.study-fullscreen #flashcards-content {
         padding-left: max(32px, env(safe-area-inset-left));
