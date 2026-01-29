@@ -256,6 +256,9 @@ body.study-fullscreen .card-counter { font-size: 20px; }
 <script>
 const FLASHCARDS_PASSWORD = 'fands_2025'; // password setup
 let decks = [], study_cards = [], study_idx = 0, quiz_cards = [], quiz_idx = 0, quiz_score = 0;
+let _savedViewport = null;
+const VIEWPORT_FULLSCREEN = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';
+const VIEWPORT_DEFAULT = 'width=device-width, initial-scale=1';
 
 function checkPassword() {
     // Check if already authenticated in this session
@@ -534,11 +537,21 @@ function applyStudyFullscreenUI(enable) {
     const html = document.documentElement;
     const body = document.body;
     const btn = document.getElementById('study-fullscreen-btn');
+    const vp = document.querySelector('meta[name="viewport"]');
+    const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth < 1024);
     if (enable) {
+        if (isMobile && vp) {
+            _savedViewport = _savedViewport || vp.getAttribute('content');
+            vp.setAttribute('content', VIEWPORT_FULLSCREEN);
+        }
         html.classList.add('study-fullscreen');
         body.classList.add('study-fullscreen');
         if (btn) { btn.textContent = '✕'; btn.title = 'exit fullscreen'; }
     } else {
+        if (vp && _savedViewport !== null) {
+            vp.setAttribute('content', _savedViewport);
+            _savedViewport = null;
+        }
         html.classList.remove('study-fullscreen');
         body.classList.remove('study-fullscreen');
         if (btn) { btn.textContent = '⛶'; btn.title = 'fullscreen'; }
