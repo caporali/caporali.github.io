@@ -269,6 +269,13 @@ body.study-fullscreen .card-counter { font-size: 20px; }
 </style>
 
 <script>
+(function() {
+    var isTouch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+    if (isTouch) {
+        var vp = document.querySelector('meta[name="viewport"]');
+        if (vp) vp.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover');
+    }
+})();
 const FLASHCARDS_PASSWORD = 'fands_2025'; // password setup
 let decks = [], study_cards = [], study_idx = 0, quiz_cards = [], quiz_idx = 0, quiz_score = 0;
 let _savedViewport = null;
