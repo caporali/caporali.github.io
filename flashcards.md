@@ -259,7 +259,7 @@ function initializeApp() {
         study_idx = 0; 
         showCard(); 
     };
-    document.getElementById('study-fullscreen-btn').onclick = toggleStudyFullscreen;
+    document.getElementById('study-fullscreen-btn').onclick = () => toggleStudyFullscreen();
     ['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange', 'mozfullscreenchange'].forEach(ev => {
         document.addEventListener(ev, onFullscreenChange);
     });
