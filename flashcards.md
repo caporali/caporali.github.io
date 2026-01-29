@@ -248,8 +248,8 @@ body.study-fullscreen .card-counter { font-size: 22px; }
     body.study-fullscreen .fullscreen-btn { width: 44px; height: 44px; font-size: 20px; margin-left: 8px; }
     body.study-fullscreen .shuffle-container { margin-top: 24px; }
     body.study-fullscreen .flashcard-container { min-width: 70%; max-width: 95%; min-height: 50vh; max-height: 65%; }
-    body.study-fullscreen .card-content { font-size: 28px; padding: 24px; }
-    body.study-fullscreen .card-counter { font-size: 20px; }
+    body.study-fullscreen .card-content { font-size: 26px; padding: 24px; }
+    body.study-fullscreen .card-counter { font-size: 18px; }
 }
 @media (orientation: landscape) {
     body.study-fullscreen #flashcards-content,
