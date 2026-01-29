@@ -43,6 +43,7 @@ title: "Flashcards"
         </div>
         <div class = "shuffle-container">
             <button class = "shuffle-btn" id = "shuffle-btn" title = "shuffle">↻</button>
+            <button class = "fullscreen-btn" id = "study-fullscreen-btn" title = "fullscreen">⛶</button>
         </div>
     </div>
 </div>
@@ -105,6 +106,9 @@ title: "Flashcards"
 .shuffle-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd; background: white; font-size: 20px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; color: #4a4a4a; }
 .shuffle-btn:hover { background: #f5f5f5; border-color: #4a4a4a; transform: rotate(90deg); }
 .shuffle-btn:active { transform: rotate(90deg) scale(0.95); }
+.fullscreen-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd; background: white; font-size: 18px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; color: #4a4a4a; margin-left: 10px; }
+.fullscreen-btn:hover { background: #f5f5f5; border-color: #4a4a4a; }
+.fullscreen-btn:active { transform: scale(0.95); }
 .quiz-progress { margin-bottom: 20px; display: flex; justify-content: center; }
 .progress-bar { width: 300px; height: 8px; background: #e0e0e0; border-radius: 4px; border: 1px solid #999; display: flex; position: relative; overflow: visible; }
 .progress-fill-correct { height: 100%; background: #00cc00; transition: width 0.3s; width: 0%; border-right: 1px solid #999; box-sizing: border-box; }
@@ -134,6 +138,15 @@ title: "Flashcards"
 .actions button:hover { background: #333; }
 .actions button:disabled { background: #ccc; cursor: not-allowed; }
 .error { background: #fff0f0; color: #ff4444; padding: 15px; border-radius: 5px; margin: 20px 0; border: 2px solid #ff4444; }
+
+body.study-fullscreen #flashcards-content { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 9000; overflow: auto; padding-top: 40px; }
+body.study-fullscreen .navbar,
+body.study-fullscreen .mode-selector,
+body.study-fullscreen .controls,
+body.study-fullscreen #quiz-mode { display: none !important; }
+body.study-fullscreen #study-mode { display: block; }
+body.study-fullscreen #study-area { display: block !important; }
+body.study-fullscreen .flashcard-wrapper { margin-top: 40px; }
 </style>
 
 <script>
@@ -180,6 +193,7 @@ function initializeApp() {
         study_idx = 0; 
         showCard(); 
     };
+    document.getElementById('study-fullscreen-btn').onclick = toggleStudyFullscreen;
     document.addEventListener('keydown', (e) => {
         if (document.getElementById('study-area').style.display !== 'none') {
             if (e.key === 'ArrowLeft') { 
@@ -193,6 +207,9 @@ function initializeApp() {
             if (e.key === ' ' || e.key === 'Enter') { 
                 e.preventDefault(); 
                 flipCard(); 
+            }
+            if (e.key === 'Escape' && document.body.classList.contains('study-fullscreen')) {
+                toggleStudyFullscreen(false);
             }
         }
     });
@@ -404,6 +421,32 @@ function updateProgressBar(include_current = true) {
     const incorrect_percentage = answered > 0 ? ((answered - quiz_score) / total) * 100 : 0;
     document.getElementById('progress-fill-correct').style.width = correct_percentage + '%';
     document.getElementById('progress-fill-incorrect').style.width = incorrect_percentage + '%';
+}
+
+function toggleStudyFullscreen(force_off) {
+    const body = document.body;
+    const btn = document.getElementById('study-fullscreen-btn');
+    let enable;
+    if (force_off === false) {
+        enable = false;
+    } else if (typeof force_off === 'boolean') {
+        enable = force_off;
+    } else {
+        enable = !body.classList.contains('study-fullscreen');
+    }
+    if (enable) {
+        body.classList.add('study-fullscreen');
+        if (btn) {
+            btn.textContent = '✕';
+            btn.title = 'exit fullscreen';
+        }
+    } else {
+        body.classList.remove('study-fullscreen');
+        if (btn) {
+            btn.textContent = '⛶';
+            btn.title = 'fullscreen';
+        }
+    }
 }
 
 function switchMode(mode) {
