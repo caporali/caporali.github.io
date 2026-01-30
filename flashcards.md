@@ -477,8 +477,8 @@ body.study_fullscreen .flashcard_container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 50%;
-  max-width: 82%;
+  min-width: 43%;
+  max-width: 70%;
 }
 body.study_fullscreen .flashcard {
   flex: 0 0 auto;
@@ -514,10 +514,12 @@ body.study_fullscreen #flashcards_content {
 	right: 0;
 	bottom: 0;
 }
-body.study_fullscreen .flashcard_wrapper { gap: 12px; }
-body.study_fullscreen .arrow_btn { width: 44px; height: 44px; font-size: 24px; }
+body.study_fullscreen .flashcard_wrapper { gap: 10px; }
+body.study_fullscreen .card_row { gap: 10px; }
+body.study_fullscreen .arrow_btn { width: 36px; height: 36px; font-size: 20px; }
 body.study_fullscreen .shuffle_btn,
-body.study_fullscreen .fullscreen_btn { width: 44px; height: 44px; font-size: 20px; margin-left: 8px; }
+body.study_fullscreen .fullscreen_btn { width: 36px; height: 36px; font-size: 18px; margin-left: 6px; }
+body.study_fullscreen .flashcard_container { min-width: 60%; max-width: 92%; }
 body.study_fullscreen .card_content { font-size: 18px; padding: 24px; }
 body.study_fullscreen .card_counter { font-size: 14px; }
 }
@@ -542,10 +544,10 @@ body.study_fullscreen .card_counter { font-size: 14px; }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
   body.study_fullscreen .flashcard_container {
-    max-width: min(75vw, calc((100dvh - 170px) * 5 / 3));
-    max-height: min(calc(100dvh - 170px), 45vw);
+    max-width: min(75vw, calc((100dvh - 150px) * 5 / 3));
+    max-height: min(calc(100dvh - 150px), 45vw);
   }
-  body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 170px), 100%); }
+  body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 150px), 100%); }
   body.study_fullscreen #flashcards_content {
     padding-left: max(32px, env(safe-area-inset-left));
     padding-right: max(32px, env(safe-area-inset-right));
