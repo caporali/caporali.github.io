@@ -482,8 +482,8 @@ body.study_fullscreen .flashcard_container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 39%;
-  max-width: 63%;
+  min-width: 42%;
+  max-width: 68%;
 }
 body.study_fullscreen .flashcard {
   flex: 0 0 auto;
@@ -554,8 +554,8 @@ body.study_fullscreen .card_counter { font-size: 14px; }
     max-height: min(calc(100dvh - 130px), 37.5vw);
   }
   body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 130px), 100%); }
-  body.study_fullscreen .card_content { font-size: 14px; padding: 20px; }
-  body.study_fullscreen .card_counter { font-size: 11px; }
+  body.study_fullscreen .card_content { font-size: 28px; padding: 20px; }
+  body.study_fullscreen .card_counter { font-size: 22px; }
   body.study_fullscreen .flashcard_wrapper { gap: 6px; }
   body.study_fullscreen .card_row { gap: 6px; }
   body.study_fullscreen .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
@@ -874,6 +874,16 @@ document.getElementById('progress_fill_correct').style.width = correct_pct + '%'
 document.getElementById('progress_fill_incorrect').style.width = incorrect_pct + '%';
 }
 
+function try_lock_landscape() {
+	var is_mobile = window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth < 1024);
+	if (!is_mobile) return;
+	try {
+		if (screen.orientation && typeof screen.orientation.lock === 'function') {
+			screen.orientation.lock('landscape').catch(function() {});
+		}
+	} catch (e) {}
+}
+
 function apply_study_fullscreen_ui(enable) {
 var html = document.documentElement;
 var body = document.body;
@@ -912,11 +922,15 @@ if (want_exit && exit_fs) {
 }
 var want_enter = force_off === true || (force_off === undefined && !in_fs);
 if (want_enter && req_fs) {
-	req_fs.call(el).then(function() { apply_study_fullscreen_ui(true); }).catch(function() { apply_study_fullscreen_ui(true); });
+	req_fs.call(el).then(function() {
+		apply_study_fullscreen_ui(true);
+		try_lock_landscape();
+	}).catch(function() { apply_study_fullscreen_ui(true); try_lock_landscape(); });
 	return;
 }
 if (!req_fs) {
 	apply_study_fullscreen_ui(force_off === undefined ? !document.body.classList.contains('study_fullscreen') : !!force_off);
+	if (document.body.classList.contains('study_fullscreen')) try_lock_landscape();
 }
 }
 
