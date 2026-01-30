@@ -260,6 +260,24 @@ body.study-fullscreen .card-counter { font-size: 22px; }
     body.study-fullscreen .flashcard-container {
         overflow: visible;
     }
+    /* Cap card size so it doesn't fill the screen; keeps text proportionate on desktop */
+    body.study-fullscreen .flashcard-container {
+        max-width: 65%;
+        max-height: 58vh;
+    }
+    body.study-fullscreen .flashcard {
+        max-height: min(58vh, 100%);
+    }
+}
+/* Phone landscape: reserve space for arrows + shuffle/fullscreen row so buttons aren't pushed off */
+@media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
+    body.study-fullscreen .flashcard-container {
+        max-height: calc(100dvh - 180px);
+        max-width: 85%;
+    }
+    body.study-fullscreen .flashcard {
+        max-height: min(calc(100dvh - 180px), 100%);
+    }
 }
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
     body.study-fullscreen #flashcards-content {
