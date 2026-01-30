@@ -168,7 +168,7 @@ justify-content: center;
 }
 .flashcard {
 width: 100%;
-aspect-ratio: 5/3;
+aspect-ratio: 2/1;
 height: auto;
 position: relative;
 transform-style: preserve-3d;
@@ -482,14 +482,14 @@ body.study_fullscreen .flashcard_container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 43%;
-  max-width: 70%;
+  min-width: 39%;
+  max-width: 63%;
 }
 body.study_fullscreen .flashcard {
   flex: 0 0 auto;
   width: 100%;
   max-height: 100%;
-  aspect-ratio: 5/3;
+  aspect-ratio: 2/1;
   height: auto;
   position: relative;
 }
@@ -503,8 +503,8 @@ body.study_fullscreen hr { display: none; }
 body.study_fullscreen .arrow_btn { width: 56px; height: 56px; font-size: 30px; }
 body.study_fullscreen .shuffle_btn,
 body.study_fullscreen .fullscreen_btn { width: 56px; height: 56px; font-size: 26px; }
-body.study_fullscreen .card_content { font-size: 34px; padding: 40px; }
-body.study_fullscreen .card_counter { font-size: 22px; }
+body.study_fullscreen .card_content { font-size: 51px; padding: 40px; }
+body.study_fullscreen .card_counter { font-size: 33px; }
 
 @media (max-width: 768px) {
 html.study_fullscreen,
@@ -537,8 +537,8 @@ body.study_fullscreen .card_counter { font-size: 14px; }
 }
 @media (orientation: landscape) and (max-width: 768px) {
   body.study_fullscreen .flashcard_container {
-    max-width: min(75vw, calc((100vh - 170px) * 5 / 3));
-    max-height: min(calc(100vh - 170px), 45vw);
+    max-width: min(75vw, calc((100vh - 170px) * 2));
+    max-height: min(calc(100vh - 170px), 37.5vw);
   }
   body.study_fullscreen .flashcard {
     max-width: 100%;
@@ -550,10 +550,12 @@ body.study_fullscreen .card_counter { font-size: 14px; }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
   body.study_fullscreen .flashcard_container {
-    max-width: min(75vw, calc((100dvh - 130px) * 5 / 3));
-    max-height: min(calc(100dvh - 130px), 45vw);
+    max-width: min(75vw, calc((100dvh - 130px) * 2));
+    max-height: min(calc(100dvh - 130px), 37.5vw);
   }
   body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 130px), 100%); }
+  body.study_fullscreen .card_content { font-size: 14px; padding: 20px; }
+  body.study_fullscreen .card_counter { font-size: 11px; }
   body.study_fullscreen .flashcard_wrapper { gap: 6px; }
   body.study_fullscreen .card_row { gap: 6px; }
   body.study_fullscreen .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
