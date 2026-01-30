@@ -385,9 +385,9 @@ font-family: "Inconsolata", monospace;
 @media (max-width: 768px) {
   .card_content { font-size: 16px; padding: 20px; }
   .card_counter { font-size: 13px; }
-  .arrow_btn { width: 26px; height: 26px; font-size: 14px; }
+  .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
   .shuffle_btn,
-  .fullscreen_btn { width: 26px; height: 26px; font-size: 12px; margin-left: 4px; }
+  .fullscreen_btn { width: 30px; height: 30px; font-size: 12px; margin-left: 4px; }
   .flashcard_wrapper { gap: 10px; }
   .card_row { gap: 10px; }
 }
@@ -482,8 +482,8 @@ body.study_fullscreen .flashcard_container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 50%;
-  max-width: 82%;
+  min-width: 43%;
+  max-width: 70%;
 }
 body.study_fullscreen .flashcard {
   flex: 0 0 auto;
@@ -521,9 +521,9 @@ body.study_fullscreen #flashcards_content {
 }
 body.study_fullscreen .flashcard_wrapper { gap: 8px; }
 body.study_fullscreen .card_row { gap: 8px; }
-body.study_fullscreen .arrow_btn { width: 26px; height: 26px; font-size: 14px; }
+body.study_fullscreen .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
 body.study_fullscreen .shuffle_btn,
-body.study_fullscreen .fullscreen_btn { width: 26px; height: 26px; font-size: 12px; margin-left: 4px; }
+body.study_fullscreen .fullscreen_btn { width: 30px; height: 30px; font-size: 12px; margin-left: 4px; }
 body.study_fullscreen .card_content { font-size: 18px; padding: 24px; }
 body.study_fullscreen .card_counter { font-size: 14px; }
 }
@@ -556,9 +556,9 @@ body.study_fullscreen .card_counter { font-size: 14px; }
   body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 130px), 100%); }
   body.study_fullscreen .flashcard_wrapper { gap: 6px; }
   body.study_fullscreen .card_row { gap: 6px; }
-  body.study_fullscreen .arrow_btn { width: 26px; height: 26px; font-size: 14px; }
+  body.study_fullscreen .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
   body.study_fullscreen .shuffle_btn,
-  body.study_fullscreen .fullscreen_btn { width: 26px; height: 26px; font-size: 12px; margin-left: 4px; }
+  body.study_fullscreen .fullscreen_btn { width: 30px; height: 30px; font-size: 12px; margin-left: 4px; }
   body.study_fullscreen #flashcards_content {
     padding-left: max(32px, env(safe-area-inset-left));
     padding-right: max(32px, env(safe-area-inset-right));
