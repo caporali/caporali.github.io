@@ -193,43 +193,50 @@ body.study-fullscreen #study-area {
     min-height: 0;
     height: 100%;
     overflow: hidden;
-    justify-content: center;
+    justify-content: flex-start;
 }
 body.study-fullscreen .flashcard-wrapper {
-    flex: 0 1 auto;
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
     margin: 0;
-    min-height: 0;
     gap: 20px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 body.study-fullscreen .flashcard-container {
     flex: 1 1 auto;
     min-height: 0;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 body.study-fullscreen .flashcard {
-    flex: 1;
-    min-height: 0;
-    height: 100%;
+    flex: 0 0 auto;
     width: 100%;
+    max-height: 100%;
+    aspect-ratio: 5/3;
+    height: auto;
     position: relative;
 }
 body.study-fullscreen .shuffle-container {
-    margin-top: 20px;
+    margin-top: 12px;
     padding-bottom: 4px;
     flex-shrink: 0;
+    position: relative;
+    z-index: 2;
 }
 body.study-fullscreen .study-intro { display: none; }
 body.study-fullscreen hr { display: none; }
 body.study-fullscreen .arrow-btn { width: 56px; height: 56px; font-size: 30px; }
 body.study-fullscreen .shuffle-btn,
 body.study-fullscreen .fullscreen-btn { width: 56px; height: 56px; font-size: 26px; }
-body.study-fullscreen .flashcard-wrapper { align-items: center; justify-content: center; }
-body.study-fullscreen .flashcard-container { flex: 1 1 auto; min-width: 50%; max-width: 82%; }
-body.study-fullscreen .flashcard { aspect-ratio: 5/3; width: 100%; height: auto; flex: 0 0 auto; }
+body.study-fullscreen .flashcard-container { min-width: 50%; max-width: 82%; }
 body.study-fullscreen .card-content { font-size: 34px; padding: 40px; }
 body.study-fullscreen .card-counter { font-size: 22px; }
 
@@ -257,10 +264,10 @@ body.study-fullscreen .card-counter { font-size: 22px; }
     body.study-fullscreen #flashcards-content,
     body.study-fullscreen #study-mode,
     body.study-fullscreen #study-area,
-    body.study-fullscreen .flashcard-wrapper,
     body.study-fullscreen .flashcard-container {
         overflow: visible;
     }
+    body.study-fullscreen .flashcard-wrapper { overflow: hidden; }
     /* Cap card size so it doesn't fill the screen; keeps text proportionate on desktop */
     body.study-fullscreen .flashcard-container {
         max-width: 65%;
