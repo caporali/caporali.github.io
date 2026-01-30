@@ -25,29 +25,30 @@ title: "Flashcards"
 	<button id="start_study_btn" disabled>start</button>
 	</div>
 	<div id="study_area" style="display:none;">
-	  <div class="flashcard_wrapper">
+		<div class="flashcard_wrapper">
+		<div class="fullscreen_spacer_above"></div>
 		<div class="card_row">
-		  <button class="arrow_btn left" id="prev_card_btn">‹</button>
-		  <div class="flashcard_container">
+			<button class="arrow_btn left" id="prev_card_btn">‹</button>
+			<div class="flashcard_container">
 			<div class="flashcard" id="study_card">
-			  <div class="card_front">
+				<div class="card_front">
 				<div class="card_counter"><span id="current_card_num">1</span>/<span id="total_cards">0</span></div>
 				<div class="card_content" id="study_front"></div>
-			  </div>
-			  <div class="card_back" style="display:none;">
+				</div>
+				<div class="card_back" style="display:none;">
 				<div class="card_counter"><span id="current_card_num_back">1</span>/<span id="total_cards_back">0</span></div>
 				<div class="card_content" id="study_back"></div>
-			  </div>
+				</div>
 			</div>
-		  </div>
-		  <button class="arrow_btn right" id="next_card_btn">›</button>
+			</div>
+			<button class="arrow_btn right" id="next_card_btn">›</button>
 		</div>
 		<div class="shuffle_container">
-		  <button class="shuffle_btn" id="shuffle_btn" title="shuffle">↻</button>
-		  <button class="fullscreen_btn" id="study_fullscreen_btn" title="fullscreen">⛶</button>
+			<button class="shuffle_btn" id="shuffle_btn" title="shuffle">↻</button>
+			<button class="fullscreen_btn" id="study_fullscreen_btn" title="fullscreen">⛶</button>
 		</div>
 		<div class="fullscreen_spacer_below"></div>
-	  </div>
+		</div>
 	</div>
 </div>
 
@@ -129,20 +130,20 @@ font-family: "Inconsolata", monospace;
 .controls button:disabled { background: #ccc; cursor: not-allowed; }
 
 .flashcard_wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 17px;
-  margin: 30px 0;
-  position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 17px;
+	margin: 30px 0;
+	position: relative;
 }
 .fullscreen_spacer_above,
 .fullscreen_spacer_below { display: none; }
 .card_row {
-  display: flex;
-  align-items: center;
-  gap: 17px;
-  width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 17px;
+	width: 100%;
 }
 .arrow_btn {
 width: 40px;
@@ -210,12 +211,12 @@ backface-visibility: hidden;
 transform: translateZ(1px);
 }
 .card_content {
-  padding: 30px;
-  text-align: center;
-  font-size: 22px;
-  word-wrap: break-word;
-  max-width: 90%;
-  white-space: pre-wrap;
+	padding: 30px;
+	text-align: center;
+	font-size: 22px;
+	word-wrap: break-word;
+	max-width: 90%;
+	white-space: pre-wrap;
 }
 .shuffle_container { text-align: center; margin-top: 0; }
 .shuffle_btn {
@@ -377,27 +378,27 @@ font-family: "Inconsolata", monospace;
 .actions button:hover { background: #333; }
 .actions button:disabled { background: #ccc; cursor: not-allowed; }
 .error {
-  background: #fff0f0;
-  color: #ff4444;
-  padding: 15px;
-  border-radius: 5px;
-  margin: 20px 0;
-  border: 2px solid #ff4444;
+	background: #fff0f0;
+	color: #ff4444;
+	padding: 15px;
+	border-radius: 5px;
+	margin: 20px 0;
+	border: 2px solid #ff4444;
 }
 
 @media (max-width: 768px) {
-  .card_content { font-size: 16px; padding: 20px; }
-  .card_counter { font-size: 13px; }
-  .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
-  .shuffle_btn,
-  .fullscreen_btn { width: 30px; height: 30px; font-size: 12px; margin-left: 4px; }
-  .flashcard_wrapper { gap: 11px; }
-  .card_row { gap: 11px; }
+	.card_content { font-size: 16px; padding: 20px; }
+	.card_counter { font-size: 13px; }
+	.arrow_btn { width: 30px; height: 30px; font-size: 14px; }
+	.shuffle_btn,
+	.fullscreen_btn { width: 30px; height: 30px; font-size: 12px; margin-left: 4px; }
+	.flashcard_wrapper { gap: 11px; }
+	.card_row { gap: 11px; }
 }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-  .flashcard_wrapper { gap: 17px; }
-  .card_row { gap: 17px; }
+	.flashcard_wrapper { gap: 17px; }
+	.card_row { gap: 17px; }
 }
 
 html.study_fullscreen,
@@ -419,7 +420,8 @@ min-height: -webkit-fill-available;
 background: #fff;
 z-index: 9000;
 overflow: hidden;
-padding: 28px;
+padding: 0 max(28px, env(safe-area-inset-right)) 28px max(28px, env(safe-area-inset-left));
+padding-top: env(safe-area-inset-top);
 display: flex;
 flex-direction: column;
 box-sizing: border-box;
@@ -433,7 +435,8 @@ height: 100%;
 min-height: 100vh;
 min-height: 100dvh;
 overflow: hidden;
-padding: 28px;
+padding: 0 max(28px, env(safe-area-inset-right)) 28px max(28px, env(safe-area-inset-left));
+padding-top: env(safe-area-inset-top);
 display: flex;
 flex-direction: column;
 box-sizing: border-box;
@@ -461,64 +464,54 @@ overflow: hidden;
 justify-content: flex-start;
 }
 body.study_fullscreen .flashcard_wrapper {
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  gap: 20px;
-  align-items: center;
-  justify-content: flex-start;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
+	flex: 1 1 auto;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	gap: 20px;
+	align-items: center;
+	justify-content: flex-start;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
 }
-body.study_fullscreen .fullscreen_spacer_above {
-  display: block;
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-}
-body.study_fullscreen .fullscreen_spacer_below {
-  display: block;
-  flex: 1.2;
-  min-height: 0;
-  width: 100%;
-}
+body.study_fullscreen .fullscreen_spacer_above,
+body.study_fullscreen .fullscreen_spacer_below { display: none; }
 body.study_fullscreen .card_row {
-  flex: 0 1 auto;
-  min-height: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
+	flex: 0 1 auto;
+	min-height: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	width: 100%;
 }
 body.study_fullscreen .flashcard_container {
-  flex: 1 1 auto;
-  min-height: 0;
-  max-height: 100%;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 50%;
-  max-width: 75%;
+	flex: 1 1 auto;
+	min-height: 0;
+	max-height: 100%;
+	z-index: 3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 50%;
+	max-width: 75%;
 }
 body.study_fullscreen .flashcard {
-  flex: 0 0 auto;
-  width: 100%;
-  max-height: 100%;
-  aspect-ratio: 2/1;
-  height: auto;
-  position: relative;
+	flex: 0 0 auto;
+	width: 100%;
+	max-height: 100%;
+	aspect-ratio: 2/1;
+	height: auto;
+	position: relative;
 }
 body.study_fullscreen .shuffle_container {
-  flex-shrink: 0;
-  margin-top: 0;
-  position: relative;
-  z-index: 2;
+	flex-shrink: 0;
+	margin-top: 0;
+	position: relative;
+	z-index: 2;
 }
 body.study_fullscreen .study_intro,
 body.study_fullscreen hr { display: none; }
@@ -532,8 +525,8 @@ body.study_fullscreen .card_counter { font-size: 30px; }
 html.study_fullscreen,
 body.study_fullscreen { height: 100dvh; min-height: -webkit-fill-available; }
 body.study_fullscreen #flashcards_content {
-	padding: 16px;
-	padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+	padding: 0 max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+	padding-top: env(safe-area-inset-top);
 	height: 100dvh;
 	min-height: -webkit-fill-available;
 	top: 0;
@@ -544,9 +537,10 @@ body.study_fullscreen #flashcards_content {
 body.study_fullscreen .flashcard_wrapper { gap: 9px; }
 body.study_fullscreen .card_row { gap: 9px; width: auto; max-width: 100%; }
 body.study_fullscreen .flashcard_container {
-  flex: 0 1 auto;
-  min-width: 0;
-  max-width: calc(100vw - 114px);
+	flex: 1 1 auto;
+	min-width: min(200px, 70vw);
+	min-height: min(120px, 35vw);
+	max-width: calc(100vw - 114px);
 }
 body.study_fullscreen .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
 body.study_fullscreen .shuffle_btn,
@@ -556,40 +550,55 @@ body.study_fullscreen .card_counter { font-size: 13px; }
 }
 
 @media (orientation: landscape) {
-  body.study_fullscreen #flashcards_content,
-  body.study_fullscreen #study_mode,
-  body.study_fullscreen #study_area,
-  body.study_fullscreen .flashcard_container { overflow: visible; }
+	body.study_fullscreen #flashcards_content,
+	body.study_fullscreen #study_mode,
+	body.study_fullscreen #study_area,
+	body.study_fullscreen .flashcard_container { overflow: visible; }
 }
 @media (orientation: landscape) and (max-width: 768px) {
-  body.study_fullscreen .flashcard_container {
-    max-width: min(75vw, calc((100vh - 170px) * 2));
-    max-height: min(calc(100vh - 170px), 37.5vw);
-  }
-  body.study_fullscreen .flashcard {
-    max-width: 100%;
-    max-height: min(calc(100vh - 170px), 100%);
-  }
+	body.study_fullscreen .flashcard_container {
+	max-width: min(75vw, calc((100vh - 170px) * 2));
+	max-height: min(calc(100vh - 170px), 37.5vw);
+	}
+	body.study_fullscreen .flashcard {
+	max-width: 100%;
+	max-height: min(calc(100vh - 170px), 100%);
+	}
 }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-  body.study_fullscreen .flashcard_container {
-    max-width: min(92vw, calc((100dvh - 100px) * 2));
-    max-height: min(calc(100dvh - 100px), 46vw);
-  }
-  body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 100px), 100%); }
-  body.study_fullscreen .card_content { font-size: 22px; padding: 30px; }
-  body.study_fullscreen .card_counter { font-size: 16px; }
-  body.study_fullscreen .flashcard_wrapper { gap: 17px; }
-  body.study_fullscreen .card_row { gap: 17px; }
-  body.study_fullscreen .arrow_btn { width: 40px; height: 40px; font-size: 24px; }
-  body.study_fullscreen .shuffle_btn { width: 40px; height: 40px; font-size: 20px; }
-  body.study_fullscreen .fullscreen_btn { width: 40px; height: 40px; font-size: 18px; margin-left: 10px; }
-  body.study_fullscreen #flashcards_content {
-    padding: 0;
-    padding-left: max(32px, env(safe-area-inset-left));
-    padding-right: max(32px, env(safe-area-inset-right));
-  }
+	body.study_fullscreen .fullscreen_spacer_above {
+		display: block;
+		flex: 1;
+		min-height: 0;
+		width: 100%;
+	}
+	body.study_fullscreen .fullscreen_spacer_below {
+		display: block;
+		flex: 1.15;
+		min-height: 0;
+		width: 100%;
+	}
+	body.study_fullscreen .flashcard_wrapper { justify-content: flex-start; }
+	body.study_fullscreen .flashcard_container {
+	max-width: min(92vw, calc((100dvh - 100px) * 2));
+	max-height: min(calc(100dvh - 100px), 46vw);
+	}
+	body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 100px), 100%); }
+	body.study_fullscreen .card_content { font-size: 22px; padding: 30px; }
+	body.study_fullscreen .card_counter { font-size: 16px; }
+	body.study_fullscreen .flashcard_wrapper { gap: 17px; }
+	body.study_fullscreen .card_row { gap: 17px; }
+	body.study_fullscreen .arrow_btn { width: 40px; height: 40px; font-size: 24px; }
+	body.study_fullscreen .shuffle_btn { width: 40px; height: 40px; font-size: 20px; }
+	body.study_fullscreen .fullscreen_btn { width: 40px; height: 40px; font-size: 18px; margin-left: 10px; }
+	body.study_fullscreen #flashcards_content {
+	padding: 0;
+	padding-top: env(safe-area-inset-top);
+	padding-left: max(32px, env(safe-area-inset-left));
+	padding-right: max(32px, env(safe-area-inset-right));
+	padding-bottom: env(safe-area-inset-bottom);
+	}
 }
 </style>
 
