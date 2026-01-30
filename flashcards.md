@@ -207,12 +207,12 @@ backface-visibility: hidden;
 transform: translateZ(1px);
 }
 .card_content {
-padding: 30px;
-text-align: center;
-font-size: 22px;
-word-wrap: break-word;
-max-width: 90%;
-white-space: pre-wrap;
+  padding: 30px;
+  text-align: center;
+  font-size: 22px;
+  word-wrap: break-word;
+  max-width: 90%;
+  white-space: pre-wrap;
 }
 .shuffle_container { text-align: center; margin-top: 20px; }
 .shuffle_btn {
@@ -374,12 +374,17 @@ font-family: "Inconsolata", monospace;
 .actions button:hover { background: #333; }
 .actions button:disabled { background: #ccc; cursor: not-allowed; }
 .error {
-background: #fff0f0;
-color: #ff4444;
-padding: 15px;
-border-radius: 5px;
-margin: 20px 0;
-border: 2px solid #ff4444;
+  background: #fff0f0;
+  color: #ff4444;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+  border: 2px solid #ff4444;
+}
+
+@media (max-width: 768px) {
+  .card_content { font-size: 16px; padding: 20px; }
+  .card_counter { font-size: 13px; }
 }
 
 html.study_fullscreen,
@@ -513,26 +518,35 @@ body.study_fullscreen .flashcard_wrapper { gap: 12px; }
 body.study_fullscreen .arrow_btn { width: 44px; height: 44px; font-size: 24px; }
 body.study_fullscreen .shuffle_btn,
 body.study_fullscreen .fullscreen_btn { width: 44px; height: 44px; font-size: 20px; margin-left: 8px; }
+body.study_fullscreen .card_content { font-size: 18px; padding: 24px; }
+body.study_fullscreen .card_counter { font-size: 14px; }
 }
 
 @media (orientation: landscape) {
-body.study_fullscreen #flashcards_content,
-body.study_fullscreen #study_mode,
-body.study_fullscreen #study_area,
-body.study_fullscreen .flashcard_container { overflow: visible; }
-body.study_fullscreen .flashcard_wrapper { overflow: hidden; }
-body.study_fullscreen .flashcard_container {
-	max-width: 65%;
-	max-height: 58vh;
-}
-body.study_fullscreen .flashcard { max-height: min(58vh, 100%); }
+  body.study_fullscreen #flashcards_content,
+  body.study_fullscreen #study_mode,
+  body.study_fullscreen #study_area,
+  body.study_fullscreen .flashcard_container { overflow: visible; }
+  body.study_fullscreen .flashcard_wrapper { overflow: hidden; }
+  body.study_fullscreen .flashcard_container {
+    max-width: min(75vw, 125vh);
+    max-height: min(75vh, 45vw);
+  }
+  body.study_fullscreen .flashcard {
+    max-width: 100%;
+    max-height: min(75vh, 100%);
+  }
 }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-  body.study_fullscreen .flashcard_container { max-width: 85%; }
+  body.study_fullscreen .flashcard_container {
+    max-width: min(75vw, 125dvh);
+    max-height: min(75dvh, 45vw);
+  }
+  body.study_fullscreen .flashcard { max-height: min(75dvh, 100%); }
   body.study_fullscreen #flashcards_content {
-	padding-left: max(32px, env(safe-area-inset-left));
-	padding-right: max(32px, env(safe-area-inset-right));
+    padding-left: max(32px, env(safe-area-inset-left));
+    padding-right: max(32px, env(safe-area-inset-right));
   }
 }
 </style>
