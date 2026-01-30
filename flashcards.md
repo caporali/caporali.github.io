@@ -471,7 +471,7 @@ body.study_fullscreen .flashcard_wrapper {
 	margin: 0;
 	gap: 20px;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
 	overflow: hidden;
 	position: relative;
 	z-index: 1;
@@ -534,13 +534,13 @@ body.study_fullscreen #flashcards_content {
 	right: 0;
 	bottom: 0;
 }
-body.study_fullscreen .flashcard_wrapper { gap: 9px; }
-body.study_fullscreen .card_row { gap: 9px; width: auto; max-width: 100%; }
+body.study_fullscreen .flashcard_wrapper { gap: 9px; justify-content: center; }
+body.study_fullscreen .card_row { gap: 9px; width: 100%; }
 body.study_fullscreen .flashcard_container {
 	flex: 1 1 auto;
 	min-width: min(200px, 70vw);
 	min-height: min(120px, 35vw);
-	max-width: calc(100vw - 114px);
+	max-width: none;
 }
 body.study_fullscreen .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
 body.study_fullscreen .shuffle_btn,
