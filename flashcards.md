@@ -550,10 +550,10 @@ body.study_fullscreen .card_counter { font-size: 14px; }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
   body.study_fullscreen .flashcard_container {
-    max-width: min(75vw, calc((100dvh - 130px) * 2));
-    max-height: min(calc(100dvh - 130px), 37.5vw);
+    max-width: min(92vw, calc((100dvh - 100px) * 2));
+    max-height: min(calc(100dvh - 100px), 46vw);
   }
-  body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 130px), 100%); }
+  body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 100px), 100%); }
   body.study_fullscreen .card_content { font-size: 22px; padding: 30px; }
   body.study_fullscreen .card_counter { font-size: 16px; }
   body.study_fullscreen .flashcard_wrapper { gap: 15px; }
@@ -562,6 +562,7 @@ body.study_fullscreen .card_counter { font-size: 14px; }
   body.study_fullscreen .shuffle_btn { width: 40px; height: 40px; font-size: 20px; }
   body.study_fullscreen .fullscreen_btn { width: 40px; height: 40px; font-size: 18px; margin-left: 10px; }
   body.study_fullscreen #flashcards_content {
+    padding: 0;
     padding-left: max(32px, env(safe-area-inset-left));
     padding-right: max(32px, env(safe-area-inset-right));
   }
