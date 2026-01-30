@@ -385,9 +385,9 @@ font-family: "Inconsolata", monospace;
 @media (max-width: 768px) {
   .card_content { font-size: 16px; padding: 20px; }
   .card_counter { font-size: 13px; }
-  .arrow_btn { width: 32px; height: 32px; font-size: 18px; }
+  .arrow_btn { width: 26px; height: 26px; font-size: 14px; }
   .shuffle_btn,
-  .fullscreen_btn { width: 32px; height: 32px; font-size: 14px; margin-left: 5px; }
+  .fullscreen_btn { width: 26px; height: 26px; font-size: 12px; margin-left: 4px; }
   .flashcard_wrapper { gap: 10px; }
   .card_row { gap: 10px; }
 }
@@ -521,9 +521,9 @@ body.study_fullscreen #flashcards_content {
 }
 body.study_fullscreen .flashcard_wrapper { gap: 8px; }
 body.study_fullscreen .card_row { gap: 8px; }
-body.study_fullscreen .arrow_btn { width: 36px; height: 36px; font-size: 20px; }
+body.study_fullscreen .arrow_btn { width: 26px; height: 26px; font-size: 14px; }
 body.study_fullscreen .shuffle_btn,
-body.study_fullscreen .fullscreen_btn { width: 36px; height: 36px; font-size: 16px; margin-left: 6px; }
+body.study_fullscreen .fullscreen_btn { width: 26px; height: 26px; font-size: 12px; margin-left: 4px; }
 body.study_fullscreen .card_content { font-size: 18px; padding: 24px; }
 body.study_fullscreen .card_counter { font-size: 14px; }
 }
@@ -534,6 +534,8 @@ body.study_fullscreen .card_counter { font-size: 14px; }
   body.study_fullscreen #study_area,
   body.study_fullscreen .flashcard_container { overflow: visible; }
   body.study_fullscreen .flashcard_wrapper { overflow: hidden; }
+}
+@media (orientation: landscape) and (max-width: 768px) {
   body.study_fullscreen .flashcard_container {
     max-width: min(75vw, calc((100vh - 170px) * 5 / 3));
     max-height: min(calc(100vh - 170px), 45vw);
