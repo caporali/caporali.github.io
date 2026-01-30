@@ -529,21 +529,21 @@ body.study_fullscreen .card_counter { font-size: 14px; }
   body.study_fullscreen .flashcard_container { overflow: visible; }
   body.study_fullscreen .flashcard_wrapper { overflow: hidden; }
   body.study_fullscreen .flashcard_container {
-    max-width: min(75vw, 125vh);
-    max-height: min(75vh, 45vw);
+    max-width: min(75vw, calc((100vh - 140px) * 5 / 3));
+    max-height: min(calc(100vh - 140px), 45vw);
   }
   body.study_fullscreen .flashcard {
     max-width: 100%;
-    max-height: min(75vh, 100%);
+    max-height: min(calc(100vh - 140px), 100%);
   }
 }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
   body.study_fullscreen .flashcard_container {
-    max-width: min(75vw, 125dvh);
-    max-height: min(75dvh, 45vw);
+    max-width: min(75vw, calc((100dvh - 140px) * 5 / 3));
+    max-height: min(calc(100dvh - 140px), 45vw);
   }
-  body.study_fullscreen .flashcard { max-height: min(75dvh, 100%); }
+  body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 140px), 100%); }
   body.study_fullscreen #flashcards_content {
     padding-left: max(32px, env(safe-area-inset-left));
     padding-right: max(32px, env(safe-area-inset-right));
