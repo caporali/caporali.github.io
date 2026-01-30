@@ -526,14 +526,18 @@ body.study_fullscreen #flashcards_content {
 	right: 0;
 	bottom: 0;
 }
-body.study_fullscreen .flashcard_wrapper { gap: 8px; }
-body.study_fullscreen .card_row { gap: 8px; }
-body.study_fullscreen .flashcard_container { min-width: 60%; max-width: 70%; }
+body.study_fullscreen .flashcard_wrapper { gap: 9px; }
+body.study_fullscreen .card_row { gap: 9px; width: auto; max-width: 100%; }
+body.study_fullscreen .flashcard_container {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: calc(100vw - 114px);
+}
 body.study_fullscreen .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
 body.study_fullscreen .shuffle_btn,
 body.study_fullscreen .fullscreen_btn { width: 30px; height: 30px; font-size: 12px; margin-left: 4px; }
-body.study_fullscreen .card_content { font-size: 18px; padding: 24px; }
-body.study_fullscreen .card_counter { font-size: 14px; }
+body.study_fullscreen .card_content { font-size: 16px; padding: 20px; }
+body.study_fullscreen .card_counter { font-size: 13px; }
 }
 
 @media (orientation: landscape) {
