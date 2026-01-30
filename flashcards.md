@@ -554,13 +554,13 @@ body.study_fullscreen .card_counter { font-size: 14px; }
     max-height: min(calc(100dvh - 130px), 37.5vw);
   }
   body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 130px), 100%); }
-  body.study_fullscreen .card_content { font-size: 16px; padding: 20px; }
-  body.study_fullscreen .card_counter { font-size: 13px; }
-  body.study_fullscreen .flashcard_wrapper { gap: 10px; }
-  body.study_fullscreen .card_row { gap: 10px; }
-  body.study_fullscreen .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
-  body.study_fullscreen .shuffle_btn,
-  body.study_fullscreen .fullscreen_btn { width: 30px; height: 30px; font-size: 12px; margin-left: 4px; }
+  body.study_fullscreen .card_content { font-size: 22px; padding: 30px; }
+  body.study_fullscreen .card_counter { font-size: 16px; }
+  body.study_fullscreen .flashcard_wrapper { gap: 15px; }
+  body.study_fullscreen .card_row { gap: 15px; }
+  body.study_fullscreen .arrow_btn { width: 40px; height: 40px; font-size: 24px; }
+  body.study_fullscreen .shuffle_btn { width: 40px; height: 40px; font-size: 20px; }
+  body.study_fullscreen .fullscreen_btn { width: 40px; height: 40px; font-size: 18px; margin-left: 10px; }
   body.study_fullscreen #flashcards_content {
     padding-left: max(32px, env(safe-area-inset-left));
     padding-right: max(32px, env(safe-area-inset-right));
