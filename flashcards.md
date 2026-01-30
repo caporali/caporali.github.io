@@ -214,7 +214,7 @@ transform: translateZ(1px);
   max-width: 90%;
   white-space: pre-wrap;
 }
-.shuffle_container { text-align: center; margin-top: 20px; }
+.shuffle_container { text-align: center; margin-top: 0; }
 .shuffle_btn {
 width: 40px;
 height: 40px;
@@ -495,6 +495,7 @@ body.study_fullscreen .flashcard {
 }
 body.study_fullscreen .shuffle_container {
   flex-shrink: 0;
+  margin-top: 0;
   position: relative;
   z-index: 2;
 }
