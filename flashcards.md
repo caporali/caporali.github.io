@@ -248,9 +248,10 @@ body.study-fullscreen .card-counter { font-size: 22px; }
     body.study-fullscreen .shuffle-btn,
     body.study-fullscreen .fullscreen-btn { width: 44px; height: 44px; font-size: 20px; margin-left: 8px; }
     body.study-fullscreen .shuffle-container { margin-top: 24px; }
-    body.study-fullscreen .flashcard-container { min-width: 70%; max-width: 95%; }
-    body.study-fullscreen .card-content { font-size: 22px; padding: 24px; }
-    body.study-fullscreen .card-counter { font-size: 16px; }
+    body.study-fullscreen .flashcard-container { min-width: 70%; max-width: 95%; max-height: calc(100dvh - 165px); }
+    body.study-fullscreen .flashcard { max-height: min(calc(100dvh - 165px), 100%); }
+    body.study-fullscreen .card-content { font-size: 18px; padding: 20px; }
+    body.study-fullscreen .card-counter { font-size: 14px; }
 }
 @media (orientation: landscape) {
     body.study-fullscreen #flashcards-content,
@@ -272,11 +273,11 @@ body.study-fullscreen .card-counter { font-size: 22px; }
 /* Phone landscape: reserve space for arrows + shuffle/fullscreen row so buttons aren't pushed off */
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
     body.study-fullscreen .flashcard-container {
-        max-height: calc(100dvh - 180px);
+        max-height: calc(100dvh - 165px);
         max-width: 85%;
     }
     body.study-fullscreen .flashcard {
-        max-height: min(calc(100dvh - 180px), 100%);
+        max-height: min(calc(100dvh - 165px), 100%);
     }
 }
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
