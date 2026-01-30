@@ -1,6 +1,8 @@
 [
 	{ "name": "1_1_ger_eng", "file": "flashcards/1_1_ger_eng.txt" },
 	{ "name": "1_2_ger_eng", "file": "flashcards/1_2_ger_eng.txt" },
+	{ "name": "1_3_ger_eng", "file": "flashcards/1_3_ger_eng.txt" },
 	{ "name": "1_1_eng_ger", "file": "flashcards/1_1_eng_ger.txt" },
-	{ "name": "1_2_eng_ger", "file": "flashcards/1_2_eng_ger.txt" }
+	{ "name": "1_2_eng_ger", "file": "flashcards/1_2_eng_ger.txt" },
+	{ "name": "1_3_eng_ger", "file": "flashcards/1_3_eng_ger.txt" }
 ]
