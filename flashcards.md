@@ -131,14 +131,14 @@ font-family: "Inconsolata", monospace;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 17px;
   margin: 30px 0;
   position: relative;
 }
 .card_row {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 17px;
   width: 100%;
 }
 .arrow_btn {
@@ -388,8 +388,13 @@ font-family: "Inconsolata", monospace;
   .arrow_btn { width: 30px; height: 30px; font-size: 14px; }
   .shuffle_btn,
   .fullscreen_btn { width: 30px; height: 30px; font-size: 12px; margin-left: 4px; }
-  .flashcard_wrapper { gap: 10px; }
-  .card_row { gap: 10px; }
+  .flashcard_wrapper { gap: 11px; }
+  .card_row { gap: 11px; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
+  .flashcard_wrapper { gap: 17px; }
+  .card_row { gap: 17px; }
 }
 
 html.study_fullscreen,
@@ -478,6 +483,7 @@ body.study_fullscreen .flashcard_container {
   flex: 1 1 auto;
   min-height: 0;
   max-height: 100%;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -535,7 +541,6 @@ body.study_fullscreen .card_counter { font-size: 14px; }
   body.study_fullscreen #study_mode,
   body.study_fullscreen #study_area,
   body.study_fullscreen .flashcard_container { overflow: visible; }
-  body.study_fullscreen .flashcard_wrapper { overflow: hidden; }
 }
 @media (orientation: landscape) and (max-width: 768px) {
   body.study_fullscreen .flashcard_container {
@@ -546,8 +551,6 @@ body.study_fullscreen .card_counter { font-size: 14px; }
     max-width: 100%;
     max-height: min(calc(100vh - 170px), 100%);
   }
-  body.study_fullscreen .card_content { font-size: 18px; padding: 24px; }
-  body.study_fullscreen .card_counter { font-size: 14px; }
 }
 
 @media (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
@@ -558,8 +561,8 @@ body.study_fullscreen .card_counter { font-size: 14px; }
   body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 100px), 100%); }
   body.study_fullscreen .card_content { font-size: 22px; padding: 30px; }
   body.study_fullscreen .card_counter { font-size: 16px; }
-  body.study_fullscreen .flashcard_wrapper { gap: 15px; }
-  body.study_fullscreen .card_row { gap: 15px; }
+  body.study_fullscreen .flashcard_wrapper { gap: 17px; }
+  body.study_fullscreen .card_row { gap: 17px; }
   body.study_fullscreen .arrow_btn { width: 40px; height: 40px; font-size: 24px; }
   body.study_fullscreen .shuffle_btn { width: 40px; height: 40px; font-size: 20px; }
   body.study_fullscreen .fullscreen_btn { width: 40px; height: 40px; font-size: 18px; margin-left: 10px; }
