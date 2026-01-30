@@ -46,6 +46,7 @@ title: "Flashcards"
 		  <button class="shuffle_btn" id="shuffle_btn" title="shuffle">↻</button>
 		  <button class="fullscreen_btn" id="study_fullscreen_btn" title="fullscreen">⛶</button>
 		</div>
+		<div class="fullscreen_spacer_below"></div>
 	  </div>
 	</div>
 </div>
@@ -135,6 +136,8 @@ font-family: "Inconsolata", monospace;
   margin: 30px 0;
   position: relative;
 }
+.fullscreen_spacer_above,
+.fullscreen_spacer_below { display: none; }
 .card_row {
   display: flex;
   align-items: center;
@@ -464,12 +467,23 @@ body.study_fullscreen .flashcard_wrapper {
   flex-direction: column;
   margin: 0;
   gap: 20px;
-  padding-bottom: 10vh;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: hidden;
   position: relative;
   z-index: 1;
+}
+body.study_fullscreen .fullscreen_spacer_above {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+body.study_fullscreen .fullscreen_spacer_below {
+  display: block;
+  flex: 1.2;
+  min-height: 0;
+  width: 100%;
 }
 body.study_fullscreen .card_row {
   flex: 0 1 auto;
@@ -527,10 +541,10 @@ body.study_fullscreen #flashcards_content {
 	right: 0;
 	bottom: 0;
 }
-body.study_fullscreen .flashcard_wrapper { gap: 9px; padding-bottom: 10dvh; }
-body.study_fullscreen .card_row { gap: 9px; width: 100%; }
+body.study_fullscreen .flashcard_wrapper { gap: 9px; }
+body.study_fullscreen .card_row { gap: 9px; width: auto; max-width: 100%; }
 body.study_fullscreen .flashcard_container {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
   max-width: calc(100vw - 114px);
 }
@@ -566,7 +580,7 @@ body.study_fullscreen .card_counter { font-size: 13px; }
   body.study_fullscreen .flashcard { max-height: min(calc(100dvh - 100px), 100%); }
   body.study_fullscreen .card_content { font-size: 22px; padding: 30px; }
   body.study_fullscreen .card_counter { font-size: 16px; }
-  body.study_fullscreen .flashcard_wrapper { gap: 17px; padding-bottom: 10dvh; }
+  body.study_fullscreen .flashcard_wrapper { gap: 17px; }
   body.study_fullscreen .card_row { gap: 17px; }
   body.study_fullscreen .arrow_btn { width: 40px; height: 40px; font-size: 24px; }
   body.study_fullscreen .shuffle_btn { width: 40px; height: 40px; font-size: 20px; }
