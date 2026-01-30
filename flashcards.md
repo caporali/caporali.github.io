@@ -716,16 +716,18 @@ initialize_app();
 });
 
 function load_decks() {
-var known_decks = [
-	{ name: 'ddd_1_1', file: 'flashcards/ddd_1_1.txt' },
-	{ name: 'ddd_1_2', file: 'flashcards/ddd_1_2.txt' }
-];
 decks = [];
-return Promise.all(known_decks.map(function(d) {
-	return fetch(d.file).then(function(r) {
-	if (r.ok) decks.push(d);
-	}).catch(function() {});
-})).then(function() {
+return fetch('flashcards/decks.json').then(function(r) {
+	return r.ok ? r.json() : [];
+}).catch(function() {
+	return [];
+}).then(function(known_decks) {
+	return Promise.all(known_decks.map(function(d) {
+		return fetch(d.file).then(function(r) {
+			if (r.ok) decks.push(d);
+		}).catch(function() {});
+	}));
+}).then(function() {
 	['study_deck_select', 'quiz_deck_select'].forEach(function(id) {
 	var sel = document.getElementById(id);
 	sel.innerHTML = '<option value="">-- select a deck --</option>';
