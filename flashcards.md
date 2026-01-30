@@ -728,6 +728,9 @@ return fetch('flashcards/decks.json').then(function(r) {
 		}).catch(function() {});
 	}));
 }).then(function() {
+	decks.sort(function(a, b) {
+		return a.name.localeCompare(b.name);
+	});
 	['study_deck_select', 'quiz_deck_select'].forEach(function(id) {
 	var sel = document.getElementById(id);
 	sel.innerHTML = '<option value="">-- select a deck --</option>';
