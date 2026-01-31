@@ -4,7 +4,7 @@ title: "Text adventure"
 description: "Play Colossal Cave Adventure — classic text adventure in the browser."
 ---
 
-<p class="adventure_intro"><span class="ta-typewriter">Colossal Cave Adventure.</span> Commands: <code>north</code>, <code>get lamp</code>, <code>look</code>.</p>
+<p class="adventure_intro"><i>Colossal Cave Adventure.</i> Type commands (e.g. <code>north</code>, <code>get lamp</code>, <code>look</code>).</p>
 
 <div class="adventure_wrapper">
 	<iframe
@@ -19,58 +19,38 @@ description: "Play Colossal Cave Adventure — classic text adventure in the bro
 	</div>
 </div>
 
-<p class="adventure_credit"><small>Adventure (1976) by Will Crowther and Don Woods. Z-machine port by Arthur O'Dwyer; runs in <a href="https://github.com/curiousdannii/parchment" target="_blank" rel="noopener">Parchment</a>. Type in the game window above.</small></p>
+<p class="adventure_credit"><small>Adventure (1976) by Will Crowther and Don Woods. Z-machine port by Arthur O'Dwyer; runs in <a href="https://github.com/curiousdannii/parchment" target="_blank" rel="noopener">Parchment</a>.</small></p>
 
 <style>
-/* Terminal page: white on black, Computer Modern */
-.ta-page .container.content { background: #0a0a0a; color: #e8e8e8; font-family: "Computer Modern Serif", "Latin Modern Roman", serif; }
-.ta-page .container.content hr { border-color: rgba(255,255,255,0.15); }
-.ta-page #author-name { color: #e8e8e8; }
-.ta-page .navbar + div + hr { border-color: rgba(255,255,255,0.15); }
-
+/* Page: same style as before (intro + credit use site style) */
 .adventure_intro {
 	margin-bottom: 1em;
-	color: #e8e8e8;
-	font-family: "Computer Modern Serif", "Latin Modern Roman", serif;
+	color: #272727;
 }
 .adventure_intro code {
-	background: rgba(255,255,255,0.1);
-	padding: 2px 6px;
-	border-radius: 2px;
+	background: rgba(0,0,0,0.06);
+	padding: 1px 5px;
+	border-radius: 3px;
 	font-size: 0.95em;
-	color: #e8e8e8;
-}
-/* Typewriter effect for intro line (slow reveal like original teletype) */
-.ta-typewriter {
-	display: inline-block;
-	overflow: hidden;
-	white-space: nowrap;
-	border-right: 2px solid #e8e8e8;
-	animation: ta-typewriter 2s steps(24) 0.5s forwards;
-	width: 0;
-}
-@keyframes ta-typewriter {
-	to { width: 24ch; }
 }
 
+/* Only the game block is terminal: white on black, CM font, input bar below */
 .adventure_wrapper {
 	width: 100%;
-	border: 1px solid rgba(255,255,255,0.2);
-	border-radius: 2px;
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: 5px;
 	overflow: hidden;
 	background: #000;
 }
-/* Invert iframe so game appears white-on-black (original terminal look) */
 .adventure_frame {
 	display: block;
 	width: 100%;
-	min-height: 60vh;
-	height: 560px;
+	min-height: 65vh;
+	height: 600px;
 	border: none;
 	filter: invert(1);
 	background: #000;
 }
-/* Input bar below game, like original: prompt + cursor */
 .adventure_input_bar {
 	display: flex;
 	align-items: center;
@@ -81,10 +61,7 @@ description: "Play Colossal Cave Adventure — classic text adventure in the bro
 	font-size: 1em;
 	color: #e8e8e8;
 }
-.adventure_prompt {
-	margin-right: 0.35em;
-	color: #e8e8e8;
-}
+.adventure_prompt { margin-right: 0.35em; }
 .adventure_cursor {
 	display: inline-block;
 	width: 0.6em;
@@ -99,9 +76,8 @@ description: "Play Colossal Cave Adventure — classic text adventure in the bro
 
 .adventure_credit {
 	margin-top: 1em;
-	color: #999;
-	font-family: "Computer Modern Serif", "Latin Modern Roman", serif;
+	color: #666;
 }
-.adventure_credit a { color: #e8e8e8; }
+.adventure_credit a { color: #FF0F00; }
 .adventure_credit a:hover { text-decoration: underline; }
 </style>
