@@ -38,11 +38,16 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="container" style="margin-bottom: 0.5em;">
-            <a id="flashcards-name" href="{{ site.url }}{{ site.baseurl }}" style="font-family: 'Inconsolata', monospace; color: black; text-decoration: none;">\(\caporali\)</a>
+        <div class="navbar container">
+            <a id="author-name" class="alignable pull-left" href="{{ site.url }}{{ site.baseurl }}">\caporali</a>
         </div>
+        <div style="clear:both"></div>
         <hr>
-        <div class="container content">
+        {% if page.is_contact == true %}
+            <div class="container content contact">
+        {% else %}
+            <div class="container content">
+        {% endif %}
                 {{ content }}
         </div>
     </div>
