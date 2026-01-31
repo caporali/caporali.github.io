@@ -604,10 +604,12 @@ body.study_fullscreen .card_counter { font-size: 13px; }
 
 <script>
 var known_decks = [
-{% assign deck_files = site.static_files | where_exp: "item", "item.path contains 'flashcards/' and item.extname == '.txt'" | sort: "basename" %}
-{% for file in deck_files %}
-	{ name: {{ file.basename | json }}, file: {{ file.path | json }} }{% unless forloop.last %},{% endunless %}
-{% endfor %}
+	{ name: '1_1_ger_eng', file: 'flashcards/1_1_ger_eng.txt' },
+	{ name: '1_2_ger_eng', file: 'flashcards/1_2_ger_eng.txt' },
+	{ name: '1_3_ger_eng', file: 'flashcards/1_3_ger_eng.txt' },
+	{ name: '1_1_eng_ger', file: 'flashcards/1_1_eng_ger.txt' },
+	{ name: '1_2_eng_ger', file: 'flashcards/1_2_eng_ger.txt' },
+	{ name: '1_3_eng_ger', file: 'flashcards/1_3_eng_ger.txt' }
 ];
 (function() {
 var is_touch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
