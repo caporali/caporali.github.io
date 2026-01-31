@@ -49,6 +49,12 @@
             <div class="container content">
         {% endif %}
                 {{ content }}
+                {% if site.footer == true %}
+                    <hr />
+                    <p style="text-align: center; margin-bottom: 10px">
+                        <small> Last updated: {{ site.time | date: "%B %d, %Y" }} </small>
+                    </p>
+                {% endif %}
         </div>
     </div>
 </body>

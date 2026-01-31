@@ -606,7 +606,7 @@ body.study_fullscreen .card_counter { font-size: 13px; }
 var known_decks = [
 {% assign deck_files = site.static_files | where_exp: "item", "item.path contains 'flashcards/' and item.extname == '.txt'" | sort: "basename" %}
 {% for file in deck_files %}
-	{ name: "{{ file.basename }}", file: "{{ file.path }}" }{% unless forloop.last %},{% endunless %}
+	{ name: {{ file.basename | json }}, file: {{ file.path | json }} }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ];
 (function() {
