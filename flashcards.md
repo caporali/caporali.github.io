@@ -603,6 +603,12 @@ body.study_fullscreen .card_counter { font-size: 13px; }
 </style>
 
 <script>
+var known_decks = [
+{% assign deck_files = site.static_files | where_exp: "item", "item.path contains 'flashcards/' and item.extname == '.txt'" | sort: "basename" %}
+{% for file in deck_files %}
+	{ name: "{{ file.basename }}", file: "{{ file.path }}" }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+];
 (function() {
 var is_touch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
 if (is_touch) {
@@ -717,17 +723,11 @@ initialize_app();
 
 function load_decks() {
 decks = [];
-return fetch('flashcards/decks.json').then(function(r) {
-	return r.ok ? r.json() : [];
-}).catch(function() {
-	return [];
-}).then(function(known_decks) {
-	return Promise.all(known_decks.map(function(d) {
-		return fetch(d.file).then(function(r) {
-			if (r.ok) decks.push(d);
-		}).catch(function() {});
-	}));
-}).then(function() {
+return Promise.all(known_decks.map(function(d) {
+	return fetch(d.file).then(function(r) {
+		if (r.ok) decks.push(d);
+	}).catch(function() {});
+})).then(function() {
 	decks.sort(function(a, b) {
 		return a.name.localeCompare(b.name);
 	});
