@@ -8,7 +8,6 @@ kramdown:
 description: "Ph.D. student at Princeton ORFE"
 # favicon: true
 # favicon_location: "/files/princeton_logo.png"
-tracking_id:
 footer: yes
 footer_url: "https://github.com/ankitsultana/researcher"
 sass:
