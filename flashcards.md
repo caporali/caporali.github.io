@@ -611,22 +611,25 @@ title: "Flashcards"
 			document.addEventListener(ev, on_fullscreen_change);
 		});
 		document.addEventListener('keydown', function(e) {
-			if (document.getElementById('study_area').style.display !== 'none') {
-				if (e.key === 'ArrowLeft') {
-					study_idx = (study_idx - 1 + study_cards.length) % study_cards.length;
-					show_card();
-				}
-				if (e.key === 'ArrowRight') {
-					study_idx = (study_idx + 1) % study_cards.length;
-					show_card();
-				}
-				if (e.key === ' ' || e.key === 'Enter') {
-					e.preventDefault();
-					flip_card();
-				}
-				if (e.key === 'Escape' && document.body.classList.contains('study_fullscreen')) {
-					toggle_study_fullscreen(false);
-				}
+			var target = e.target;
+			var is_input = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
+			var study_active = document.getElementById('study_mode').classList.contains('active');
+			var study_visible = document.getElementById('study_area').style.display !== 'none';
+			if (!study_active || !study_visible || is_input) return;
+			if (e.key === 'ArrowLeft') {
+				study_idx = (study_idx - 1 + study_cards.length) % study_cards.length;
+				show_card();
+			}
+			if (e.key === 'ArrowRight') {
+				study_idx = (study_idx + 1) % study_cards.length;
+				show_card();
+			}
+			if (e.key === ' ' || e.key === 'Enter') {
+				e.preventDefault();
+				flip_card();
+			}
+			if (e.key === 'Escape' && document.body.classList.contains('study_fullscreen')) {
+				toggle_study_fullscreen(false);
 			}
 		});
 		document.getElementById('start_quiz_btn').onclick = start_quiz;
@@ -870,7 +873,7 @@ title: "Flashcards"
 			}
 			html.classList.add('study_fullscreen');
 			body.classList.add('study_fullscreen');
-			if (btn) { btn.textContent = 'âœ•'; btn.title = 'exit fullscreen'; }
+			if (btn) { btn.textContent = '\u2715'; btn.title = 'exit fullscreen'; }
 		} else {
 			if (vp && _saved_viewport !== null) {
 				vp.setAttribute('content', _saved_viewport);
@@ -878,7 +881,7 @@ title: "Flashcards"
 			}
 			html.classList.remove('study_fullscreen');
 			body.classList.remove('study_fullscreen');
-			if (btn) { btn.textContent = 'â›¶'; btn.title = 'fullscreen'; }
+			if (btn) { btn.textContent = '\u26F6'; btn.title = 'fullscreen'; }
 		}
 	}
 
@@ -950,7 +953,7 @@ title: "Flashcards"
 				<div class = "fullscreen_spacer_above"></div>
 				<div class = "card_row">
 					<button class = "arrow_btn left" id = "prev_card_btn">
-						â€¹
+						&#x2039;
 					</button>
 					<div class = "flashcard_container">
 						<div class = "flashcard" id = "study_card">
@@ -969,15 +972,15 @@ title: "Flashcards"
 						</div>
 					</div>
 					<button class = "arrow_btn right" id = "next_card_btn">
-						â€º
+						&#x203A;
 					</button>
 				</div>
 				<div class = "shuffle_container">
 					<button class = "shuffle_btn" id = "shuffle_btn" title = "shuffle">
-						â†»
+						&#x21BB;
 					</button>
 					<button class = "fullscreen_btn" id = "study_fullscreen_btn" title = "fullscreen">
-						â›¶
+						&#x26F6;
 					</button>
 				</div>
 				<div class = "fullscreen_spacer_below"></div>
@@ -1006,7 +1009,7 @@ title: "Flashcards"
 					<span id = "quiz_current_num">1</span>/<span id = "quiz_total">0</span>
 				</div>
 				<button class = "quiz_next_btn_top" id = "quiz_next_btn" disabled>
-					â€º
+					&#x203A;
 				</button>
 				<h3 id = "quiz_question_text"></h3>
 				<div id = "quiz_options"></div>
