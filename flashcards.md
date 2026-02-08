@@ -539,9 +539,17 @@ title: "Flashcards"
 		{ name: '1_1_ger_eng', file: 'flashcards/1_1_ger_eng.txt' },
 		{ name: '1_2_ger_eng', file: 'flashcards/1_2_ger_eng.txt' },
 		{ name: '1_3_ger_eng', file: 'flashcards/1_3_ger_eng.txt' },
+		{ name: '1_4_ger_eng', file: 'flashcards/1_4_ger_eng.txt' },
+		{ name: '2_1_ger_eng', file: 'flashcards/2_1_ger_eng.txt' },
+		{ name: '2_2_ger_eng', file: 'flashcards/2_2_ger_eng.txt' },
+		{ name: '2_3_ger_eng', file: 'flashcards/2_3_ger_eng.txt' },
 		{ name: '1_1_eng_ger', file: 'flashcards/1_1_eng_ger.txt' },
 		{ name: '1_2_eng_ger', file: 'flashcards/1_2_eng_ger.txt' },
-		{ name: '1_3_eng_ger', file: 'flashcards/1_3_eng_ger.txt' }
+		{ name: '1_3_eng_ger', file: 'flashcards/1_3_eng_ger.txt' },
+		{ name: '1_4_eng_ger', file: 'flashcards/1_4_eng_ger.txt' },
+		{ name: '2_1_eng_ger', file: 'flashcards/2_1_eng_ger.txt' },
+		{ name: '2_2_eng_ger', file: 'flashcards/2_2_eng_ger.txt' },
+		{ name: '2_3_eng_ger', file: 'flashcards/2_3_eng_ger.txt' }
 	];
 	(function() {
 		var is_touch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
