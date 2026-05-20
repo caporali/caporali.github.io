@@ -37,7 +37,7 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 	<li> 
 		<span> Jun. 2026-Aug. 2026: </span> 
 		<span> 
-			I will intern as an <i>Applied Scientist<i> at <i>AWS AI Labs<i>.
+			I will intern as an <i>Applied Scientist</i> at <i>AWS AI Labs</i>.
 		</span>
 	</li>
 </ul>
@@ -46,3 +46,4 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 1. *F. Caporali*, S. Favaro, D. Trevisan, 
 	[Student-$t$ processes as infinite-width limits of posterior Bayesian NNs](https://openreview.net/pdf?id=iUppQcPAMK),
 	In: *TASC Workshop, COLT 2025*
+
