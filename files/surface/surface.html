@@ -1,0 +1,270 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset = "utf-8"/>
+		<meta name = "viewport" content = "width=device-width, initial-scale=1"/>
+		<title>quadratic_3d</title>
+		<script type = "text/x-mathjax-config">
+			MathJax.Hub.Config({
+				messageStyle: "none",
+				showProcessingMessages: false,
+				SVG: {font: "TeX"},
+				tex2jax: {inlineMath: [["$", "$"], ["\\(", "\\)"]]}
+			});
+		</script>
+		<script src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+		<script>
+			window.PlotlyConfig = {MathJaxConfig: "local"};
+		</script>
+		<script src = "https://cdn.plot.ly/plotly-3.5.0.min.js"></script>
+		<style>
+			@font-face {
+				font-family: "Latin Modern Roman Web";
+				font-style: normal;
+				font-weight: 400;
+				src: url("lmroman10-regular.otf") format("opentype");
+			}
+
+			@font-face {
+				font-family: "Latin Modern Math Web";
+				font-style: normal;
+				font-weight: 400;
+				src: url("latinmodern-math.otf") format("opentype");
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				background: #ffffff;
+			}
+
+			body {
+				overflow: hidden;
+				color: #111111;
+				font-family: "Latin Modern Roman Web", "Latin Modern Math Web", "Latin Modern Roman", "Computer Modern Serif", "CMU Serif", serif;
+			}
+
+			#surface-page {
+				position: relative;
+				width: 100%;
+				height: 100vh;
+				overflow: hidden;
+			}
+
+			#surface-plot {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			#legend-title-overlay {
+				position: fixed;
+				display: none;
+				z-index: 11;
+				color: #111111;
+				font-family: "Latin Modern Roman Web", "Latin Modern Math Web", "Latin Modern Roman", "Computer Modern Serif", "CMU Serif", serif;
+				font-size: 16.25px;
+				line-height: 1.15;
+				text-align: center;
+				white-space: nowrap;
+				pointer-events: none;
+			}
+
+			#surface-loader {
+				position: fixed;
+				inset: 0;
+				z-index: 30;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: #ffffff;
+				opacity: 1;
+				pointer-events: none;
+				transition: opacity 240ms ease;
+			}
+
+			#surface-loader.hidden {
+				opacity: 0;
+			}
+
+			#surface-loader-panel {
+				width: min(360px, 58vw);
+				color: #272727;
+				font-family: "Inconsolata", "Latin Modern Roman Web", monospace;
+				text-align: left;
+			}
+
+			#surface-loader-track {
+				width: 100%;
+				height: 1px;
+				overflow: hidden;
+				background: rgba(0, 0, 0, 0.14);
+			}
+
+			#surface-loader-bar {
+				width: 42%;
+				height: 1px;
+				background: #272727;
+				animation: surface-load-bar 1000ms ease-in-out infinite;
+			}
+
+			@keyframes surface-load-bar {
+				from {
+					transform: translateX(-110%);
+				}
+
+				to {
+					transform: translateX(250%);
+				}
+			}
+
+			.legend text {
+				fill: #111111 !important;
+				font-family: "Latin Modern Roman Web", "Latin Modern Math Web", "Latin Modern Roman", "Computer Modern Serif", "CMU Serif", serif !important;
+			}
+
+			.MathJax_SVG,
+			.MathJax_SVG_Display {
+				font-size: 100% !important;
+			}
+
+			.legend .legendlines path {
+				stroke-width: 2px !important;
+			}
+		</style>
+	</head>
+	<body>
+		<main id = "surface-page">
+			<div id = "surface-plot"></div>
+		</main>
+		<div id = "legend-title-overlay">$\mathcal{L}(p, n) = \frac{1}{2} n^T H(p)\,n,\ \mathcal{L}: \mathbb{R}^2 \to \mathbb{R}$</div>
+		<div id = "surface-loader" aria-label = "Loading">
+			<div id = "surface-loader-panel">
+				<div id = "surface-loader-track">
+					<div id = "surface-loader-bar"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			let loaderStart = Date.now();
+			const surfaceDataUrl = "data.js?v=20260520191218";
+			const legendTitleOffset = 38;
+			const legendWidthPad = 70;
+			const legendMinWidth = 400;
+			const legendHeightPad = 12;
+
+			function hideLoader() {
+				const loader = document.getElementById("surface-loader");
+				if (!loader || loader.dataset.hidden === "1") {
+					return;
+				}
+				const delay = Math.max(0, 1000 - (Date.now() - loaderStart));
+				window.setTimeout(function() {
+					loader.dataset.hidden = "1";
+					loader.classList.add("hidden");
+					window.setTimeout(function() {
+						loader.style.display = "none";
+					}, 260);
+				}, delay);
+			}
+
+			function styleLegend() {
+				document.querySelectorAll(".legend .bg").forEach(function(box) {
+					box.setAttribute("rx", "8");
+					box.setAttribute("ry", "8");
+				});
+				const traces = document.querySelectorAll(".legend .traces");
+				traces.forEach(function(trace) {
+					trace.querySelectorAll(".legendlines path").forEach(function(path) {
+						path.removeAttribute("stroke-dasharray");
+						path.style.strokeDasharray = "none";
+					});
+				});
+				const legend = document.querySelector(".legend");
+				const box = legend ? legend.querySelector(".bg") : null;
+				const scrollbox = legend ? legend.querySelector(".scrollbox") : null;
+				const title = document.getElementById("legend-title-overlay");
+				let baseHeight = 0;
+				if (legend) {
+					legend.removeAttribute("clip-path");
+					legend.querySelectorAll("[clip-path]").forEach(function(node) {
+						node.removeAttribute("clip-path");
+					});
+				}
+				if (box) {
+					baseHeight = parseFloat(box.getAttribute("height") || "0") - (box.dataset.padded === "1" ? legendTitleOffset + legendHeightPad : 0);
+					const baseWidth = parseFloat(box.getAttribute("width") || "0") - (box.dataset.padded === "1" ? legendWidthPad : 0);
+					const rect = box.getBoundingClientRect();
+					let width = Math.max(baseWidth + legendWidthPad, legendMinWidth);
+					legend.querySelectorAll(".traces text").forEach(function(text) {
+						width = Math.max(width, text.getBoundingClientRect().right - rect.left + 28);
+					});
+					box.setAttribute("width", width);
+					box.dataset.padded = "1";
+				}
+				if (scrollbox) {
+					const pattern = new RegExp("\\s*translate\\(0,\\s*" + legendTitleOffset + "\\)", "g");
+					const transform = (scrollbox.getAttribute("transform") || "").replace(pattern, "");
+					scrollbox.setAttribute("transform", transform + " translate(0," + legendTitleOffset + ")");
+				}
+				if (box) {
+					const rect = box.getBoundingClientRect();
+					let height = baseHeight + legendTitleOffset + legendHeightPad;
+					legend.querySelectorAll(".traces text, .legendlines path").forEach(function(node) {
+						height = Math.max(height, node.getBoundingClientRect().bottom - rect.top + 16);
+					});
+					box.setAttribute("height", height);
+				}
+				if (box && title) {
+					const rect = box.getBoundingClientRect();
+					title.style.display = "block";
+					title.style.left = rect.left + "px";
+					title.style.top = rect.top + 9 + "px";
+					title.style.width = rect.width + "px";
+				}
+			}
+
+			function scheduleLegendStyle() {
+				window.setTimeout(styleLegend, 250);
+			}
+
+			function renderSurface() {
+				const figure = window.surfaceFigure;
+				const config = window.surfaceConfig;
+				Plotly.newPlot("surface-plot", figure.data, figure.layout, config).then(function(plot) {
+					styleLegend();
+					plot.on("plotly_afterplot", styleLegend);
+					plot.on("plotly_restyle", styleLegend);
+					plot.on("plotly_relayout", styleLegend);
+					if (window.MathJax && window.MathJax.Hub) {
+						window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], hideLoader);
+					} else {
+						hideLoader();
+					}
+				});
+				const observer = new MutationObserver(styleLegend);
+				observer.observe(document.body, {childList: true, subtree: true});
+			}
+
+			function loadSurfaceData() {
+				loaderStart = Date.now();
+				const script = document.createElement("script");
+				script.src = surfaceDataUrl;
+				script.onload = function() {
+					document.fonts.ready.then(renderSurface);
+				};
+				document.body.appendChild(script);
+			}
+
+			window.addEventListener("load", function() {
+				window.requestAnimationFrame(function() {
+					window.requestAnimationFrame(loadSurfaceData);
+				});
+			});
+			window.addEventListener("resize", scheduleLegendStyle);
+		</script>
+	</body>
+</html>
