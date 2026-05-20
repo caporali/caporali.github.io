@@ -44,14 +44,9 @@
         font-style: italic;
     }
     ul.news > li {
-        position: relative;
-        padding-left: 21ch;
+        display: grid;
+        grid-template-columns: 21ch 1fr;
         margin: 0;
-    }
-    ul.news > li::before {
-        content: attr(date);
-        position: absolute;
-        left: 0;
     }
     .links {
         display: inline-block;
