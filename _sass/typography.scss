@@ -43,6 +43,14 @@
         padding: 2px 8px 2px 8px;
         font-style: italic;
     }
+    .news {
+        display: inline-block;
+        width: 21ch;
+    }
+    .links {
+        display: inline-block;
+        width: 9ch;
+    }
     .profile-picture {
         height: $image-size;
         width: $image-size;
