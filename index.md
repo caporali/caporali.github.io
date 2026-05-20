@@ -13,7 +13,7 @@ My earlier work focused on Probability Theory and explored *Bayesian neural netw
 I obtained my Bachelor's degree in Mathematics (track: Computational Math) from the University of Pisa, with a [thesis](https://github.com/caporali/bsc_thesis/blob/main/thesis.pdf) on the *universality of neural networks*.
 
 - <span class = "links"> e-mail: </span> 
-	`fc4978 [at] princeton.edu`
+	`fcaporali [at] princeton.edu`
 - <span class = "links"> github: </span> 
 	[caporali](https://github.com/caporali)
 - <span class = "links"> linkedin: </span> 
