@@ -22,14 +22,23 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 ## News
 
 <ul class = "news">
-	<li> <span> Jul. 2025: </span> 
-		Attended <i>COLT 2025 (Lyon)</i> to present a poster at the <i>TASC Workshop</i>.
+	<li> 
+		<span> Jul. 2025: </span> 
+		<span> 
+			Attended <i>COLT 2025 (Lyon)</i> to present a poster at the <i>TASC Workshop</i>.
+		</span>
 	</li>
-	<li> <span> Jun. 2025-Jun. 2026: </span> 
-		Working on the stability and implicit bias of step-size schedulers for GD, and studying principled first-order methods for convergence to flat configurations of neural networks.
+	<li> 
+		<span> Jun. 2025-Jun. 2026: </span> 
+		<span> 
+			Working on the stability and implicit bias of step-size schedulers for GD, and studying principled first-order methods for convergence to flat configurations of neural networks.
+		</span>
 	</li>
-	<li> <span> Jun. 2026-Aug. 2026: </span> 
-		I will intern as an Applied Scientist at AWS AI Labs.
+	<li> 
+		<span> Jun. 2026-Aug. 2026: </span> 
+		<span> 
+			I will intern as an Applied Scientist at AWS AI Labs.
+		</span>
 	</li>
 </ul>
 
