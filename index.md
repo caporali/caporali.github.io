@@ -26,6 +26,7 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 	Working on the stability and implicit bias of step-size schedulers for GD, and studying principled first-order methods for convergence to flat configurations of neural networks.
 - <span class = "news"> Jun. 2026-Aug. 2026: </span> 
 	I will intern as an Applied Scientist at AWS AI Labs.
+{: .news-list}
 
 ## Publications / Preprints
 1. *F. Caporali*, S. Favaro, D. Trevisan, 
