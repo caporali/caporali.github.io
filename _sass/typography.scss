@@ -44,15 +44,15 @@
         font-style: italic;
     }
     ul.news-list > li {
-        position: relative;
-        padding-left: 21ch;
-    }
-    ul.news-list .news {
-        position: absolute;
-        left: 0;
+        display: block;
     }
     ul.news-list > li > p {
+        display: grid;
+        grid-template-columns: 21ch 1fr;
         margin: 0;
+    }
+    ul.news-list .news {
+        grid-column: 1;
     }
     .links {
         display: inline-block;
