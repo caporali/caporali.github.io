@@ -43,6 +43,9 @@
         padding: 2px 8px 2px 8px;
         font-style: italic;
     }
+    ul.news {
+        padding: 0;
+    }
     ul.news > li {
         display: grid;
         grid-template-columns: 20px 21ch 1fr;
@@ -52,6 +55,7 @@
     ul.news > li::before {
         content: "- ";
         position: static;
+        left: auto;
         grid-column: 1;
     }
     ul.news > li > span:first-child {

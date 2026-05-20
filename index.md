@@ -20,10 +20,12 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 	[francescocaporali](https://www.linkedin.com/in/francescocaporali/) 
 
 ## News
-- <span>Jul. 2025:</span> Attended *COLT 2025 (Lyon)* to present a poster at the *TASC Workshop*.
-- <span>Jun. 2025-Jun. 2026:</span> Working on the stability and implicit bias of step-size schedulers for GD, and studying principled first-order methods for convergence to flat configurations of neural networks.
-- <span>Jun. 2026-Aug. 2026:</span> I will intern as an Applied Scientist at AWS AI Labs.
-{: .news}
+
+<ul class = "news" markdown = "1">
+	<li><span>Jul. 2025:</span> Attended *COLT 2025 (Lyon)* to present a poster at the *TASC Workshop*.</li>
+	<li><span>Jun. 2025-Jun. 2026:</span> Working on the stability and implicit bias of step-size schedulers for GD, and studying principled first-order methods for convergence to flat configurations of neural networks.</li>
+	<li><span>Jun. 2026-Aug. 2026:</span> I will intern as an Applied Scientist at AWS AI Labs.</li>
+</ul>
 
 ## Publications / Preprints
 1. *F. Caporali*, S. Favaro, D. Trevisan, 
