@@ -37,7 +37,7 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 	<li> 
 		<span> Jun. 2026-Aug. 2026: </span> 
 		<span> 
-			I will intern as an Applied Scientist at AWS AI Labs.
+			I will intern as an <i>Applied Scientist<i> at <i>AWS AI Labs<i>.
 		</span>
 	</li>
 </ul>
@@ -46,11 +46,3 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 1. *F. Caporali*, S. Favaro, D. Trevisan, 
 	[Student-$t$ processes as infinite-width limits of posterior Bayesian NNs](https://openreview.net/pdf?id=iUppQcPAMK),
 	In: *TASC Workshop, COLT 2025*
-
-## Teaching
-Tutorial Instructor, *University of Turin*:
-- *Probability and Statistics*, B.Sc. Mathematics for Finance and Insurance (Mar.-Jun. 2023).
-
-Teaching Assistant (TA), *Princeton University*:
-- *Probability Theory (ORF526)* (Sep.-Dec. 2025);
-- *Probability and Stochastic Systems (MAT380/ORF309/EGR309)* (Jan.-May. 2026).
