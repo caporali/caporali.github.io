@@ -45,8 +45,20 @@
     }
     ul.news > li {
         display: grid;
-        grid-template-columns: 21ch 1fr;
+        grid-template-columns: 20px 21ch 1fr;
         margin: 0;
+        position: static;
+    }
+    ul.news > li::before {
+        content: "- ";
+        position: static;
+        grid-column: 1;
+    }
+    ul.news > li > span:first-child {
+        grid-column: 2;
+    }
+    ul.news > li > span:first-child + * {
+        grid-column: 3;
     }
     .links {
         display: inline-block;
