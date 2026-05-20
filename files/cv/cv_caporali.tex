@@ -1,0 +1,328 @@
+% class
+\documentclass[a4paper, 11pt]{article}
+
+% packages
+	% margins and layout
+		\usepackage[bottom = 1.5cm, top = 1.5cm, left = 1.5cm, right = 1.5cm]{geometry}
+	% fonts/language
+		\usepackage[utf8]{inputenc}
+		\usepackage[T1]{fontenc}
+		\usepackage[english]{babel}
+		\usepackage{fontawesome5}
+	% titles
+		\usepackage{titlesec}
+	% color
+		\usepackage{xcolor}
+	% itemize/enumerate
+		\usepackage{enumitem}
+	% url/hyperlinks
+		\usepackage[colorlinks = true, linkcolor = black, citecolor = black, urlcolor = black]{hyperref}
+	% tables
+		\usepackage{tabularx}
+	% math
+		\usepackage{mathtools}
+		\usepackage{amssymb}
+	% other 
+		% \usepackage{verbatim}
+		\usepackage{scalerel}	% scalebox
+		\usepackage{textpos}	% environment textblock
+
+% layout
+	% pagestyle
+	\pagestyle{empty}
+	% table settings
+	\setlength{\tabcolsep}{0cm}
+	% sections formatting
+	\titleformat{\section}%
+		{\vspace{-4pt}\scshape\raggedright\large}{}{0em}{}%
+		[\color{black}\titlerule\vspace{-3pt}]
+	% other
+		% ensure that generate pdf is machine readable/ATS parsable
+			\pdfgentounicode = 1
+		% remove indentation
+		\newlength\tindent
+		\setlength{\tindent}{\parindent}
+		\setlength{\parindent}{0pt}
+		\renewcommand{\indent}{\hspace*{\tindent}}
+
+% commands
+	% cv items
+		\newcommand{\cvitemstart}{\begin{itemize}}
+		\newcommand{\cvitemend}{\end{itemize}\vspace{-5pt}}
+		\newcommand{\cvitem}[1]{%
+			\item \small{{#1 \vspace{-1pt}}}
+		}
+	% cv headings
+		\newcommand{\cvsubheadingstart}{%
+			\begin{itemize}[leftmargin = 0cm, label = {}]
+		}
+		\newcommand{\cvsubheadingend}{\end{itemize}}
+		\newcommand{\cvsubheading}[4]{
+			\vspace{-4pt}
+			\item
+				\begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+					\textbf{#1} & #2 \\
+					\textit{\small #3} & \textit{\small #4} \\
+				\end{tabular*}\vspace{-7pt}
+		}
+		\newcommand{\cvresearchheading}[3]{
+			\vspace{-4pt}
+			\item
+				\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+					\textbf{#1} & \\
+					\textit{\small #2} & \textit{\small #3} \\  
+				\end{tabular*}\vspace{-7pt}
+		}
+	% cv skills
+		\newcommand{\cvskills}[1]{
+			\begin{itemize}[leftmargin = 0cm, label = {}]
+				\small{\item{
+					#1
+				}}
+			\end{itemize}
+		}
+		\newcommand{\cvsep}{\kern2pt$|$\kern2pt \ }
+	% markers
+		\newcommand{\squaremarker}{\raisebox{0.07cm}{\scalebox{0.25}{\faSquare}}}
+		\newcommand{\roundmarker}{\raisebox{0.07cm}{\scalebox{0.25}{\faCircle}}}
+		\renewcommand\labelitemii{\squaremarker}
+	% symbols
+		\newcommand{\addsymbol}[1]{\scalebox{0.8}{#1}\kern5pt}
+	% info
+		% mail
+		\newcommand{\addmail}{%
+			\addsymbol{\faAt} \href{mailto:francescocaporali@outlook.com}{francescocaporali@outlook.com}
+		}
+		% institutional mail
+		\newcommand{\addinstitutionalmail}{%
+			\addsymbol{\faAt} \href{mailto:fc4978@princeton.edu}{fc4978@princeton.edu}
+		}
+		% phone
+		\newcommand{\addphone}{%
+			\addsymbol{\faPhone*} $+1 \ (609) \, 786 \, 0295$
+		}
+		% homepage
+		\newcommand{\addhomepage}{%
+			\addsymbol{\faGlobe} \href{https://caporali.github.io/}{caporali.github.io}
+		}
+		% linkedin
+		\newcommand{\addlinkedin}{%
+			\addsymbol{\faLinkedin} \href{https://www.linkedin.com/in/francescocaporali/}{francescocaporali}
+		}
+		% github
+		\newcommand{\addgithub}{%
+			\addsymbol{\faGithub} \href{https://github.com/caporali}{caporali}
+		}
+		% address
+		\newcommand{\addaddress}{%
+			\addsymbol{\faMapMarker*} 224 - Sherrerd Hall, Princeton (NJ), 08540, USA 
+		}
+		% link
+		\newcommand{\addlink}{%
+			\addsymbol{\faLink}
+		}
+	% last updated
+	\newcommand{\lastupdated}{
+		\begin{textblock*}{\textwidth}(0cm, -0.6cm)
+			{\color{gray} \footnotesize
+			\hfill \addsymbol{\faCalendar[regular]} Last updated: \today}
+		\end{textblock*}
+	}
+
+% main
+
+\begin{document}
+
+	% heading
+	{\Huge\textsc{Francesco \textbf{Caporali}}} \lastupdated
+	\vskip 10pt
+	{\small
+		\begin{tabular*}{0.99\textwidth}{l @{\extracolsep{\fill}} l @{\extracolsep{\fill}} l}
+			\addmail & \addinstitutionalmail & \addphone \\
+			\addaddress & \addhomepage & \addlinkedin \\
+		\end{tabular*}		
+	}
+
+	% education
+	\section{Education}
+		\cvsubheadingstart
+			% phd orfe, princeton
+				\cvsubheading{Ph.D. in Operations Research and Financial Engineering}%
+				{Princeton University}%
+				{Princeton (NJ), USA}%
+				{August 2024 $-$ Ongoing}
+				\cvitemstart
+					\cvitem{\textit{Advisor:} Prof. Boris Hanin.}
+				\cvitemend
+			% msc math, unito
+			\cvsubheading{M.Sc. in Stochastics and Data Science (Mathematics)}%
+				{University of Turin}%
+				{Turin, Italy}%
+				{September 2022 $-$ July 2024}
+				\cvitemstart
+					\cvitem{Final grade: $110/110$ cum laude and special mention.}
+					\cvitem{
+						\textbf{Thesis:} Student-\texorpdfstring{$t$}{t} processes as infinite-width limits of posterior Bayesian Neural Networks \\
+						\textit{Advisor:} Prof. Stefano Favaro and Prof. Dario Trevisan
+					} 
+				\cvitemend
+			% msc stat/applied math, cca
+			\cvsubheading{M.Sc. in Statistics and Applied Mathematics}%
+				{Collegio Carlo Alberto}%
+				{Turin, Italy}%
+				{September 2022 $-$ July 2024}
+				\cvitemstart
+					\cvitem{\textit{Allievi Honors Program} full scholarship. Competitive admission to a study program in applied mathematics and statistics. The Allievi are admitted after a nationwide selection.}
+				\cvitemend
+			% bsc math, unipi
+			\cvsubheading{B.Sc. in Mathematics (computational curriculum)}%
+				{University of Pisa}%
+				{Pisa, Italy}%
+				{September 2018 $-$ May 2022}
+				\cvitemstart
+					\cvitem{Final grade: $110/110$ cum laude.}
+					\cvitem{
+						\textbf{Thesis:} Deep Neural Networks: approximation capabilities and Gaussian behaviour \\
+						\textit{Advisor:} Prof. Dario Trevisan
+					} 
+					
+				\cvitemend
+			% \vspace{4pt}
+			% % high school diploma
+			% \cvsubheading{High school diploma}%
+			% 	{Liceo Scientifico Paolo Ruffini}%
+			% 	{Viterbo, Italy}%
+			% 	{September 2013 $-$ July 2018}
+			% 	\cvitemstart
+			% 		\cvitem{Final grade: $100/100$.}
+			% 	\cvitemend
+		\cvsubheadingend
+		\vspace{-17pt}
+
+	% academic interests
+	\section{Academic Interests}
+		\begin{itemize}[leftmargin = 0cm, label = {}]
+			\small{\item{
+			My research lies at the intersection of probabilistic ML and optimization dynamics. 
+			I am currently interested in analyzing the stability and implicit bias of GD/SGD and designing principled noise, clipping, and step-size schedules for reliable training. 
+			Previously, I studied Bayesian neural networks and their infinite-width/posterior limits to characterize uncertainty and robustness.
+			}}
+		\end{itemize}
+		\vspace{-18pt}
+
+	% research
+	\section{Research}
+		\cvsubheadingstart
+			\cvresearchheading{\href{https://openreview.net/pdf?id=iUppQcPAMK}{Student-\texorpdfstring{$t$}{t} processes as infinite-width limits of posterior Bayesian NNs}}%
+				{\textit{F. Caporali}, S. Favaro, D. Trevisan}%
+				{TASC workshop, COLT 2025}%
+				\cvitemstart
+					\cvitem{Showed that Bayesian Neural Networks with Gaussian priors on weights and Inverse-Gamma priors on variances converge to Student-t processes in the infinite-width limit.}
+				\cvitemend
+		\cvsubheadingend
+		\vspace{-17pt}
+
+	% extracurriculars
+	\section{Conferences and workshop}
+		\cvsubheadingstart
+			% conference, colt 2025
+			\cvsubheading{38th Annual Conference on Learning Theory (COLT 2025)}%
+				{}%
+				{Lyon, France}%
+				{June 2025}
+			% summer school, malga/unige
+			\cvsubheading{Summer School ``Topics in Modern Machine Learning''}%
+				{University of Genoa}%
+				{Genoa, Italy}%
+				{June 2023}
+			% winter school, unitn
+			\cvsubheading{Winter School ``Stochastic Processes, Analysis and Semigroups''}%
+				{University of Trento/Wuppertal}%
+				{Trento, Italy}%
+				{December 2022}
+		\cvsubheadingend
+		\vspace{-13pt}
+
+	% projects
+	\section{Projects}
+		\cvsubheadingstart
+			% msc
+			\cvsubheading{Master's projects}%
+				{University of Turin and Collegio Carlo Alberto}%
+				{Turin, Italy}%
+				{2022 $-$ 2023}
+				\cvitemstart
+					\cvitem{\href{https://github.com/caporali/machine_learning_project}{\textit{Machine Learning}}: implementation of GANs from scratch for image generation.}
+					\cvitem{\href{https://github.com/caporali/keep_heading_north}{\textit{Algorithms}}: design of a text-based game on a graph with RL integration.}
+				\cvitemend
+		\cvsubheadingend
+		\vspace{-16pt}
+
+	% professional experience
+	\section{Professional experience}
+		\cvsubheadingstart
+			% teaching assistant, princeton
+			\cvsubheading{Teaching Assistant}%
+				{Princeton University}%
+				{Princeton, NJ, USA}%
+				{September 2025 $-$ Ongoing}
+				\cvitemstart
+					\cvitem{Teaching Assistant, \textit{Probability Theory (ORF526)}.} 
+				\cvitemend
+			\vspace{2pt}
+			% tutor, unito
+			\cvsubheading{Tutorial teaching}%
+				{University of Turin}%
+				{Turin, Italy}%
+				{March $-$ June 2023}
+				\cvitemstart
+					\cvitem{Tutorial Instructor, \textit{Probability and Statistics} (B.Sc. Mathematics for Finance and Insurance).} 
+				\cvitemend
+			\vspace{2pt}
+			% phc admin, unipi
+			\cvsubheading{PHC System administrator}%
+				{University of Pisa}%
+				{Pisa, Italy}%
+				{December 2018 $-$ May 2022}
+				\cvitemstart
+					\cvitem{Maintained Linux lab network and departmental \href{http://poisson.phc.dm.unipi.it}{\textit{web server}} serving mathematics students.}
+				\cvitemend
+		\cvsubheadingend
+		\vspace{-16pt}
+
+	% skills
+	\section{Skills}
+		\cvskills{%
+			% languages
+			\textbf{Languages}
+				\begin{itemize}[noitemsep, topsep = -2pt]
+					\item \textit{Italian:} native.
+					\item \textit{English:} advanced level.
+				\end{itemize}
+			% programming languages
+			\textbf{Programming languages}
+				\begin{itemize}[noitemsep, topsep = -2pt]
+					\item
+						Python (PyTorch, Pyro, pandas, scikit-learn, \dots) \cvsep
+						R \cvsep
+						Matlab \cvsep
+						C\textbackslash C++ \cvsep
+						SQL (basic) \cvsep
+						Julia (basic)
+				\end{itemize}
+			% markup languages
+			\textbf{Markup languages}
+				\begin{itemize}[noitemsep, topsep = -2pt]
+					\item
+						\LaTeX \ \cvsep
+						HTML (basic)
+				\end{itemize}
+			% other computer skills
+			\textbf{Other computer skills}
+				\begin{itemize}[noitemsep, topsep = -2pt]
+					\item Operating systems: Linux (all major distributions), Windows, macOS.
+					\item Microsoft Office.
+				\end{itemize}				
+		}
+
+\end{document}

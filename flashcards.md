@@ -1,19 +1,11 @@
 ---
-layout: flashcards
+layout: default
 title: "Flashcards"
+author_name: '\caporali'
+show_nav: false
+link_footer: false
+apple_touch_icon: "/files/images/flashcard_icon.png"
 ---
-
-<div id = "password_overlay" style = "position:fixed;top:0;left:0;width:100%;height:100%;background:white;z-index:10000;display:flex;align-items:center;justify-content:center;">
-	<div style = "text-align:center;padding:30px;border:1px solid #ddd;border-radius:5px;background:#f9f9f9;">
-		<h3 style = "margin-bottom:20px;">
-			enter password
-		</h3>
-		<input type = "password" id = "password_input" placeholder = "password (press enter)" style = "padding:10px;border:1px solid #ddd;border-radius:3px;font-family:'Inconsolata',monospace;margin-bottom:10px;width:200px;">
-		<p id = "password_error" style = "color:#ff4444;margin-top:10px;display:none;">
-			incorrect password
-		</p>
-	</div>
-</div>
 
 <style>
 	.mode_selector {
@@ -536,20 +528,20 @@ title: "Flashcards"
 
 <script>
 	var known_decks = [
-		{ name: '1_1_ger_eng', file: 'flashcards/1_1_ger_eng.txt' },
-		{ name: '1_2_ger_eng', file: 'flashcards/1_2_ger_eng.txt' },
-		{ name: '1_3_ger_eng', file: 'flashcards/1_3_ger_eng.txt' },
-		{ name: '1_4_ger_eng', file: 'flashcards/1_4_ger_eng.txt' },
-		{ name: '2_1_ger_eng', file: 'flashcards/2_1_ger_eng.txt' },
-		{ name: '2_2_ger_eng', file: 'flashcards/2_2_ger_eng.txt' },
-		{ name: '2_3_ger_eng', file: 'flashcards/2_3_ger_eng.txt' },
-		{ name: '1_1_eng_ger', file: 'flashcards/1_1_eng_ger.txt' },
-		{ name: '1_2_eng_ger', file: 'flashcards/1_2_eng_ger.txt' },
-		{ name: '1_3_eng_ger', file: 'flashcards/1_3_eng_ger.txt' },
-		{ name: '1_4_eng_ger', file: 'flashcards/1_4_eng_ger.txt' },
-		{ name: '2_1_eng_ger', file: 'flashcards/2_1_eng_ger.txt' },
-		{ name: '2_2_eng_ger', file: 'flashcards/2_2_eng_ger.txt' },
-		{ name: '2_3_eng_ger', file: 'flashcards/2_3_eng_ger.txt' }
+		{ name: '1_1_ger_eng', file: 'files/flashcards/1_1_ger_eng.txt' },
+		{ name: '1_2_ger_eng', file: 'files/flashcards/1_2_ger_eng.txt' },
+		{ name: '1_3_ger_eng', file: 'files/flashcards/1_3_ger_eng.txt' },
+		{ name: '1_4_ger_eng', file: 'files/flashcards/1_4_ger_eng.txt' },
+		{ name: '2_1_ger_eng', file: 'files/flashcards/2_1_ger_eng.txt' },
+		{ name: '2_2_ger_eng', file: 'files/flashcards/2_2_ger_eng.txt' },
+		{ name: '2_3_ger_eng', file: 'files/flashcards/2_3_ger_eng.txt' },
+		{ name: '1_1_eng_ger', file: 'files/flashcards/1_1_eng_ger.txt' },
+		{ name: '1_2_eng_ger', file: 'files/flashcards/1_2_eng_ger.txt' },
+		{ name: '1_3_eng_ger', file: 'files/flashcards/1_3_eng_ger.txt' },
+		{ name: '1_4_eng_ger', file: 'files/flashcards/1_4_eng_ger.txt' },
+		{ name: '2_1_eng_ger', file: 'files/flashcards/2_1_eng_ger.txt' },
+		{ name: '2_2_eng_ger', file: 'files/flashcards/2_2_eng_ger.txt' },
+		{ name: '2_3_eng_ger', file: 'files/flashcards/2_3_eng_ger.txt' }
 	];
 	(function() {
 		var is_touch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
@@ -559,32 +551,8 @@ title: "Flashcards"
 		}
 	})();
 
-	const FLASHCARDS_PASSWORD = 'fands_2025';
 	let decks = [], study_cards = [], study_idx = 0, quiz_cards = [], quiz_idx = 0, quiz_score = 0;
 	let _saved_viewport = null;
-
-	function check_password() {
-		if (sessionStorage.getItem('flashcards_authenticated') === 'true') {
-			document.getElementById('password_overlay').style.display = 'none';
-			document.getElementById('flashcards_content').style.display = 'block';
-			return true;
-		}
-		return false;
-	}
-
-	function authenticate() {
-		var input = document.getElementById('password_input').value;
-		if (input === FLASHCARDS_PASSWORD) {
-			sessionStorage.setItem('flashcards_authenticated', 'true');
-			document.getElementById('password_overlay').style.display = 'none';
-			document.getElementById('flashcards_content').style.display = 'block';
-			initialize_app();
-		} else {
-			document.getElementById('password_error').style.display = 'block';
-			document.getElementById('password_input').value = '';
-			document.getElementById('password_input').focus();
-		}
-	}
 
 	function initialize_app() {
 		load_decks();
@@ -655,16 +623,7 @@ title: "Flashcards"
 		document.getElementById('retake_quiz_btn').onclick = start_quiz;
 	}
 
-	document.addEventListener('DOMContentLoaded', function() {
-		if (!check_password()) {
-			document.getElementById('password_input').focus();
-			document.getElementById('password_input').onkeypress = function(e) {
-				if (e.key === 'Enter') authenticate();
-			};
-			return;
-		}
-		initialize_app();
-	});
+	document.addEventListener('DOMContentLoaded', initialize_app);
 
 	function load_decks() {
 		decks = [];
@@ -932,7 +891,7 @@ title: "Flashcards"
 		document.getElementById(mode + '_mode').classList.add('active');
 	}
 </script>
-<div id = "flashcards_content" style = "display:none;">
+<div id = "flashcards_content">
 	<p class = "study_intro">
 		<i> Flashcards. </i>
 		Study flashcards from your decks.

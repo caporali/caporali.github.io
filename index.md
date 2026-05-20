@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<img class = "profile-picture" src = "files/profile_pic_caporali.jpg">
+<img class = "profile-picture" src = "files/images/profile_pic_caporali.jpg">
 
 I'm a 2<sup>nd</sup> year Ph.D. student in **Operations Research and Financial Engineering (ORFE)** at **Princeton University**. <br>
 My work lies at the intersection of *probabilistic machine learning* and *non-convex optimization*. <br>
