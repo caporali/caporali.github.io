@@ -8,5 +8,5 @@ link_footer: false
 
 <iframe
     src = "/files/surface/surface.html"
-    style = "width: 200%; max-width: none; height: 80vh; border: 0; margin-left: -50%;"
+    style = "width: 225%; max-width: none; height: 80vh; border: 0; margin-left: -62.5%;"
 ></iframe>
