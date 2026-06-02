@@ -13,7 +13,7 @@ My earlier work focused on Probability Theory and explored *Bayesian neural netw
 I obtained my Bachelor's degree in Mathematics (track: Computational Math) from the University of Pisa, with a [thesis](https://github.com/caporali/bsc_thesis/blob/main/thesis.pdf) on the *universality of neural networks*.
 
 - <span class = "links"> e-mail: </span> 
-	`fcaporali [at] princeton.edu`
+	fcaporali [at] princeton.edu
 - <span class = "links"> github: </span> 
 	[caporali](https://github.com/caporali)
 - <span class = "links"> linkedin: </span> 
@@ -25,7 +25,7 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 	<li> 
 		<span> Jun. 2026-Aug. 2026: </span> 
 		<span> 
-			I am an <i>Applied Scientist Intern</i> within the <i>AWS Agentic AI</i> group (<i>Quick team</i>).
+			I am an <i>Applied Scientist Intern</i> within the <i>AWS Agentic AI</i> group (<a href = "https://aws.amazon.com/quick/"><i>Quick team</i></a>).
 		</span>
 	</li>
 	<li> 
@@ -52,4 +52,3 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 1. *F. Caporali*, S. Favaro, D. Trevisan, 
 	[Student-$t$ processes as infinite-width limits of posterior Bayesian NNs](https://openreview.net/pdf?id=iUppQcPAMK),
 	In: *TASC Workshop, COLT 2025*
-
