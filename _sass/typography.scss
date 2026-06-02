@@ -48,7 +48,7 @@
     }
     ul.news > li {
         display: grid;
-        grid-template-columns: 20px 22ch 1fr;
+        grid-template-columns: 20px 22ch minmax(0, 1fr);
         margin: 0;
         position: static;
     }
@@ -63,6 +63,16 @@
     }
     ul.news > li > span:first-child + * {
         grid-column: 3;
+    }
+    @media (max-width: $small-width) {
+        ul.news > li {
+            grid-template-columns: 20px minmax(0, 1fr);
+            margin-bottom: 5px;
+        }
+        ul.news > li > span:first-child,
+        ul.news > li > span:first-child + * {
+            grid-column: 2;
+        }
     }
     .links {
         display: inline-block;
