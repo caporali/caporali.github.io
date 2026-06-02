@@ -4,7 +4,7 @@ layout: default
 
 <img class = "profile-picture" src = "files/images/profile_pic_caporali.jpg">
 
-I'm a 2<sup>nd</sup> year Ph.D. student in **Operations Research and Financial Engineering (ORFE)** at **Princeton University**. <br>
+I'm a 2<sup>nd</sup> year Ph.D. candidate in **Operations Research and Financial Engineering (ORFE)** at **Princeton University**. <br>
 My work lies at the intersection of *probabilistic machine learning* and *non-convex optimization*. <br>
 I am fortunate to be advised by [Prof. Boris Hanin](https://boris-hanin.github.io/).
 
@@ -23,9 +23,15 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 
 <ul class = "news">
 	<li> 
-		<span> Jul. 2025: </span> 
+		<span> Jun. 2026-Aug. 2026: </span> 
 		<span> 
-			Attended <i>COLT 2025 (Lyon)</i> to present a poster at the <i>TASC Workshop</i>.
+			I am an <i>Applied Scientist Intern</i> within the <i>AWS Agentic AI</i> group (<i>Quick team</i>).
+		</span>
+	</li>
+	<li> 
+		<span> May 2026: </span> 
+		<span> 
+			I am now a Ph.D. candidate.
 		</span>
 	</li>
 	<li> 
@@ -35,9 +41,9 @@ I obtained my Bachelor's degree in Mathematics (track: Computational Math) from 
 		</span>
 	</li>
 	<li> 
-		<span> Jun. 2026-Aug. 2026: </span> 
+		<span> Jul. 2025: </span> 
 		<span> 
-			I will intern as an <i>Applied Scientist</i> at <i>AWS AI Labs</i>.
+			Attended <i>COLT 2025 (Lyon)</i> to present a poster at the <i>TASC Workshop</i>.
 		</span>
 	</li>
 </ul>
