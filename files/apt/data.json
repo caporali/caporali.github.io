@@ -2,7 +2,143 @@
   "version": 1,
   "layouts": {
     "thepier_1-414": [],
-    "70greene_0503": [],
+    "70greene_0503": [
+      {
+        "id": "bed_c2b65548-ab32-4751-bd80-16975bedc873",
+        "type": "bed",
+        "x": 392.55434163411456,
+        "y": 367.14433797200525,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_12ae9de7-ffc9-4211-9621-8b15c420fe3a",
+        "type": "nightstand",
+        "x": 458.76076253255206,
+        "y": 320.4637654622396,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_149964f3-2ea1-48fa-828a-0d63fa875a1e",
+        "type": "nightstand",
+        "x": 325.0825703938802,
+        "y": 320.16403706868493,
+        "angle": 0
+      },
+      {
+        "id": "desk_e2abc23e-19c9-4113-8c8b-a32fedb24f5a",
+        "type": "desk",
+        "x": 449.4691975911458,
+        "y": 513.7876790364584,
+        "angle": 0
+      },
+      {
+        "id": "desk_73d3979f-e009-4c1c-945b-25cd3251cc3c",
+        "type": "desk",
+        "x": 388.92438252766925,
+        "y": 513.7876637776693,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_de02c8b4-85dc-437d-85ee-b18471c70353",
+        "type": "desk_chair",
+        "x": 450.36839803059894,
+        "y": 498.20183308919275,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_8516338d-0ecd-45a4-897e-a51c0d85f932",
+        "type": "desk_chair",
+        "x": 390.60863240559894,
+        "y": 498.5802586873373,
+        "angle": 0
+      },
+      {
+        "id": "sofa_e3ac4a17-ea5a-4837-a1a9-885ca3d1cc98",
+        "type": "sofa",
+        "x": 155.79805501302081,
+        "y": 103.07170613606772,
+        "angle": 90,
+        "variant": "left_chaise"
+      },
+      {
+        "id": "sofa_stool_64283f73-c52f-42c5-9a8f-7cdb2336b951",
+        "type": "sofa_stool",
+        "x": 73.12310536702472,
+        "y": 38.80994160970053,
+        "angle": 353
+      },
+      {
+        "id": "tv_unit_93553f33-c421-4b2e-8810-ee85ccca2ec4",
+        "type": "tv_unit",
+        "x": 33.29096730550128,
+        "y": 96.34525807698569,
+        "angle": 83
+      },
+      {
+        "id": "sideboard_78baae4e-0fef-4ded-9853-710af983c58e",
+        "type": "sideboard",
+        "x": 455.5855305989583,
+        "y": 50.98086675008139,
+        "angle": 0
+      },
+      {
+        "id": "sideboard_55d39a3b-a23b-44de-b53e-1099ce22c6a8",
+        "type": "sideboard",
+        "x": 374.8147481282552,
+        "y": 50.98087437947592,
+        "angle": 0
+      },
+      {
+        "id": "side_table_f6c3c3d8-8d00-427c-973c-6180c944b98a",
+        "type": "side_table",
+        "x": 209.095708211263,
+        "y": 83.47923787434897,
+        "angle": 90
+      },
+      {
+        "id": "side_table_0a6835ee-8804-4ab5-bead-3fdc95989be4",
+        "type": "side_table",
+        "x": 209.13824971516925,
+        "y": 123.97100575764975,
+        "angle": 90
+      },
+      {
+        "id": "bench_85feba83-4976-4c92-b019-2758f7c45058",
+        "type": "bench",
+        "x": 557.4796193440754,
+        "y": 103.31882985432944,
+        "angle": 0
+      },
+      {
+        "id": "coffee_table_1d7cb431-cf60-443f-b02c-066f11f02605",
+        "type": "coffee_table",
+        "x": 86.4920934041341,
+        "y": 118.46547444661459,
+        "angle": 83
+      },
+      {
+        "id": "shoe_rack_740eae50-da7b-4546-bd10-ca482d63cac4",
+        "type": "shoe_rack",
+        "x": 671.8780721028645,
+        "y": 108.97337086995444,
+        "angle": 0
+      },
+      {
+        "id": "shoe_rack_a5b2fb05-b1a1-445c-aad7-bc5161801d2a",
+        "type": "shoe_rack",
+        "x": 579.0652669270833,
+        "y": 24.036963780721038,
+        "angle": 0
+      },
+      {
+        "id": "dining_table_9621f3df-cf64-4807-9b31-e52a99cddc67",
+        "type": "dining_table",
+        "x": 242.37550862630206,
+        "y": 214.30818684895834,
+        "angle": 0,
+        "variant": "round"
+      }
+    ],
     "madox_418": [],
     "thelenox_804": [],
     "libertytowers_LT-E3704": [],
@@ -12,8 +148,8 @@
       {
         "id": "bed_1",
         "type": "bed",
-        "x": 451.5664379882812,
-        "y": 200.48710205078126,
+        "x": 450.6477062988281,
+        "y": 200.56066467285157,
         "angle": 270,
         "variant": "queen"
       },
@@ -101,13 +237,27 @@
         "x": 134.35474395751953,
         "y": 405.1405029296875,
         "angle": 90
+      },
+      {
+        "id": "shoe_rack_2f64eb14-a7b9-4fd0-9311-6a1c859ffb35",
+        "type": "shoe_rack",
+        "x": 137.16732788085938,
+        "y": 545.8240356445312,
+        "angle": 0
+      },
+      {
+        "id": "bench_8ece4553-a32e-4533-8751-9e80546e9cc5",
+        "type": "bench",
+        "x": 345.96636962890625,
+        "y": 447.10870361328125,
+        "angle": 0
       }
     ],
     "thepier_1-318": []
   },
   "info": {
     "thepier_1-414": "",
-    "70greene_0503": "",
+    "70greene_0503": "note. furniture sketch done.",
     "madox_418": "",
     "thelenox_804": "",
     "libertytowers_LT-E3704": "",
@@ -553,5 +703,5 @@
       ]
     }
   },
-  "updated_at": "2026-09-29T03:17:58.897Z"
+  "updated_at": "2026-09-29T03:52:04.702Z"
 }

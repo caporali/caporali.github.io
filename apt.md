@@ -47,7 +47,9 @@ nav:
 .stage-heading { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; gap: 4px; align-items: stretch; padding: 17px 18px 12px; min-height: 52px; }
 #plan-select { width: 100%; min-width: 0; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; color: #272727; font-family: "CMU Typewriter", monospace; font-size: 14px; font-weight: 700; }
 #plan-summary { color: #888; font-size: 11px; }
-.stage { grid-column: 2; grid-row: 1 / 3; min-height: 0; margin: 18px 18px 0; border: 1px solid #e5e5e5; border-radius: 10px; background: #fff; overflow: hidden; }
+.stage { grid-column: 2; grid-row: 1 / 3; position: relative; min-height: 0; margin: 18px 18px 0; border: 1px solid #e5e5e5; border-radius: 10px; background: #fff; overflow: hidden; }
+.history-actions { position: absolute; top: 12px; left: 12px; z-index: 1; display: flex; gap: 4px; }
+.apartment-page .content .history-actions button { width: 28px; height: 28px; padding: 0; font-size: 17px; line-height: 1; }
 #plan-svg { width: 100%; height: 100%; display: block; touch-action: none; user-select: none; -webkit-user-select: none; }
 #plan-svg.panning, #plan-svg.panning .furniture { cursor: grabbing; }
 .stage-footer { grid-column: 2; grid-row: 3; display: flex; justify-content: space-between; gap: 15px; padding: 10px 22px 15px; color: #888; font-size: 10px; }
@@ -120,7 +122,7 @@ nav:
 		</aside>
 		<section class="stage-panel">
 			<div class="stage-heading"><select id="plan-select" aria-label="floor plan"></select><span id="plan-summary"></span></div>
-			<div class="stage"><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
+			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
 			<div class="stage-footer"><span>drag furniture · drag empty space to pan on touch · pinch to zoom · ctrl-drag to pan on desktop</span><span id="save-status">saved locally</span></div>
 		</section>
 	</main>
@@ -216,6 +218,8 @@ const svg = document.querySelector("#plan-svg");
 const planSelect = document.querySelector("#plan-select");
 const cataloguePanel = document.querySelector("#catalogue");
 const selectionPanel = document.querySelector("#selection");
+const undoButton = document.querySelector("#undo");
+const redoButton = document.querySelector("#redo");
 let planKey = new URLSearchParams(location.search).get("plan") || "vantage_33-3810";
 if (!data.plans[planKey]) planKey = "vantage_33-3810";
 let plan;
@@ -227,6 +231,8 @@ const touches = new Map();
 let pinch = null;
 let view;
 let popupPoint = null;
+const histories = new Map();
+let history;
 
 const format = value => Number(value.toFixed(1));
 const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
@@ -272,6 +278,33 @@ function saveItems() {
 	}
 }
 
+function updateHistoryButtons() {
+	undoButton.disabled = history.index === 0;
+	redoButton.disabled = history.index === history.steps.length - 1;
+}
+
+function recordHistory() {
+	const snapshot = JSON.stringify(items);
+	if (snapshot === history.steps[history.index]) return;
+	history.steps.splice(history.index + 1);
+	history.steps.push(snapshot);
+	if (history.steps.length > 100) history.steps.shift();
+	history.index = history.steps.length - 1;
+	updateHistoryButtons();
+}
+
+function stepHistory(direction) {
+	const index = history.index + direction;
+	if (index < 0 || index >= history.steps.length) return;
+	history.index = index;
+	items = JSON.parse(history.steps[index]);
+	if (!itemById(selectedId)) selectedId = null;
+	popupPoint = null;
+	saveItems();
+	renderAll();
+	updateHistoryButtons();
+}
+
 function fitView() {
 	const pad = Math.max(plan.width, plan.height) * .035;
 	view = { x: -pad, y: -pad, w: plan.width + 2 * pad, h: plan.height + 2 * pad };
@@ -304,6 +337,12 @@ function selectPlan(key) {
 	planKey = key;
 	plan = data.plans[key];
 	items = loadItems(key);
+	history = histories.get(key);
+	if (!history) {
+		history = { steps: [JSON.stringify(items)], index: 0 };
+		histories.set(key, history);
+	}
+	updateHistoryButtons();
 	selectedId = null;
 	popupPoint = null;
 	planSelect.value = key;
@@ -463,6 +502,7 @@ function addItem(type) {
 	selectedId = id;
 	popupPoint = null;
 	saveItems();
+	recordHistory();
 	renderAll();
 }
 
@@ -471,11 +511,14 @@ function changeSelected(mutator) {
 	if (!item) return;
 	mutator(item);
 	saveItems();
+	recordHistory();
 	renderAll();
 }
 
 planSelect.innerHTML = Object.keys(data.plans).sort().map(key => `<option value="${key}">${key}</option>`).join("");
 planSelect.addEventListener("change", () => selectPlan(planSelect.value));
+undoButton.addEventListener("click", () => stepHistory(-1));
+redoButton.addEventListener("click", () => stepHistory(1));
 document.querySelector("#export-data").addEventListener("click", event => { event.preventDefault(); exportData(); });
 cataloguePanel.addEventListener("click", event => {
 	const button = event.target.closest("[data-add]");
@@ -489,6 +532,7 @@ selectionPanel.addEventListener("click", event => {
 		selectedId = null;
 		popupPoint = null;
 		saveItems();
+		recordHistory();
 		renderAll();
 	}
 });
@@ -497,6 +541,7 @@ selectionPanel.addEventListener("change", event => {
 		changeSelected(item => { item.variant = event.target.value; });
 	}
 	if (event.target.id === "angle-input") {
+		recordHistory();
 		event.target.value = format(itemById(selectedId).angle);
 	}
 });
@@ -514,7 +559,7 @@ svg.addEventListener("pointerdown", event => {
 		touches.set(event.pointerId, { x: event.clientX, y: event.clientY });
 		svg.setPointerCapture(event.pointerId);
 		if (touches.size === 2) {
-			if (drag) saveItems();
+			if (drag) { saveItems(); recordHistory(); }
 			drag = null;
 			pan = null;
 			const [first, second] = [...touches.values()];
@@ -596,6 +641,7 @@ svg.addEventListener("pointerup", event => {
 	}
 	if (drag) {
 		saveItems();
+		recordHistory();
 		popupPoint = { x: event.clientX, y: event.clientY };
 		renderSelection();
 	}
@@ -606,7 +652,7 @@ svg.addEventListener("pointercancel", event => {
 	pinch = null;
 	pan = null;
 	svg.classList.remove("panning");
-	if (drag) saveItems();
+	if (drag) { saveItems(); recordHistory(); }
 	drag = null;
 	renderSelection();
 });
@@ -629,6 +675,7 @@ document.addEventListener("keydown", event => {
 		selectedId = null;
 		popupPoint = null;
 		saveItems();
+		recordHistory();
 		renderAll();
 	} else if (event.key === "Escape") {
 		selectedId = null;
