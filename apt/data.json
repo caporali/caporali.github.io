@@ -1,0 +1,548 @@
+{
+  "version": 1,
+  "layouts": {
+    "thepier_1-414": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 375.39,
+        "y": 123.15,
+        "angle": 270
+      },
+      {
+        "id": "nightstand_2",
+        "type": "nightstand",
+        "x": 434.17,
+        "y": 210.75,
+        "angle": 0
+      },
+      {
+        "id": "desk_3",
+        "type": "desk",
+        "x": 201.92,
+        "y": 151.85,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_4",
+        "type": "desk_chair",
+        "x": 154.14,
+        "y": 162.14,
+        "angle": 0
+      },
+      {
+        "id": "desk_5",
+        "type": "desk",
+        "x": 201.92,
+        "y": 348.85,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_6",
+        "type": "desk_chair",
+        "x": 154.14,
+        "y": 356.14,
+        "angle": 0
+      },
+      {
+        "id": "sofa_7",
+        "type": "sofa",
+        "x": 74.77,
+        "y": 199.14,
+        "angle": 90
+      }
+    ],
+    "70greene_0503": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 402.23,
+        "y": 367.77,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_2",
+        "type": "nightstand",
+        "x": 333.73,
+        "y": 321.27,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_3",
+        "type": "nightstand",
+        "x": 467.73,
+        "y": 321.27,
+        "angle": 0
+      },
+      {
+        "id": "sideboard_4",
+        "type": "sideboard",
+        "x": 293.48,
+        "y": 390.18,
+        "angle": 90
+      },
+      {
+        "id": "desk_5",
+        "type": "desk",
+        "x": 330.0,
+        "y": 495.0,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_6",
+        "type": "desk_chair",
+        "x": 331.88,
+        "y": 462.88,
+        "angle": 0
+      },
+      {
+        "id": "desk_7",
+        "type": "desk",
+        "x": 245.0,
+        "y": 60.0,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_8",
+        "type": "desk_chair",
+        "x": 247.88,
+        "y": 102.88,
+        "angle": 0
+      },
+      {
+        "id": "sofa_9",
+        "type": "sofa",
+        "x": 142.47,
+        "y": 85.0,
+        "angle": 0
+      }
+    ],
+    "madox_418": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 219.43,
+        "y": 582.42,
+        "angle": 180
+      },
+      {
+        "id": "nightstand_2",
+        "type": "nightstand",
+        "x": 100.97,
+        "y": 651.48,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_3",
+        "type": "nightstand",
+        "x": 335.97,
+        "y": 651.48,
+        "angle": 0
+      },
+      {
+        "id": "desk_4",
+        "type": "desk",
+        "x": 94.9,
+        "y": 81.45,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_5",
+        "type": "desk_chair",
+        "x": 104.05,
+        "y": 159.05,
+        "angle": 0
+      },
+      {
+        "id": "desk_6",
+        "type": "desk",
+        "x": 244.9,
+        "y": 81.45,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_7",
+        "type": "desk_chair",
+        "x": 255.05,
+        "y": 159.05,
+        "angle": 0
+      },
+      {
+        "id": "dining_table_8",
+        "type": "dining_table",
+        "x": 200.18,
+        "y": 281.13,
+        "angle": 0
+      }
+    ],
+    "thelenox_804": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 107.38,
+        "y": 177.52,
+        "angle": 90
+      },
+      {
+        "id": "nightstand_2",
+        "type": "nightstand",
+        "x": 39.79,
+        "y": 73.91,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_3",
+        "type": "nightstand",
+        "x": 39.79,
+        "y": 274.91,
+        "angle": 0
+      },
+      {
+        "id": "desk_4",
+        "type": "desk",
+        "x": 334.7,
+        "y": 125.4,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_5",
+        "type": "desk_chair",
+        "x": 401.08,
+        "y": 133.08,
+        "angle": 0
+      },
+      {
+        "id": "desk_6",
+        "type": "desk",
+        "x": 567.7,
+        "y": 223.4,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_7",
+        "type": "desk_chair",
+        "x": 518.08,
+        "y": 229.08,
+        "angle": 0
+      }
+    ],
+    "libertytowers_LT-E3704": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 524.0,
+        "y": 345.0,
+        "angle": 0
+      },
+      {
+        "id": "desk_2",
+        "type": "desk",
+        "x": 105.0,
+        "y": 129.0,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_3",
+        "type": "desk_chair",
+        "x": 186.58,
+        "y": 139.58,
+        "angle": 0
+      },
+      {
+        "id": "desk_4",
+        "type": "desk",
+        "x": 224.0,
+        "y": 262.0,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_5",
+        "type": "desk_chair",
+        "x": 232.58,
+        "y": 203.58,
+        "angle": 0
+      }
+    ],
+    "vantage_1-3705": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 425.29,
+        "y": 97.11,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_2",
+        "type": "nightstand",
+        "x": 332.91,
+        "y": 28.29,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_3",
+        "type": "nightstand",
+        "x": 531.91,
+        "y": 28.29,
+        "angle": 0
+      },
+      {
+        "id": "desk_4",
+        "type": "desk",
+        "x": 364.4,
+        "y": 297.2,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_5",
+        "type": "desk_chair",
+        "x": 373.5,
+        "y": 361.5,
+        "angle": 0
+      },
+      {
+        "id": "desk_6",
+        "type": "desk",
+        "x": 474.4,
+        "y": 297.2,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_7",
+        "type": "desk_chair",
+        "x": 484.5,
+        "y": 361.5,
+        "angle": 0
+      },
+      {
+        "id": "tv_unit_8",
+        "type": "tv_unit",
+        "x": 631.16,
+        "y": 291.5,
+        "angle": 0
+      },
+      {
+        "id": "sofa_9",
+        "type": "sofa",
+        "x": 524.46,
+        "y": 483.6,
+        "angle": 0
+      },
+      {
+        "id": "coffee_table_10",
+        "type": "coffee_table",
+        "x": 572.88,
+        "y": 364.47,
+        "angle": 0
+      },
+      {
+        "id": "bench_11",
+        "type": "bench",
+        "x": 351.6,
+        "y": 538.02,
+        "angle": 0
+      }
+    ],
+    "vantage_1-3802": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 410.28,
+        "y": 153.02,
+        "angle": 270
+      },
+      {
+        "id": "nightstand_2",
+        "type": "nightstand",
+        "x": 473.69,
+        "y": 73.41,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_3",
+        "type": "nightstand",
+        "x": 473.69,
+        "y": 235.41,
+        "angle": 0
+      },
+      {
+        "id": "desk_4",
+        "type": "desk",
+        "x": 35.1,
+        "y": 119.2,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_5",
+        "type": "desk_chair",
+        "x": 92.27,
+        "y": 126.27,
+        "angle": 0
+      },
+      {
+        "id": "desk_6",
+        "type": "desk",
+        "x": 212.1,
+        "y": 225.2,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_7",
+        "type": "desk_chair",
+        "x": 170.27,
+        "y": 233.27,
+        "angle": 0
+      }
+    ],
+    "vantage_33-3810": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 450.28,
+        "y": 195.02,
+        "angle": 270
+      },
+      {
+        "id": "nightstand_2",
+        "type": "nightstand",
+        "x": 512.69,
+        "y": 104.41,
+        "angle": 0
+      },
+      {
+        "id": "nightstand_3",
+        "type": "nightstand",
+        "x": 512.69,
+        "y": 278.41,
+        "angle": 0
+      },
+      {
+        "id": "sideboard_4",
+        "type": "sideboard",
+        "x": 302.04,
+        "y": 180.83,
+        "angle": 90
+      },
+      {
+        "id": "sofa_5",
+        "type": "sofa",
+        "x": 224.3,
+        "y": 197.72,
+        "angle": 90
+      },
+      {
+        "id": "bench_6",
+        "type": "bench",
+        "x": 59.6,
+        "y": 192.3,
+        "angle": 90
+      },
+      {
+        "id": "sofa_stool_7",
+        "type": "sofa_stool",
+        "x": 217.55,
+        "y": 315.86,
+        "angle": 0
+      },
+      {
+        "id": "desk_8",
+        "type": "desk",
+        "x": 68.1,
+        "y": 320.2,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_9",
+        "type": "desk_chair",
+        "x": 125.27,
+        "y": 331.27,
+        "angle": 0
+      },
+      {
+        "id": "desk_10",
+        "type": "desk",
+        "x": 68.1,
+        "y": 416.2,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_11",
+        "type": "desk_chair",
+        "x": 125.27,
+        "y": 429.27,
+        "angle": 0
+      }
+    ],
+    "thepier_1-318": [
+      {
+        "id": "bed_1",
+        "type": "bed",
+        "x": 375.39,
+        "y": 123.15,
+        "angle": 270
+      },
+      {
+        "id": "nightstand_2",
+        "type": "nightstand",
+        "x": 434.17,
+        "y": 210.75,
+        "angle": 0
+      },
+      {
+        "id": "desk_3",
+        "type": "desk",
+        "x": 201.92,
+        "y": 151.85,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_4",
+        "type": "desk_chair",
+        "x": 154.14,
+        "y": 162.14,
+        "angle": 0
+      },
+      {
+        "id": "desk_5",
+        "type": "desk",
+        "x": 201.92,
+        "y": 348.85,
+        "angle": 90
+      },
+      {
+        "id": "desk_chair_6",
+        "type": "desk_chair",
+        "x": 154.14,
+        "y": 356.14,
+        "angle": 0
+      },
+      {
+        "id": "sofa_7",
+        "type": "sofa",
+        "x": 74.77,
+        "y": 199.14,
+        "angle": 90
+      }
+    ]
+  },
+  "info": {
+    "70greene_0503": "",
+    "libertytowers_LT-E3704": "",
+    "madox_418": "",
+    "thelenox_804": "",
+    "thepier_1-318": "",
+    "thepier_1-414": "",
+    "vantage_1-3705": "",
+    "vantage_1-3802": "",
+    "vantage_33-3810": ""
+  },
+  "shapes": {
+    "bed": {
+      "drawer_depth": 61.9,
+      "drawer_width": 101.9
+    },
+    "sofa": {
+      "body_depth": 107,
+      "chaise_width": 125.1
+    }
+  }
+}
