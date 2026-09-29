@@ -219311,22 +219311,6 @@ window.surfaceFigure = {
 			"t": 6,
 			"b": 0
 		},
-		"legend": {
-			"font": {
-				"family": "Latin Modern Roman Web, Latin Modern Roman, Computer Modern Serif, CMU Serif, serif",
-				"size": 16.25,
-				"color": "#111111"
-			},
-			"x": 0.02,
-			"y": 0.98,
-			"xanchor": "left",
-			"yanchor": "top",
-			"bgcolor": "rgba(255,255,255,0.94)",
-			"bordercolor": "rgba(205,205,205,1)",
-			"borderwidth": 1,
-			"itemsizing": "constant",
-			"groupclick": "togglegroup"
-		},
 		"scene": {
 			"camera": {
 				"eye": {

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Flashcards"
+title: "flashcards"
 author_name: '\caporali'
 show_nav: false
 link_footer: false
@@ -893,7 +893,7 @@ apple_touch_icon: "/files/images/flashcard_icon.png"
 </script>
 <div id = "flashcards_content">
 	<p class = "study_intro">
-		<i> Flashcards. </i>
+		<i> flashcards. </i>
 		Study flashcards from your decks.
 	</p>
 

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset = "utf-8"/>
 		<meta name = "viewport" content = "width=device-width, initial-scale=1"/>
-		<title>quadratic_3d</title>
+		<title>polyak</title>
 		<script type = "text/x-mathjax-config">
 			MathJax.Hub.Config({
 				messageStyle: "none",
@@ -41,36 +41,60 @@
 			}
 
 			body {
-				overflow: hidden;
 				color: #111111;
 				font-family: "Latin Modern Roman Web", "Latin Modern Math Web", "Latin Modern Roman", "Computer Modern Serif", "CMU Serif", serif;
 			}
 
 			#surface-page {
-				position: relative;
-				width: 100%;
-				height: 100vh;
-				overflow: hidden;
-			}
-
-			#surface-plot {
-				position: absolute;
-				inset: 0;
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) 330px;
 				width: 100%;
 				height: 100%;
 			}
 
-			#legend-title-overlay {
-				position: fixed;
-				display: none;
-				z-index: 11;
-				color: #111111;
-				font-family: "Latin Modern Roman Web", "Latin Modern Math Web", "Latin Modern Roman", "Computer Modern Serif", "CMU Serif", serif;
-				font-size: 16.25px;
-				line-height: 1.15;
+			#surface-plot {
+				min-width: 0;
+				min-height: 0;
+			}
+
+			#surface-legend {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding: 16px;
+			}
+
+			.legend-title {
+				margin-bottom: 12px;
+				font-size: 15px;
+				line-height: 1.5;
 				text-align: center;
-				white-space: nowrap;
-				pointer-events: none;
+			}
+
+			.legend-item {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				width: 100%;
+				padding: 6px 0;
+				border: 0;
+				background: none;
+				color: inherit;
+				font: inherit;
+				font-size: 15px;
+				text-align: left;
+				cursor: pointer;
+			}
+
+			.legend-item[aria-pressed="false"] { opacity: 0.4; }
+			.legend-line { flex: none; width: 24px; border-top: 3px solid; }
+
+			@media (max-width: 700px) {
+				#surface-page { display: flex; flex-direction: column; height: auto; min-height: 100%; }
+				#surface-plot { flex: none; height: min(52dvh, 560px); min-height: 330px; }
+				#surface-legend { padding: 4px 20px 20px; }
+				.legend-title { margin-bottom: 8px; }
+				.legend-item { padding: 5px 0; }
 			}
 
 			#surface-loader {
@@ -118,26 +142,19 @@
 				}
 			}
 
-			.legend text {
-				fill: #111111 !important;
-				font-family: "Latin Modern Roman Web", "Latin Modern Math Web", "Latin Modern Roman", "Computer Modern Serif", "CMU Serif", serif !important;
-			}
-
 			.MathJax_SVG,
 			.MathJax_SVG_Display {
 				font-size: 100% !important;
-			}
-
-			.legend .legendlines path {
-				stroke-width: 2px !important;
 			}
 		</style>
 	</head>
 	<body>
 		<main id = "surface-page">
 			<div id = "surface-plot"></div>
+			<aside id = "surface-legend" aria-label = "plot legend">
+				<div class = "legend-title">$\mathcal{L}(p,n) = \frac{1}{2}n^T H(p)\,n$<br>$\mathcal{L}: \mathbb{R}^2 \to \mathbb{R}$</div>
+			</aside>
 		</main>
-		<div id = "legend-title-overlay">$\mathcal{L}(p, n) = \frac{1}{2} n^T H(p)\,n,\ \mathcal{L}: \mathbb{R}^2 \to \mathbb{R}$</div>
 		<div id = "surface-loader" aria-label = "Loading">
 			<div id = "surface-loader-panel">
 				<div id = "surface-loader-track">
@@ -148,10 +165,6 @@
 		<script>
 			let loaderStart = Date.now();
 			const surfaceDataUrl = "data.js";
-			const legendTitleOffset = 38;
-			const legendWidthPad = 20;
-			const legendMinWidth = 300;
-			const legendHeightPad = 12;
 
 			function hideLoader() {
 				const loader = document.getElementById("surface-loader");
@@ -168,79 +181,43 @@
 				}, delay);
 			}
 
-			function styleLegend() {
-				document.querySelectorAll(".legend .bg").forEach(function(box) {
-					box.setAttribute("rx", "8");
-					box.setAttribute("ry", "8");
+			function renderLegend(plot, traces) {
+				const legend = document.getElementById("surface-legend");
+				traces.forEach(function(trace, index) {
+					if (!trace.showlegend) return;
+					const indices = traces.flatMap(function(other, otherIndex) {
+						return otherIndex === index || (trace.legendgroup && other.legendgroup === trace.legendgroup) ? [otherIndex] : [];
+					});
+					const button = document.createElement("button");
+					button.className = "legend-item";
+					button.type = "button";
+					button.setAttribute("aria-pressed", "true");
+					const line = document.createElement("span");
+					line.className = "legend-line";
+					line.style.borderColor = trace.line.color;
+					const label = document.createElement("span");
+					label.textContent = trace.name;
+					button.append(line, label);
+					button.addEventListener("click", function() {
+						const visible = button.getAttribute("aria-pressed") !== "true";
+						Plotly.restyle(plot, {visible: visible ? true : "legendonly"}, indices);
+						button.setAttribute("aria-pressed", String(visible));
+					});
+					legend.appendChild(button);
 				});
-				const traces = document.querySelectorAll(".legend .traces");
-				traces.forEach(function(trace) {
-					trace.querySelectorAll(".legendlines path").forEach(function(path) {
-						path.removeAttribute("stroke-dasharray");
-						path.style.strokeDasharray = "none";
-					});
-				});
-				const legend = document.querySelector(".legend");
-				const box = legend ? legend.querySelector(".bg") : null;
-				const scrollbox = legend ? legend.querySelector(".scrollbox") : null;
-				const title = document.getElementById("legend-title-overlay");
-				let baseHeight = 0;
-				if (legend) {
-					legend.removeAttribute("clip-path");
-					legend.querySelectorAll("[clip-path]").forEach(function(node) {
-						node.removeAttribute("clip-path");
-					});
-				}
-				if (box) {
-					baseHeight = parseFloat(box.getAttribute("height") || "0") - (box.dataset.padded === "1" ? legendTitleOffset + legendHeightPad : 0);
-					const baseWidth = parseFloat(box.getAttribute("width") || "0") - (box.dataset.padded === "1" ? legendWidthPad : 0);
-					const rect = box.getBoundingClientRect();
-					let width = Math.max(baseWidth + legendWidthPad, legendMinWidth);
-					box.setAttribute("width", width);
-					box.dataset.padded = "1";
-				}
-				if (scrollbox) {
-					const pattern = new RegExp("\\s*translate\\(0,\\s*" + legendTitleOffset + "\\)", "g");
-					const transform = (scrollbox.getAttribute("transform") || "").replace(pattern, "");
-					scrollbox.setAttribute("transform", transform + " translate(0," + legendTitleOffset + ")");
-				}
-				if (box) {
-					const rect = box.getBoundingClientRect();
-					let height = baseHeight + legendTitleOffset + legendHeightPad;
-					legend.querySelectorAll(".traces text, .legendlines path").forEach(function(node) {
-						height = Math.max(height, node.getBoundingClientRect().bottom - rect.top + 16);
-					});
-					box.setAttribute("height", height);
-				}
-				if (box && title) {
-					const rect = box.getBoundingClientRect();
-					title.style.display = "block";
-					title.style.left = rect.left + "px";
-					title.style.top = rect.top + 9 + "px";
-					title.style.width = rect.width + "px";
-				}
-			}
-
-			function scheduleLegendStyle() {
-				window.setTimeout(styleLegend, 250);
 			}
 
 			function renderSurface() {
 				const figure = window.surfaceFigure;
 				const config = window.surfaceConfig;
-				Plotly.newPlot("surface-plot", figure.data, figure.layout, config).then(function(plot) {
-					styleLegend();
-					plot.on("plotly_afterplot", styleLegend);
-					plot.on("plotly_restyle", styleLegend);
-					plot.on("plotly_relayout", styleLegend);
+				Plotly.newPlot("surface-plot", figure.data, {...figure.layout, showlegend: false}, config).then(function(plot) {
+					renderLegend(plot, figure.data);
 					if (window.MathJax && window.MathJax.Hub) {
 						window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub], hideLoader);
 					} else {
 						hideLoader();
 					}
 				});
-				const observer = new MutationObserver(styleLegend);
-				observer.observe(document.body, {childList: true, subtree: true});
 			}
 
 			function loadSurfaceData() {
@@ -258,7 +235,6 @@
 					window.requestAnimationFrame(loadSurfaceData);
 				});
 			});
-			window.addEventListener("resize", scheduleLegendStyle);
 		</script>
 	</body>
 </html>

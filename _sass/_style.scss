@@ -36,12 +36,13 @@ hr {
  */
 
 #author-name {
-    font-size: 30px;
+    font-size: 24px;
     color: #272727;
     display: inline-block;
 }
 .navbar {
-    padding: 50px 0 50px 0;
+    display: flow-root;
+    padding: 6px 0;
 }
 .navbar-ul {
     display: inline-block;
@@ -105,14 +106,14 @@ hr {
 @media (max-width: 500px) {
 	.navbar {
 		text-align: center;
-		padding: 50px 0px 0px 0px;
+		padding: 6px 0 0;
 	}
 	#author-name {
 		width: 100%;
 		float: none;
 	}
 	#navlist {
-		padding: 10px 0 10px 0;
+		padding: 4px 0 6px;
 		margin: 0;
 		display: block;
 		float: none;

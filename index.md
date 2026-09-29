@@ -1,5 +1,6 @@
 ---
 layout: default
+mathjax: true
 ---
 
 <img class = "profile-picture" src = "files/images/profile_pic_caporali.jpg">

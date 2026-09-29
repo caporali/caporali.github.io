@@ -14,6 +14,7 @@ footer_url: "https://github.com/ankitsultana/researcher"
 sass:
   style: compressed
   sass_dir: _sass
+include: ["_fonts"]
 nav:
   - name: "Main"
     link: "/"

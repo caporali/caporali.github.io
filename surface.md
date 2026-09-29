@@ -1,12 +1,13 @@
 ---
 layout: default
-title: "Surface"
+title: "polyak"
 author_name: '\caporali'
 show_nav: false
 link_footer: false
 ---
 
-<iframe
-    src = "/files/surface/surface.html"
-    style = "width: 225%; max-width: none; height: 80vh; border: 0; margin-left: -62.5%;"
-></iframe>
+<style>
+	.surface-frame { display: block; width: 100vw; height: 90dvh; margin-left: calc(50% - 50vw); border: 0; }
+	@media (max-width: 700px) { .surface-frame { height: max(118dvh, 780px); } }
+</style>
+<iframe class = "surface-frame" src = "/files/surface/surface.html" title = "interactive surface plot"></iframe>
