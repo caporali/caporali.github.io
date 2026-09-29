@@ -9,9 +9,11 @@
 | [`sofa`](https://www.ikea.com/us/en/p/uppakra-sectional-3-seat-with-chaise-right-with-footstool-johanneshov-dark-gray-s49619986/) | 1 | `249.9 × 180` | `94.9` | `right_chaise` (`left_chaise`, `straight`). |
 | [`sofa_stool`](https://www.ikea.com/us/en/p/uppakra-frame-footstool-00618846/) | 1 | `127 × 77.2` | `46` | |
 | [`tv_unit`](https://www.ikea.com/us/en/p/stockholm-2025-tv-unit-with-sliding-doors-oak-veneer-90586638/) | 1 | `178.8 × 41.9` | `56.2` | |
-| [`sideboard`](https://www.ikea.com/us/en/p/stockholm-2025-sideboard-oak-veneer-10586604/) | 1 | `160.7 × 41.9` | `83.2` | |
+| [`sideboard`](https://www.ikea.com/us/en/p/stockholm-2025-sideboard-oak-veneer-10586604/) | 2 | `160.7 × 41.9` | `83.2` | |
 | [`bench`](https://www.ikea.com/us/en/p/stockholm-2025-shelving-unit-bench-oak-veneer-90586515/) | 1 | `180 × 40.6` | `43.8` | |
 | [`coffee_table`](https://www.ikea.com/us/en/p/guttane-coffee-table-oak-10587712/) | 1 | `115.9 × 39.1` | `32.1` | |
+| [`side_table`](https://www.ikea.com/us/en/p/holmerud-side-table-oak-effect-40541421/) | 2 | `80 × 31` | `52` | |
+| [`shoe_rack`](https://www.ikea.com/us/en/p/vasskaer-hallway-furniture-set-of-3-bamboo-s29614904/) | 3 | `60 × 30` | `35` | |
 | [`dining_table`](https://www.ikea.com/us/en/p/stockholm-2025-table-oak-veneer-oak-veneer-s79579984/) | 1 | `229.9 × 89.9` | `74.9` | `long` (`round`). |
 
 ## variants
@@ -33,3 +35,4 @@
 - the wall-mounted nightstand shape is its projection onto the floor. place one on each side of the bed.
 - the bed includes 2 drawers and the separate [`drawer_pack`](https://www.ikea.com/us/en/p/malm-underbed-storage-box-for-high-bed-white-20252723/) adds 2.
 - each drawer needs `61.9 cm` beside the bed to roll fully out and spans `101.9 cm` along the bed.
+- `shoe_rack` dimensions are for one rack; stack at most 2.

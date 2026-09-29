@@ -210,7 +210,7 @@ const colors = {
 	bed: "#a7c8d0", nightstand: "#a7c8d0", desk: "#b9d1ae",
 	desk_chair: "#b9d1ae", sofa: "#e9c2a8", sofa_stool: "#e9c2a8",
 	tv_unit: "#ddcbb0", sideboard: "#ddcbb0", bench: "#ddcbb0",
-	coffee_table: "#ddcbb0", dining_table: "#ddcbb0",
+	coffee_table: "#ddcbb0", side_table: "#ddcbb0", shoe_rack: "#ddcbb0", dining_table: "#ddcbb0",
 };
 const svg = document.querySelector("#plan-svg");
 const planSelect = document.querySelector("#plan-select");
