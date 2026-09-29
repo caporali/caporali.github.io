@@ -78,7 +78,7 @@
             {% unless page.show_nav == false %}
                 <ul id = "navlist" class = "alignable pull-right navbar-ul">
                     {% if page.header_download %}
-                        <li id = "export-item" class = "alignable pull-left nav-list header-download"><button id = "export-data" type = "button" aria-label = "download data.json" title = "download all layouts and notes as data.json">↓</button> /</li>
+                        <li id = "export-item" class = "alignable pull-left nav-list header-download"><a id = "export-data" href = "#" aria-label = "download data.json" title = "download all layouts and notes as data.json">↓</a> /</li>
                     {% endif %}
                     {% assign nav_items = page.nav | default: site.nav %}
                     {% for x in nav_items %}

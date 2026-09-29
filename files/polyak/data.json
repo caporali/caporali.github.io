@@ -1,4 +1,5 @@
-window.surfaceFigure = {
+{
+	"figure": {
 	"data": [
 		{
 			"colorscale": [
@@ -219417,9 +219418,8 @@ window.surfaceFigure = {
 		"plot_bgcolor": "white",
 		"hovermode": false
 	}
-};
-
-window.surfaceConfig = {
+},
+	"config": {
 	"displaylogo": false,
 	"responsive": true,
 	"staticPlot": false,
@@ -219427,4 +219427,5 @@ window.surfaceConfig = {
 		"format": "png",
 		"scale": 3
 	}
-};
+}
+}

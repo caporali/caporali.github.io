@@ -42,7 +42,7 @@ nav:
 .swatch.dining_table.round { border-radius: 50%; }
 .catalogue-title { font-family: "CMU Typewriter", monospace; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .catalogue-sub { color: #888; font-size: 10px; margin-top: 3px; }
-.add-button { display: grid; place-items: center; padding: 0; width: 27px; height: 27px; font-size: 18px; line-height: 1; }
+.apartment-page .content .add-button { display: grid; place-items: center; padding: 0; width: 27px; height: 27px; font-size: 18px; line-height: 1; }
 .stage-panel { display: contents; }
 .stage-heading { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; gap: 4px; align-items: stretch; padding: 17px 18px 12px; min-height: 52px; }
 #plan-select { width: 100%; min-width: 0; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; color: #272727; font-family: "CMU Typewriter", monospace; font-size: 14px; font-weight: 700; }
@@ -476,7 +476,7 @@ function changeSelected(mutator) {
 
 planSelect.innerHTML = Object.keys(data.plans).sort().map(key => `<option value="${key}">${key}</option>`).join("");
 planSelect.addEventListener("change", () => selectPlan(planSelect.value));
-document.querySelector("#export-data").addEventListener("click", exportData);
+document.querySelector("#export-data").addEventListener("click", event => { event.preventDefault(); exportData(); });
 cataloguePanel.addEventListener("click", event => {
 	const button = event.target.closest("[data-add]");
 	if (button) addItem(button.dataset.add);

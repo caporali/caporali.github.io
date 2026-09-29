@@ -10,4 +10,4 @@ link_footer: false
 	.surface-frame { display: block; width: 100vw; height: 90dvh; margin-left: calc(50% - 50vw); border: 0; }
 	@media (max-width: 700px) { .surface-frame { height: max(118dvh, 780px); } }
 </style>
-<iframe class = "surface-frame" src = "/files/surface/polyak.html" title = "interactive surface plot"></iframe>
+<iframe class = "surface-frame" src = "/files/polyak/polyak.html" title = "interactive surface plot"></iframe>

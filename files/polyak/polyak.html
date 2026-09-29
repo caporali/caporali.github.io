@@ -22,14 +22,14 @@
 				font-family: "Latin Modern Roman Web";
 				font-style: normal;
 				font-weight: 400;
-				src: url("lmroman10-regular.otf") format("opentype");
+				src: url("/_fonts/polyak/lmroman10-regular.otf") format("opentype");
 			}
 
 			@font-face {
 				font-family: "Latin Modern Math Web";
 				font-style: normal;
 				font-weight: 400;
-				src: url("latinmodern-math.otf") format("opentype");
+				src: url("/_fonts/polyak/latinmodern-math.otf") format("opentype");
 			}
 
 			html,
@@ -164,7 +164,7 @@
 		</div>
 		<script>
 			let loaderStart = Date.now();
-			const surfaceDataUrl = "data.js";
+			const surfaceDataUrl = "data.json";
 
 			function hideLoader() {
 				const loader = document.getElementById("surface-loader");
@@ -207,9 +207,7 @@
 				});
 			}
 
-			function renderSurface() {
-				const figure = window.surfaceFigure;
-				const config = window.surfaceConfig;
+			function renderSurface(figure, config) {
 				Plotly.newPlot("surface-plot", figure.data, {...figure.layout, showlegend: false}, config).then(function(plot) {
 					renderLegend(plot, figure.data);
 					if (window.MathJax && window.MathJax.Hub) {
@@ -222,12 +220,12 @@
 
 			function loadSurfaceData() {
 				loaderStart = Date.now();
-				const script = document.createElement("script");
-				script.src = surfaceDataUrl;
-				script.onload = function() {
-					document.fonts.ready.then(renderSurface);
-				};
-				document.body.appendChild(script);
+				fetch(surfaceDataUrl).then(function(response) {
+					if (!response.ok) throw new Error("could not load " + surfaceDataUrl);
+					return response.json();
+				}).then(function(data) {
+					return document.fonts.ready.then(function() { renderSurface(data.figure, data.config); });
+				});
 			}
 
 			window.addEventListener("load", function() {
