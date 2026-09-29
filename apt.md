@@ -62,7 +62,7 @@ nav:
 .angle-row { display: flex; align-items: center; gap: 7px; color: #666; font-size: 11px; }
 .angle-row input { width: 66px; padding: 5px 6px; border: 1px solid #d7dfde; border-radius: 6px; }
 .selection-actions { display: flex; gap: 5px; margin-top: 11px; }
-.selection-actions button { flex: 1; padding: 6px; font-size: 11px; }
+.apartment-page .content .selection-actions button { flex: 1; padding: 5px 3px; font-size: 11px; white-space: nowrap; }
 .remove-button { color: #9a5043; border-color: #ead3cd; }
 .architecture { fill: #4a4a4a; fill-rule: evenodd; pointer-events: none; }
 #labels-layer { pointer-events: none; }
