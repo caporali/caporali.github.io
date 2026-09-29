@@ -44,6 +44,9 @@ hr {
     display: flow-root;
     padding: 6px 0;
 }
+.navbar + hr {
+    margin: 0;
+}
 .navbar-ul {
     display: inline-block;
     margin: 0;
@@ -53,6 +56,20 @@ hr {
 .nav-list {
     list-style-type: none;
     margin: 0 5px 0 10px;
+}
+.header-download button {
+    border: 0;
+    padding: 0;
+    background: none;
+    color: $accent;
+    font: inherit;
+    cursor: pointer;
+}
+.header-download button:hover {
+    text-decoration: underline;
+}
+.header-download[hidden] {
+    display: none;
 }
 .alignable {
     display: inline-block;

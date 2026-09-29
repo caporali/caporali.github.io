@@ -5,7 +5,7 @@ mathjax: true
 
 <img class = "profile-picture" src = "files/images/profile_pic_caporali.jpg">
 
-I'm a 2<sup>nd</sup> year Ph.D. candidate in **Operations Research and Financial Engineering (ORFE)** at **Princeton University**. <br>
+I'm a 3<sup>nd</sup> year Ph.D. candidate in **Operations Research and Financial Engineering (ORFE)** at **Princeton University**. <br>
 My work lies at the intersection of *probabilistic machine learning* and *non-convex optimization*. <br>
 I am fortunate to be advised by [Prof. Boris Hanin](https://boris-hanin.github.io/).
 

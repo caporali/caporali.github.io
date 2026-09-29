@@ -17,6 +17,9 @@
     </script>
     {% endif %}
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    {% if page.apple_mobile_app %}
+        <meta name = "apple-mobile-web-app-capable" content = "yes">
+    {% endif %}
     <meta name = "keywords" content = "Francesco Caporali, Princeton ORFE, probability, machine learning, optimization">
     <meta name = "author" content = "Francesco Caporali">
     {% if page.description %}
@@ -64,7 +67,7 @@
         <meta name = "twitter:image" content = "{{ site.profile_picture }}">
     {% endif %}
 </head>
-<body>
+<body{% if page.body_class %} class = "{{ page.body_class }}"{% endif %}>
     <div class = "wrapper">
         <div class = "navbar container">
             {% if site.ins_logo %}
@@ -74,7 +77,11 @@
             <a id = "author-name" class = "alignable pull-left" href = "{{ site.url }}{{ site.baseurl }}">{{ author_name }}</a>
             {% unless page.show_nav == false %}
                 <ul id = "navlist" class = "alignable pull-right navbar-ul">
-                    {% for x in site.nav %}
+                    {% if page.header_download %}
+                        <li id = "export-item" class = "alignable pull-left nav-list header-download"><button id = "export-data" type = "button" aria-label = "download data.json" title = "download all layouts and notes as data.json">↓</button> /</li>
+                    {% endif %}
+                    {% assign nav_items = page.nav | default: site.nav %}
+                    {% for x in nav_items %}
                         {% if x.name == "Resume" %}
                             <li class = "alignable pull-left nav-list"><a target = "_blank" href = "{{ x.link }}">{{ x.name }}</a>
                         {% else %}
@@ -91,7 +98,7 @@
         <hr>
         <div class = "container content">
                 {{ content }}
-                {% if site.footer == true %}
+                {% if site.footer == true and page.show_footer != false %}
                     <hr />
                     <p style = "text-align: center; margin-bottom: 10px">
                     {% if page.link_footer == false %}

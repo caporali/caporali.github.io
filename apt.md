@@ -1,46 +1,39 @@
 ---
-layout: null
+layout: default
 title: "apartments"
 permalink: /apt.html
+author_name: '\caporali'
+body_class: apartment-page
+show_footer: false
+header_download: true
+apple_touch_icon: "/files/images/apt_icon.png"
+apple_mobile_app: true
+nav:
+  - name: furniture
+    link: /apt.html?view=furniture
+  - name: visit
+    link: /apt.html?view=visit
+  - name: plan
+    link: /apt.html?view=plan
 ---
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="theme-color" content="#f5f4f0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<title>apartments</title>
-	<link rel="apple-touch-icon" href="/files/images/apt_icon.png">
 <style>
 @font-face { font-family: "CMU Serif"; src: url("/_fonts/cmu/cmunrm.ttf") format("truetype"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "CMU Serif"; src: url("/_fonts/cmu/cmunbx.ttf") format("truetype"); font-weight: 700; font-display: swap; }
 @font-face { font-family: "CMU Typewriter"; src: url("/_fonts/cmu/cmuntt.ttf") format("truetype"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "CMU Typewriter"; src: url("/_fonts/cmu/cmuntb.ttf") format("truetype"); font-weight: 700; font-display: swap; }
-:root { color-scheme: light; font-family: "CMU Serif", serif; color: #26383d; background: #f5f4f0; }
-* { box-sizing: border-box; }
-body { margin: 0; }
-button, select, input, textarea { font: inherit; }
-button { cursor: pointer; border: 1px solid #d7dfde; background: #fff; color: #35484d; border-radius: 7px; padding: 8px 13px; }
-button:hover { background: #f1f6f4; border-color: #a9bfba; }
-button:disabled { cursor: not-allowed; opacity: .4; }
-button.primary { background: #2c625b; color: #fff; border-color: #2c625b; }
-button.primary:hover { background: #214d48; }
-.topbar { min-height: 46px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 16px; background: #fff; border-bottom: 1px solid #e1e5e1; }
-.site-home { color: #35484d; font-family: "CMU Typewriter", monospace; font-size: 14px; text-decoration: none; white-space: nowrap; }
-.site-home:hover { text-decoration: underline; }
-.brand { font-family: "CMU Typewriter", monospace; font-size: 16px; font-weight: 700; letter-spacing: -.03em; white-space: nowrap; }
-.download-button { display: grid; place-items: center; width: 36px; height: 36px; padding: 7px; }
-.download-button svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.top-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-.top-actions a { color: #35484d; text-decoration: none; padding: 5px 10px; border: 1px solid transparent; border-radius: 7px; }
-.top-actions a:hover, .top-actions a[aria-current="page"] { background: #eaf1ee; color: #24564f; }
-.app-shell { display: grid; grid-template-columns: 245px minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; height: calc(100dvh - 46px); }
-.catalogue-panel { grid-column: 1; grid-row: 2; min-width: 0; min-height: 0; margin: 0 0 0 18px; overflow: auto; background: #fff; border: 1px solid #e1e7e3; border-radius: 10px; }
+.apartment-page .content { max-width: none; font-family: "CMU Serif", serif; color: #272727; background: #fff; }
+.apartment-page .content, .apartment-page .content * { box-sizing: border-box; }
+.apartment-page .content button, .apartment-page .content select, .apartment-page .content input, .apartment-page .content textarea { font: inherit; }
+.apartment-page .content button { cursor: pointer; border: 1px solid #ddd; background: #fff; color: #272727; border-radius: 7px; padding: 8px 13px; }
+.apartment-page .content button:hover { background: #f5f5f5; border-color: #bbb; }
+.apartment-page .content button:disabled { cursor: not-allowed; opacity: .4; }
+.apartment-page #navlist a[aria-current="page"] { text-decoration: underline; }
+.app-shell { display: grid; grid-template-columns: 245px minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; height: calc(100dvh - 42px); }
+.catalogue-panel { grid-column: 1; grid-row: 2; min-width: 0; min-height: 0; margin: 0 0 0 18px; overflow: auto; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; }
 .catalogue-panel h1 { margin: 0; padding: 21px 19px 15px; font-size: 14px; }
 .catalogue-list { padding: 0 12px 18px; }
 .catalogue-row { display: grid; grid-template-columns: 28px 1fr 28px; gap: 9px; align-items: center; padding: 10px 6px; border-top: 1px solid #eff1ee; }
-.swatch { width: 25px; height: 25px; border: 1px solid #4b6367; border-radius: 4px; }
+.swatch { width: 25px; height: 25px; border: 1px solid #555; border-radius: 4px; }
 .swatch.sofa { clip-path: polygon(0 0,100% 0,100% 100%,50% 100%,50% 60%,0 60%); }
 .swatch.sofa.left { clip-path: polygon(0 0,100% 0,100% 60%,50% 60%,50% 100%,0 100%); }
 .swatch.sofa.straight { clip-path: none; }
@@ -48,61 +41,62 @@ button.primary:hover { background: #214d48; }
 .swatch.dining_table { border-radius: 8px; }
 .swatch.dining_table.round { border-radius: 50%; }
 .catalogue-title { font-family: "CMU Typewriter", monospace; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.catalogue-sub { color: #809093; font-size: 10px; margin-top: 3px; }
+.catalogue-sub { color: #888; font-size: 10px; margin-top: 3px; }
 .add-button { display: grid; place-items: center; padding: 0; width: 27px; height: 27px; font-size: 18px; line-height: 1; }
 .stage-panel { display: contents; }
 .stage-heading { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; gap: 4px; align-items: stretch; padding: 17px 18px 12px; min-height: 52px; }
-#plan-select { width: 100%; min-width: 0; padding: 8px 12px; border: 1px solid #cbdad4; border-radius: 8px; background: #fff; color: #26383d; font-family: "CMU Typewriter", monospace; font-size: 14px; font-weight: 700; box-shadow: 0 1px 3px rgba(33,57,53,.06); }
-#plan-summary { color: #859295; font-size: 11px; }
-.stage { grid-column: 2; grid-row: 1 / 3; min-height: 0; margin: 18px 18px 0; border: 1px solid #e1e7e3; border-radius: 10px; background: #fff; overflow: hidden; }
+#plan-select { width: 100%; min-width: 0; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; color: #272727; font-family: "CMU Typewriter", monospace; font-size: 14px; font-weight: 700; }
+#plan-summary { color: #888; font-size: 11px; }
+.stage { grid-column: 2; grid-row: 1 / 3; min-height: 0; margin: 18px 18px 0; border: 1px solid #e5e5e5; border-radius: 10px; background: #fff; overflow: hidden; }
 #plan-svg { width: 100%; height: 100%; display: block; touch-action: none; user-select: none; -webkit-user-select: none; }
 #plan-svg.panning, #plan-svg.panning .furniture { cursor: grabbing; }
-.stage-footer { grid-column: 2; grid-row: 3; display: flex; justify-content: space-between; gap: 15px; padding: 10px 22px 15px; color: #849194; font-size: 10px; }
+.stage-footer { grid-column: 2; grid-row: 3; display: flex; justify-content: space-between; gap: 15px; padding: 10px 22px 15px; color: #888; font-size: 10px; }
 #save-status { white-space: nowrap; }
-.selection { position: fixed; z-index: 10; width: 218px; padding: 13px; background: #fff; border: 1px solid #dce5e0; border-radius: 10px; box-shadow: 0 10px 30px rgba(33,57,53,.18); }
+.selection { position: fixed; z-index: 10; width: 218px; padding: 13px; background: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.12); }
 .selection[hidden] { display: none; }
 .selected-name { font-family: "CMU Typewriter", monospace; font-size: 13px; font-weight: 700; }
-.selected-size { color: #718186; font-size: 11px; margin: 4px 0 13px; }
+.selected-size { color: #777; font-size: 11px; margin: 4px 0 13px; }
 .drawer-note { color: #9b6949; font-size: 11px; margin: -5px 0 10px; }
-.variant-row { display: flex; align-items: center; gap: 7px; margin-bottom: 11px; color: #65777a; font-size: 11px; }
-.variant-row select { flex: 1; min-width: 0; padding: 5px 6px; border: 1px solid #d7dfde; border-radius: 6px; background: #fff; color: #26383d; font-family: "CMU Typewriter", monospace; }
-.angle-row { display: flex; align-items: center; gap: 7px; color: #65777a; font-size: 11px; }
+.variant-row { display: flex; align-items: center; gap: 7px; margin-bottom: 11px; color: #666; font-size: 11px; }
+.variant-row select { flex: 1; min-width: 0; padding: 5px 6px; border: 1px solid #ddd; border-radius: 6px; background: #fff; color: #272727; font-family: "CMU Typewriter", monospace; }
+.angle-row { display: flex; align-items: center; gap: 7px; color: #666; font-size: 11px; }
 .angle-row input { width: 66px; padding: 5px 6px; border: 1px solid #d7dfde; border-radius: 6px; }
 .selection-actions { display: flex; gap: 5px; margin-top: 11px; }
 .selection-actions button { flex: 1; padding: 6px; font-size: 11px; }
 .remove-button { color: #9a5043; border-color: #ead3cd; }
-.architecture { fill: #465358; fill-rule: evenodd; pointer-events: none; }
+.architecture { fill: #4a4a4a; fill-rule: evenodd; pointer-events: none; }
 #labels-layer { pointer-events: none; }
-.room-label { fill: #9ca8aa; font-weight: 700; text-anchor: middle; pointer-events: none; user-select: none; letter-spacing: .03em; }
+.room-label { fill: #999; font-weight: 700; text-anchor: middle; pointer-events: none; user-select: none; letter-spacing: .03em; }
 .furniture { cursor: grab; }
 .furniture:active { cursor: grabbing; }
-.furniture .body { stroke: #3e5558; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-.furniture.selected .body { stroke: #194e49; stroke-width: 2.8; }
-.furniture text { pointer-events: none; font-family: "CMU Typewriter", monospace; font-size: 10px; fill: #233c40; font-weight: 700; text-anchor: middle; dominant-baseline: central; user-select: none; }
-.furniture .selection-ring { fill: none; stroke: #2a7c6c; stroke-width: 1.3; stroke-dasharray: 6 4; pointer-events: none; }
+.furniture .body { stroke: #4a4a4a; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.furniture.selected .body { stroke: #272727; stroke-width: 2.8; }
+.furniture text { pointer-events: none; font-family: "CMU Typewriter", monospace; font-size: 10px; fill: #272727; font-weight: 700; text-anchor: middle; dominant-baseline: central; user-select: none; }
+.furniture .selection-ring { fill: none; stroke: #777; stroke-width: 1.3; stroke-dasharray: 6 4; pointer-events: none; }
 .drawer-clearance { pointer-events: none; }
 .drawer-clearance rect { fill: rgba(213, 149, 96, .18); stroke: #bb7951; stroke-width: 1.5; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; }
-.document-page { min-height: calc(100dvh - 46px); background: #fff; }
+.document-page { min-height: calc(100dvh - 42px); background: #fff; }
 .markdown { max-width: 1100px; margin: 0 auto; padding: 32px; font-size: 13px; line-height: 1.55; }
 .markdown h1, .markdown h2, .markdown h3 { line-height: 1.25; margin: 1.2em 0 .55em; }
 .markdown h1:first-child { margin-top: 0; }
 .markdown h1 { font-size: 22px; }.markdown h2 { font-size: 17px; }.markdown h3 { font-size: 14px; }
 .markdown p, .markdown ul { margin: 0 0 1em; }.markdown ul { padding-left: 22px; }
-.markdown code { font-family: "CMU Typewriter", monospace; background: #f0f3f1; padding: 1px 4px; border-radius: 3px; }
-.markdown a { color: #256b61; overflow-wrap: anywhere; }
+.markdown code { font-family: "CMU Typewriter", monospace; background: #f5f5f5; padding: 1px 4px; border-radius: 3px; }
+.markdown a { color: #ff0f00; overflow-wrap: anywhere; }
 .md-table { display: table; width: 100%; border-collapse: collapse; margin: 0 0 18px; }
 .md-row { display: table-row; }.md-row span { display: table-cell; padding: 8px 10px; border-bottom: 1px solid #e4eae6; vertical-align: top; }
 .furniture-table { table-layout: fixed; }.furniture-table .md-row span:nth-child(1) { width: 16%; }
 .furniture-table .md-row span:nth-child(2) { width: 6%; }.furniture-table .md-row span:nth-child(3) { width: 22%; white-space: nowrap; }
 .furniture-table .md-row span:nth-child(4) { width: 11%; }.furniture-table .md-row span:nth-child(5) { width: 45%; overflow-wrap: break-word; }
 .md-header span { font-weight: 700; border-bottom-color: #bfcfca; }
-.info-panel { margin: 18px 18px 28px; padding: 18px 22px; background: #fff; border: 1px solid #e1e7e3; border-radius: 10px; }
-.info-panel label { display: block; font-family: "CMU Typewriter", monospace; font-size: 15px; font-weight: 700; }.info-panel #info-status { color: #718186; font-size: 11px; }
+.info-panel { margin: 18px 18px 28px; padding: 18px 22px; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; }
+.info-panel label { display: block; font-family: "CMU Typewriter", monospace; font-size: 15px; font-weight: 700; }.info-panel #info-status { color: #777; font-size: 11px; }
 .info-panel textarea { display: block; width: 100%; min-height: 120px; margin: 8px 0; padding: 12px; resize: none; overflow: hidden; border: 1px solid #d7dfde; border-radius: 7px; font: 14px/1.5 "CMU Serif", serif; }
 @media (max-width: 700px) {
-	.topbar { flex-wrap: wrap; gap: 4px 8px; padding: max(4px, env(safe-area-inset-top)) 12px 4px; }
-	.brand { flex: 1; }.top-actions { width: 100%; gap: 5px; margin: 0; }
-	.top-actions a { flex: 1; min-height: 30px; padding: 5px; text-align: center; }
+	.apartment-page .navbar { text-align: center; }
+	.apartment-page #author-name, .apartment-page #navlist { display: block; float: none; width: 100%; margin: 0; }
+	.apartment-page #navlist { padding: 4px 0 6px; }
+	.apartment-page #navlist li { display: inline-block; float: none; margin: 0 3px; }
 	.app-shell { display: flex; flex-direction: column; height: auto; min-height: 0; }
 	.stage-panel { order: 1; display: flex; flex-direction: column; }.stage { height: 54dvh; min-height: 310px; margin: 0 8px; }
 	.stage-heading { flex-direction: row; justify-content: space-between; align-items: baseline; gap: 15px; padding: 10px 13px; min-height: 40px; }#plan-select { width: min(100%, 290px); }
@@ -116,14 +110,8 @@ button.primary:hover { background: #214d48; }
 	.md-table { font-size: 11px; }.md-row span { padding: 6px; }
 	.info-panel { margin: 0 8px 16px; padding: 15px; }
 }
-#plan-view[hidden], #document-view[hidden], #export-data[hidden] { display: none; }
+#plan-view[hidden], #document-view[hidden] { display: none; }
 </style>
-</head>
-<body>
-	<header class="topbar">
-		<a class="site-home" href="/">\caporali</a><div class="brand">apartments</div><button id="export-data" class="download-button" aria-label="download data.json" title="download all layouts and notes as data.json"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 18v3h16v-3"/></svg></button>
-		<nav class="top-actions" aria-label="views"><a href="/apt.html?view=furniture" data-view="furniture">furniture</a><a href="/apt.html?view=visit" data-view="visit">visit</a><a href="/apt.html?view=plan" data-view="plan">plan</a></nav>
-	</header>
 <div id="plan-view" hidden>
 	<main class="app-shell">
 		<aside class="catalogue-panel">
@@ -195,9 +183,9 @@ const requestedView = new URLSearchParams(location.search).get("view");
 const view = ["furniture", "visit"].includes(requestedView) ? requestedView : "plan";
 document.querySelector("#plan-view").hidden = view !== "plan";
 document.querySelector("#document-view").hidden = view === "plan";
-document.querySelector("#export-data").hidden = view !== "plan";
-document.querySelectorAll(".top-actions a").forEach(link => {
-	if (link.dataset.view === view) link.setAttribute("aria-current", "page");
+document.querySelector("#export-item").hidden = view !== "plan";
+document.querySelectorAll("#navlist a").forEach(link => {
+	if (new URL(link.href).searchParams.get("view") === view) link.setAttribute("aria-current", "page");
 });
 if (view === "plan") {
 const response = await fetch("/files/apt/data.json", { cache: "no-store" });
@@ -693,5 +681,3 @@ selectPlan(planKey);
 	}
 }
 </script>
-</body>
-</html>
