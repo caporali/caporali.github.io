@@ -36,3 +36,25 @@
 
 *Notes.*
 - dimensions are rounded to `0.1 cm`.
+
+# todo
+
+## tbd
+- table
+- chairs
+- lamps
+- towels
+- drawer (for bedroom)
+- organizers for the drawer
+- organizer for the walk-in closet
+- organizer(s) for the entrance closets
+- organizer(s) for bathroom sinks
+
+## details
+- bookshelves in the office
+- stools for the kitchen counter
+- carpet(s)
+- plant(s)
+- tv
+- polaroid frames
+- frames on the wall
