@@ -1,7 +1,135 @@
 {
   "version": 1,
   "layouts": {
-    "libertytowers_E1801": []
+    "libertytowers_E1801": [
+      {
+        "id": "sofa_567059ed-54dd-4136-a144-3ad94623ef7a",
+        "type": "sofa",
+        "x": 350.2234802246094,
+        "y": 126.18894958496094,
+        "angle": 270,
+        "variant": "left_chaise"
+      },
+      {
+        "id": "tv_unit_dbef54e1-b018-41e4-b88a-3e09a78c84ea",
+        "type": "tv_unit",
+        "x": 499.0627136230469,
+        "y": 119.91567993164062,
+        "angle": 90
+      },
+      {
+        "id": "coffee_table_83189d00-f3c8-4923-9a14-bf4ee4e87f6b",
+        "type": "coffee_table",
+        "x": 437.92205810546875,
+        "y": 105.69586181640625,
+        "angle": 90
+      },
+      {
+        "id": "dining_table_3ae56627-13ae-47d9-99ce-c9a38db8d94f",
+        "type": "dining_table",
+        "x": 391.4313659667969,
+        "y": 291.33819580078125,
+        "angle": 0
+      },
+      {
+        "id": "desk_f082a973-298b-4de4-a9c1-cdad24070731",
+        "type": "desk",
+        "x": 830.2921752929688,
+        "y": 205.03778076171875,
+        "angle": 315
+      },
+      {
+        "id": "desk_52af2471-22b5-435a-8ca0-81e01f2f5d82",
+        "type": "desk",
+        "x": 767.1309509277344,
+        "y": 267.96624755859375,
+        "angle": 315
+      },
+      {
+        "id": "desk_chair_2b5aba4b-19a5-41ff-a696-beb24f93d12b",
+        "type": "desk_chair",
+        "x": 750.7373046875,
+        "y": 246.3700714111328,
+        "angle": 0
+      },
+      {
+        "id": "desk_chair_3d7e8e67-102a-43ab-b301-db4ae0542ad1",
+        "type": "desk_chair",
+        "x": 805.3822937011719,
+        "y": 187.0586700439453,
+        "angle": 0
+      },
+      {
+        "id": "sideboard_355789e1-4490-495c-9796-e0071bbb4e4e",
+        "type": "sideboard",
+        "x": 53.72703552246094,
+        "y": 426.93707275390625,
+        "angle": 90
+      },
+      {
+        "id": "bed_08de3794-79e8-45f7-9a79-ddc80964eba8",
+        "type": "bed",
+        "x": 200.45989990234375,
+        "y": 416.3976745605469,
+        "angle": 90
+      },
+      {
+        "id": "nightstand_cab095ab-0fe6-4b3a-a228-2dcbc0329cdd",
+        "type": "nightstand",
+        "x": 257.4831848144531,
+        "y": 332.987548828125,
+        "angle": 270
+      },
+      {
+        "id": "nightstand_7d59edfb-cc5e-467e-9a45-470156fe1c64",
+        "type": "nightstand",
+        "x": 257.5860137939453,
+        "y": 501.693115234375,
+        "angle": 270
+      },
+      {
+        "id": "bench_a299938e-3827-4c90-92af-2810bdebd83f",
+        "type": "bench",
+        "x": 500.719970703125,
+        "y": 627.3442077636719,
+        "angle": 270
+      },
+      {
+        "id": "side_table_fb8e85b2-a374-450f-84e2-6cdbbb7129be",
+        "type": "side_table",
+        "x": 330.07000732421875,
+        "y": 581.5906677246094,
+        "angle": 0
+      },
+      {
+        "id": "side_table_74a3a754-86ad-4430-b6be-76b5f0ca5e69",
+        "type": "side_table",
+        "x": 380.68963623046875,
+        "y": 581.8387603759766,
+        "angle": 0
+      },
+      {
+        "id": "night_lamp_1d8a8e5b-5c72-43d9-80d4-eb1c5b9285e8",
+        "type": "night_lamp",
+        "x": 260.0751953125,
+        "y": 327.23492431640625,
+        "angle": 0
+      },
+      {
+        "id": "night_lamp_7250a08f-6add-4d32-ac42-254fa3b5d2ea",
+        "type": "night_lamp",
+        "x": 260.03448486328125,
+        "y": 507.3608093261719,
+        "angle": 0
+      },
+      {
+        "id": "sideboard_198295ba-e42e-4803-a85f-18043c58e5ff",
+        "type": "sideboard",
+        "x": 498.8449401855469,
+        "y": 473.50738525390625,
+        "angle": 90
+      }
+    ]
   },
   "catalogue": [
     {
@@ -228,6 +356,13 @@
       "height": "7"
     },
     {
+      "name": "cookware_set",
+      "count": 1,
+      "width": 55.2,
+      "depth": 30.5,
+      "height": "15.9"
+    },
+    {
       "name": "flatware_set",
       "count": 1,
       "width": 22.9,
@@ -248,12 +383,12 @@
       "height": 830,
       "scale": 0.63,
       "area": "99.4 m² · 1,070 sq ft",
-      "image": "/files/apt/plan/plan.svg",
+      "image": "/files/apt/plan/plan_ac.svg",
       "spawn": [
         390,
         275
       ]
     }
   },
-  "updated_at": "2026-09-30T12:17:20-04:00"
+  "updated_at": "2026-09-30T13:50:34 America/New_York"
 }

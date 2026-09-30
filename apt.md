@@ -207,7 +207,7 @@ const colors = {
 	coffee_table: "#ddcbb0", side_table: "#ddcbb0", shoe_rack: "#ddcbb0", dining_table: "#ddcbb0",
 	mattress: "#a7c8d0", drawer_pack: "#a7c8d0", power_strip: "#b9d1ae",
 	armrest_tray: "#e9c2a8", wall_shelf: "#ddcbb0", table_leg: "#ddcbb0",
-	night_lamp: "#e9c2a8", wireless_charger: "#b9d1ae", flatware_set: "#ddcbb0", flatware_tray: "#ddcbb0",
+	night_lamp: "#e9c2a8", wireless_charger: "#b9d1ae", cookware_set: "#ddcbb0", flatware_set: "#ddcbb0", flatware_tray: "#ddcbb0",
 };
 const svg = document.querySelector("#plan-svg");
 const cataloguePanel = document.querySelector("#catalogue");

@@ -30,8 +30,9 @@
 | ☑ | [`table_leg`](https://www.ikea.com/us/en/p/mittback-trestle-birch-30459997/) | 1 | `58.1 × 34.9` | `69.9–93` | |
 | ☑ | [`night_lamp`](https://www.ikea.com/us/en/p/taernaby-table-lamp-dimmable-beige-10508079/) | 2 | `15.2 × 15.2` | `25.4` | |
 | ☑ | [`wireless_charger`](https://www.ikea.com/us/en/p/vaestmaerke-wireless-charging-stand-50618429/) | 2 | `11.4 × 8.3` | `7` | |
+| ☐ | [`cookware_set`](https://www.ikea.com/us/en/p/hemkomst-7-piece-cookware-set-stainless-steel-50577018/) | 1 | `55.2 × 30.5` | `15.9` | |
 | ☑ | [`flatware_set`](https://www.ikea.com/us/en/p/foernuft-20-piece-flatware-set-stainless-steel-90043076/) | 1 | `22.9 × 14.6` | `3.2` | |
 | ☑ | [`flatware_tray`](https://www.ikea.com/us/en/p/uppdatera-flatware-tray-tray-with-knife-rack-anthracite-light-bamboo-s39611801/) | 1 | `51.8 × 49.5` | `5.7` | |
 
 *Notes.*
-- dimensions are rounded to `0.1 cm`;
+- dimensions are rounded to `0.1 cm`.

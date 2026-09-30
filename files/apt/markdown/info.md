@@ -2,14 +2,14 @@
 
 | building | apartment | address | rent | area (`m²`) |
 | --- | --- | --- | ---: | ---: |
-| [`libertytowers`](https://verisresidential.com/jersey-city-nj-apartments/liberty-towers/) | `E1801` | 33 Hudson Street, Jersey City (NJ), 07302 | `$5,200` | `99.4` |
+| [`libertytowers`](https://verisresidential.com/jersey-city-nj-apartments/liberty-towers/) | `E1801` | 33 Hudson Street, Jersey City, NJ 07302 | `$5,200` | `99.4` |
 
 *Notes.*
-- amenities, `$70` per month;
-- `Trader Joe’s` in early `2027`;
-- elevator will be completed in `2027`, currently under renovation;
-- hydrooponic garden vegetables pick up every `Friday` (times to be confirmed);
-- outdoor pool opens `May 31` and closes `October 1`;
-- wrapping paper station in the common area.
+- amenities fee, `$70` per month to pay upfront;
+- [Trader Joe’s](https://locations.traderjoes.com/nj/jersey-city/874/) is coming to `55 Hudson Street` (early `2027`);
+- elevator renovation, expected completion in `2027`;
+- [hydroponic farm](https://verisresidential.com/jersey-city-nj-apartments/liberty-towers/) ,weekly harvests\ on `Friday`;
+- [rooftop pool](https://verisresidential.com/jersey-city-nj-apartments/liberty-towers/) (from `May 31` to `October 1`);
+- [artisan room](https://verisresidential.com/jersey-city-nj-apartments/liberty-towers/) (wrapping paper).
 
-*Contacts.* Janice Grosso, `+1 (908) 670 7702`
+*Contacts.* Janice Grosso, `+1 (908) 670 7702`.
