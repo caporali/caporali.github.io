@@ -11,8 +11,8 @@ apple_mobile_app: true
 nav:
   - name: furniture
     link: /apt.html?view=furniture
-  - name: visit
-    link: /apt.html?view=visit
+  - name: info
+    link: /apt.html?view=info
   - name: plan
     link: /apt.html?view=plan
 ---
@@ -37,7 +37,7 @@ nav:
 .swatch.sofa { clip-path: polygon(0 0,100% 0,100% 100%,50% 100%,50% 60%,0 60%); }
 .swatch.sofa.left { clip-path: polygon(0 0,100% 0,100% 60%,50% 60%,50% 100%,0 100%); }
 .swatch.sofa.straight { clip-path: none; }
-.swatch.desk_chair { border-radius: 50%; }
+.swatch.desk_chair, .swatch.night_lamp { border-radius: 50%; }
 .swatch.dining_table { border-radius: 8px; }
 .swatch.dining_table.round { border-radius: 50%; }
 .catalogue-title { font-family: "CMU Typewriter", monospace; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -45,7 +45,7 @@ nav:
 .apartment-page .content .add-button { display: grid; place-items: center; padding: 0; width: 27px; height: 27px; font-size: 18px; line-height: 1; }
 .stage-panel { display: contents; }
 .stage-heading { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; gap: 4px; align-items: stretch; padding: 17px 18px 12px; min-height: 52px; }
-#plan-select { width: 100%; min-width: 0; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; color: #272727; font-family: "CMU Typewriter", monospace; font-size: 14px; font-weight: 700; }
+#plan-name { font-family: "CMU Typewriter", monospace; font-size: 14px; }
 #plan-summary { color: #888; font-size: 11px; }
 .stage { grid-column: 2; grid-row: 1 / 3; position: relative; min-height: 0; margin: 18px 18px 0; border: 1px solid #e5e5e5; border-radius: 10px; background: #fff; overflow: hidden; }
 .history-actions { position: absolute; top: 12px; left: 12px; z-index: 1; display: flex; gap: 4px; }
@@ -66,9 +66,6 @@ nav:
 .selection-actions { display: flex; gap: 5px; margin-top: 11px; }
 .apartment-page .content .selection-actions button { flex: 1; padding: 5px 3px; font-size: 11px; white-space: nowrap; }
 .remove-button { color: #9a5043; border-color: #ead3cd; }
-.architecture { fill: #4a4a4a; fill-rule: evenodd; pointer-events: none; }
-#labels-layer { pointer-events: none; }
-.room-label { fill: #999; font-weight: 700; text-anchor: middle; pointer-events: none; user-select: none; letter-spacing: .03em; }
 .furniture { cursor: grab; }
 .furniture:active { cursor: grabbing; }
 .furniture .body { stroke: #4a4a4a; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
@@ -79,6 +76,8 @@ nav:
 .drawer-clearance rect { fill: rgba(213, 149, 96, .18); stroke: #bb7951; stroke-width: 1.5; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; }
 .document-page { min-height: calc(100dvh - 42px); background: #fff; }
 .markdown { max-width: 1100px; margin: 0 auto; padding: 32px; font-size: 13px; line-height: 1.55; }
+.info-view .markdown { max-width: 760px; }
+.info-view .md-row span:first-child { width: 34%; }
 .markdown h1, .markdown h2, .markdown h3 { line-height: 1.25; margin: 1.2em 0 .55em; }
 .markdown h1:first-child { margin-top: 0; }
 .markdown h1 { font-size: 22px; }.markdown h2 { font-size: 17px; }.markdown h3 { font-size: 14px; }
@@ -87,13 +86,12 @@ nav:
 .markdown a { color: #ff0f00; overflow-wrap: anywhere; }
 .md-table { display: table; width: 100%; border-collapse: collapse; margin: 0 0 18px; }
 .md-row { display: table-row; }.md-row span { display: table-cell; padding: 8px 10px; border-bottom: 1px solid #e4eae6; vertical-align: top; }
-.furniture-table { table-layout: fixed; }.furniture-table .md-row span:nth-child(1) { width: 16%; }
-.furniture-table .md-row span:nth-child(2) { width: 6%; }.furniture-table .md-row span:nth-child(3) { width: 22%; white-space: nowrap; }
-.furniture-table .md-row span:nth-child(4) { width: 11%; }.furniture-table .md-row span:nth-child(5) { width: 45%; overflow-wrap: break-word; }
+.furniture-table { table-layout: fixed; }.furniture-table .md-row span:nth-child(1) { width: 6%; text-align: center; }
+.furniture-table .md-row span:nth-child(2) { width: 20%; }.furniture-table .md-row span:nth-child(3) { width: 6%; }
+.furniture-table .md-row span:nth-child(4) { width: 22%; white-space: nowrap; }.furniture-table .md-row span:nth-child(5) { width: 14%; }
+.furniture-table .md-row span:nth-child(6) { width: 32%; overflow-wrap: break-word; }
+.furniture-table .md-row.group-start:not(:nth-child(2)) span { border-top: 2px solid #c8d5d0; }
 .md-header span { font-weight: 700; border-bottom-color: #bfcfca; }
-.info-panel { margin: 18px 18px 28px; padding: 18px 22px; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; }
-.info-panel label { display: block; font-family: "CMU Typewriter", monospace; font-size: 15px; font-weight: 700; }.info-panel #info-status { color: #777; font-size: 11px; }
-.info-panel textarea { display: block; width: 100%; min-height: 120px; margin: 8px 0; padding: 12px; resize: none; overflow: hidden; border: 1px solid #d7dfde; border-radius: 7px; font: 14px/1.5 "CMU Serif", serif; }
 @media (max-width: 700px) {
 	.apartment-page .navbar { text-align: center; }
 	.apartment-page #author-name, .apartment-page #navlist { display: block; float: none; width: 100%; margin: 0; }
@@ -101,16 +99,18 @@ nav:
 	.apartment-page #navlist li { display: inline-block; float: none; margin: 0 3px; }
 	.app-shell { display: flex; flex-direction: column; height: auto; min-height: 0; }
 	.stage-panel { order: 1; display: flex; flex-direction: column; }.stage { height: 54dvh; min-height: 310px; margin: 0 8px; }
-	.stage-heading { flex-direction: row; justify-content: space-between; align-items: baseline; gap: 15px; padding: 10px 13px; min-height: 40px; }#plan-select { width: min(100%, 290px); }
+	.stage-heading { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 13px; min-height: 40px; }
 	.catalogue-panel { order: 2; height: auto; margin: 0 8px 16px; }
 	.catalogue-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
 	.catalogue-row { grid-template-columns: 24px minmax(0,1fr) 28px; gap: 5px; }
 	.stage-footer { padding: 8px 12px; font-size: 9px; }
 	.selection { max-width: calc(100vw - 16px); }
 	.markdown { padding: 16px; }
-	.document-page .markdown { overflow-x: auto; }.furniture-table { min-width: 700px; }
+	.document-page .markdown { overflow-x: auto; }.furniture-table { min-width: 860px; }
+	.info-view .markdown { overflow-x: visible; }
+	.info-view .md-table { table-layout: fixed; }
+	.info-view .md-row span { overflow-wrap: anywhere; }
 	.md-table { font-size: 11px; }.md-row span { padding: 6px; }
-	.info-panel { margin: 0 8px 16px; padding: 15px; }
 }
 #plan-view[hidden], #document-view[hidden] { display: none; }
 </style>
@@ -121,12 +121,11 @@ nav:
 			<div id="catalogue" class="catalogue-list"></div>
 		</aside>
 		<section class="stage-panel">
-			<div class="stage-heading"><select id="plan-select" aria-label="floor plan"></select><span id="plan-summary"></span></div>
+			<div class="stage-heading"><strong id="plan-name"></strong><span id="plan-summary"></span></div>
 			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
 			<div class="stage-footer"><span>drag furniture · drag empty space to pan on touch · pinch to zoom · ctrl-drag to pan on desktop</span><span id="save-status">saved locally</span></div>
 		</section>
 	</main>
-	<section class="info-panel" aria-label="apartment notes"><label id="info-title" for="info-editor"></label><textarea id="info-editor" spellcheck="true"></textarea><span id="info-status">saved locally</span></section>
 	<div id="selection" class="selection" role="dialog" aria-label="selected furniture" hidden></div>
 </div>
 <main id="document-view" class="document-page" hidden><article id="document-preview" class="markdown"></article></main>
@@ -162,10 +161,16 @@ function renderMarkdown(source) {
 			i++;
 		} else if (line.startsWith("|") && lines[i + 1]?.trim().match(/^\|[\s:|-]+\|$/)) {
 			const cells = row => row.trim().slice(1, -1).split("|").map(cell => `<span>${inlineMarkdown(cell.trim())}</span>`);
-			const kind = line.startsWith("| item | n. | shape") ? " furniture-table" : "";
+			const kind = line.startsWith("| list | item | n. |") ? " furniture-table" : "";
 			output.push(`<div class="md-table${kind}"><div class="md-row md-header">${cells(lines[i]).join("")}</div>`);
 			i += 2;
-			while (i < lines.length && lines[i].trim().startsWith("|")) output.push(`<div class="md-row">${cells(lines[i++]).join("")}</div>`);
+			let previousItem = "";
+			while (i < lines.length && lines[i].trim().startsWith("|")) {
+				const row = lines[i++];
+				const item = kind ? row.match(/\[`([a-z_]+)`\]/)?.[1] : "";
+				output.push(`<div class="md-row${kind && item !== previousItem ? " group-start" : ""}">${cells(row).join("")}</div>`);
+				previousItem = item;
+			}
 			output.push("</div>");
 		} else if (/^- /.test(line)) {
 			output.push("<ul>");
@@ -182,9 +187,10 @@ function renderMarkdown(source) {
 }
 
 const requestedView = new URLSearchParams(location.search).get("view");
-const view = ["furniture", "visit"].includes(requestedView) ? requestedView : "plan";
+const view = ["furniture", "info"].includes(requestedView) ? requestedView : "plan";
 document.querySelector("#plan-view").hidden = view !== "plan";
 document.querySelector("#document-view").hidden = view === "plan";
+document.querySelector("#document-view").classList.toggle("info-view", view === "info");
 document.querySelector("#export-item").hidden = view !== "plan";
 document.querySelectorAll("#navlist a").forEach(link => {
 	if (new URL(link.href).searchParams.get("view") === view) link.setAttribute("aria-current", "page");
@@ -192,36 +198,23 @@ document.querySelectorAll("#navlist a").forEach(link => {
 if (view === "plan") {
 const response = await fetch("/files/apt/data.json", { cache: "no-store" });
 if (!response.ok) throw new Error(`could not load data.json: ${response.status}`);
-const source = await response.text();
-const data = JSON.parse(source);
-let revision = 2166136261;
-for (let i = 0; i < source.length; i++) revision = Math.imul(revision ^ source.charCodeAt(i), 16777619);
-const revisionKey = "apartment_data_revision";
-try {
-	const saved = localStorage.getItem(revisionKey);
-	if (saved !== String(revision)) {
-		for (const key of Object.keys(data.plans)) {
-			localStorage.removeItem(`apartment_planner_v1_${key}`);
-			localStorage.removeItem(`apartment_info_v1_${key}`);
-		}
-	}
-	localStorage.setItem(revisionKey, String(revision));
-} catch (_) { /* local storage may be unavailable */ }
+const data = await response.json();
 const catalogue = Object.fromEntries(data.catalogue.map(item => [item.name, item]));
 const colors = {
 	bed: "#a7c8d0", nightstand: "#a7c8d0", desk: "#b9d1ae",
 	desk_chair: "#b9d1ae", sofa: "#e9c2a8", sofa_stool: "#e9c2a8",
 	tv_unit: "#ddcbb0", sideboard: "#ddcbb0", bench: "#ddcbb0",
 	coffee_table: "#ddcbb0", side_table: "#ddcbb0", shoe_rack: "#ddcbb0", dining_table: "#ddcbb0",
+	mattress: "#a7c8d0", drawer_pack: "#a7c8d0", power_strip: "#b9d1ae",
+	armrest_tray: "#e9c2a8", wall_shelf: "#ddcbb0", table_leg: "#ddcbb0",
+	night_lamp: "#e9c2a8", wireless_charger: "#b9d1ae", flatware_set: "#ddcbb0", flatware_tray: "#ddcbb0",
 };
 const svg = document.querySelector("#plan-svg");
-const planSelect = document.querySelector("#plan-select");
 const cataloguePanel = document.querySelector("#catalogue");
 const selectionPanel = document.querySelector("#selection");
 const undoButton = document.querySelector("#undo");
 const redoButton = document.querySelector("#redo");
-let planKey = new URLSearchParams(location.search).get("plan") || "vantage_33-3810";
-if (!data.plans[planKey]) planKey = "vantage_33-3810";
+const planKey = "libertytowers_E1801";
 let plan;
 let items = [];
 let selectedId = null;
@@ -253,7 +246,15 @@ function storageKey(key) {
 function loadItems(key) {
 	try {
 		const saved = JSON.parse(localStorage.getItem(storageKey(key)));
-		if (Array.isArray(saved) && saved.every(validItem)) return saved;
+		if (Array.isArray(saved)) {
+			for (const item of saved) {
+				if (item?.type === "desk" && item.variant === "electric") item.variant = "big";
+				if (item?.type === "desk" && item.variant === "fixed") item.variant = "small";
+				if (item?.type === "trestle") item.type = "table_leg";
+				if (item?.type === "table_lamp") item.type = "night_lamp";
+			}
+			if (saved.every(validItem)) return saved;
+		}
 	} catch (_) { /* local storage may be unavailable */ }
 	return initialItems(key);
 }
@@ -333,32 +334,27 @@ function zoom(factor, center = null) {
 	updateView();
 }
 
-function selectPlan(key) {
-	planKey = key;
-	plan = data.plans[key];
-	items = loadItems(key);
-	history = histories.get(key);
+function selectPlan() {
+	plan = data.plans[planKey];
+	items = loadItems(planKey);
+	history = histories.get(planKey);
 	if (!history) {
 		history = { steps: [JSON.stringify(items)], index: 0 };
-		histories.set(key, history);
+		histories.set(planKey, history);
 	}
 	updateHistoryButtons();
 	selectedId = null;
 	popupPoint = null;
-	planSelect.value = key;
+	document.querySelector("#plan-name").textContent = "liberty towers · E1801";
 	document.querySelector("#plan-summary").textContent = plan.area;
 	fitView();
 	renderStatic();
 	renderAll();
-	window.dispatchEvent(new CustomEvent("apartment-plan-changed", { detail: key }));
 }
 
 function renderStatic() {
-	const labelSize = Math.max(11, Math.min(17, plan.width / 48));
-	const labelMarkup = plan.labels.map(([x, y, label]) => `<text class="room-label" x="${x}" y="${y}" style="font-size:${labelSize}px">${label}</text>`).join("");
 	svg.innerHTML = `<rect x="0" y="0" width="${plan.width}" height="${plan.height}" fill="#fff"/>`
-		+ `<path class="architecture" d="${plan.architecture}"/>`
-		+ `<g id="labels-layer">${labelMarkup}</g>`
+		+ `<image id="plan-image" href="${plan.image}?v=${encodeURIComponent(data.updated_at)}" width="${plan.width}" height="${plan.height}"/>`
 		+ `<g id="furniture-layer"></g>`
 		+ `<g id="clearance-layer"></g>`;
 }
@@ -391,7 +387,7 @@ function shapeMarkup(item) {
 	let shape;
 	if (item.type === "sofa") {
 		shape = `<path class="body" fill="${fill}" d="${roomPath(localShape(item))}"/>`;
-	} else if (item.type === "desk_chair" || (item.type === "dining_table" && item.variant === "round")) {
+	} else if (item.type === "desk_chair" || item.type === "night_lamp" || (item.type === "dining_table" && item.variant === "round")) {
 		shape = `<ellipse class="body" fill="${fill}" cx="0" cy="0" rx="${width / 2}" ry="${depth / 2}"/>`;
 	} else {
 		const radius = item.type === "dining_table" ? Math.min(width, depth) * .13 : 1;
@@ -399,7 +395,7 @@ function shapeMarkup(item) {
 	}
 	const fontSize = Math.min(10, Math.min(width, depth) * .9 / (item.type.length * .6));
 	const label = fontSize < 6 ? "" : `<text x="0" y="0" style="font-size:${fontSize}px">${item.type}</text>`;
-	const ring = selectedId !== item.id ? "" : item.type === "desk_chair" || item.type === "dining_table" && item.variant === "round"
+	const ring = selectedId !== item.id ? "" : item.type === "desk_chair" || item.type === "night_lamp" || item.type === "dining_table" && item.variant === "round"
 		? `<ellipse class="selection-ring" cx="0" cy="0" rx="${width / 2 + 5}" ry="${depth / 2 + 5}"/>`
 		: `<rect class="selection-ring" x="${-width / 2 - 5}" y="${-depth / 2 - 5}" width="${width + 10}" height="${depth + 10}" rx="4"/>`;
 	return `<g class="furniture${selectedId === item.id ? " selected" : ""}" data-id="${item.id}" transform="translate(${format(item.x)} ${format(item.y)}) rotate(${format(item.angle)})"><title>${item.type}: ${size.width} × ${size.depth} cm</title>${shape}${label}${ring}</g>`;
@@ -433,7 +429,7 @@ function renderCatalogue() {
 	cataloguePanel.innerHTML = data.catalogue.map(item => {
 		const swatch = item.name === "sofa" ? sofaVariant === "straight" ? "straight" : sofaVariant === "left_chaise" ? "left" : ""
 			: item.name === "dining_table" && tableRound ? "round" : "";
-		const detail = item.variants ? item.name === "sofa" ? "3 shapes" : "2 sizes" : `${item.width} × ${item.depth} cm`;
+		const detail = item.variants ? `${item.variants.length} options` : `${item.width} × ${item.depth} cm`;
 		return `<div class="catalogue-row"><span class="swatch ${item.name} ${swatch}" style="background:${colors[item.name]}"></span>`
 			+ `<div><div class="catalogue-title" title="${item.name}">${item.name}</div>`
 			+ `<div class="catalogue-sub">${detail} · ${counts[item.name]}/${item.count} placed</div></div>`
@@ -450,12 +446,12 @@ function renderSelection() {
 	const size = itemSize(item);
 	const dimensions = item.type === "dining_table" && item.variant === "round" ? `Ø ${size.width} cm` : `${size.width} × ${size.depth} cm`;
 	const options = catalogue[item.type].variants?.map(variant => {
-		const label = item.type === "sofa" ? variant.name
-			: variant.name === "round" ? `Ø ${variant.width} cm` : `${variant.width} × ${variant.depth} cm`;
+		const label = variant.name === "round" ? `round · Ø ${variant.width} cm`
+			: `${variant.name} · ${variant.width} × ${variant.depth} cm`;
 		return `<option value="${variant.name}" ${(item.variant || catalogue[item.type].variants[0].name) === variant.name ? "selected" : ""}>${label}</option>`;
 	}).join("");
-	const variants = options ? `<div class="variant-row"><label for="variant-input">${item.type === "sofa" ? "shape" : "size"}</label><select id="variant-input">${options}</select></div>` : "";
-	selectionPanel.innerHTML = `<div class="selected-name">${item.type}</div><div class="selected-size">${dimensions} · height ${size.height} cm</div>`
+	const variants = options ? `<div class="variant-row"><label for="variant-input">option</label><select id="variant-input">${options}</select></div>` : "";
+	selectionPanel.innerHTML = `<div class="selected-name">${item.type}</div><div class="selected-size">${dimensions} · height ${size.height === "—" ? "unlisted" : `${size.height} cm`}</div>`
 		+ (item.type === "bed" ? `<div class="drawer-note">drawers: ${catalogue.bed.drawer_depth} cm each side</div>` : "")
 		+ variants + `<div class="angle-row"><label for="angle-input">angle</label><input id="angle-input" type="number" step="1" value="${format(item.angle)}">°</div>`
 		+ `<div class="selection-actions"><button data-rotate="-15">↶ 15°</button><button data-rotate="15">15° ↷</button><button class="remove-button" id="remove-item">remove</button></div>`;
@@ -481,9 +477,8 @@ function exportData() {
 	const keys = Object.keys(data.plans);
 	const payload = {
 		...data,
-		updated_at: new Date().toISOString(),
+		updated_at: new Date().toLocaleString("sv-SE", { timeZone: "America/New_York" }).replace(" ", "T") + " America/New_York",
 		layouts: Object.fromEntries(keys.map(key => [key, key === planKey ? items : loadItems(key)])),
-		info: Object.fromEntries(keys.map(key => [key, infoText(key)])),
 	};
 	const link = document.createElement("a");
 	link.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2) + "\n"], { type: "application/json" }));
@@ -515,8 +510,6 @@ function changeSelected(mutator) {
 	renderAll();
 }
 
-planSelect.innerHTML = Object.keys(data.plans).sort().map(key => `<option value="${key}">${key}</option>`).join("");
-planSelect.addEventListener("change", () => selectPlan(planSelect.value));
 undoButton.addEventListener("click", () => stepHistory(-1));
 redoButton.addEventListener("click", () => stepHistory(1));
 document.querySelector("#export-data").addEventListener("click", event => { event.preventDefault(); exportData(); });
@@ -684,38 +677,7 @@ document.addEventListener("keydown", event => {
 	}
 });
 
-selectPlan(planKey);
-	const editor = document.querySelector("#info-editor");
-	const status = document.querySelector("#info-status");
-	const infoKey = key => `apartment_info_v1_${key}`;
-	const infoText = key => {
-		const saved = localStorage.getItem(infoKey(key));
-		if (saved !== null) return saved;
-		return data.info[key] || "";
-	};
-	const resizeInfo = () => {
-		editor.style.height = "auto";
-		editor.style.height = `${editor.scrollHeight}px`;
-	};
-	const renderInfo = () => {
-		const key = planKey;
-		document.querySelector("#info-title").textContent = key;
-		editor.value = infoText(key);
-		resizeInfo();
-	};
-	editor.addEventListener("input", () => {
-		resizeInfo();
-		const key = planKey;
-		try { localStorage.setItem(infoKey(key), editor.value); status.textContent = "saved locally"; }
-		catch (_) { status.textContent = "local saving unavailable"; }
-	});
-	window.addEventListener("apartment-plan-changed", renderInfo);
-	window.addEventListener("storage", event => {
-		if (event.key === infoKey(planKey)) renderInfo();
-	});
-	window.addEventListener("focus", renderInfo);
-	window.addEventListener("resize", resizeInfo);
-	renderInfo();
+selectPlan();
 } else {
 	const name = `${view}.md`;
 	const preview = document.querySelector("#document-preview");
