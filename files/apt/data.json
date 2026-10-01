@@ -179,6 +179,13 @@
         "angle": 90
       },
       {
+        "id": "shoe_rack_f11cbbd9-0598-44f5-bd71-a5a0134dcba2",
+        "type": "shoe_rack",
+        "x": 332.8740234375,
+        "y": 734.0072631835938,
+        "angle": 90
+      },
+      {
         "id": "shoe_rack_484eec1e-54df-4946-b209-cdfd3343445e",
         "type": "shoe_rack",
         "x": 332.7424621582031,
@@ -317,6 +324,41 @@
         "y": 326.83502197265625,
         "angle": 90,
         "variant": "medium"
+      },
+      {
+        "id": "floor_lamp_3_spot_53b5eb00-e81c-4108-85c2-180b5d202598",
+        "type": "floor_lamp_3_spot",
+        "x": 291.015380859375,
+        "y": 342.93060302734375,
+        "angle": 0
+      },
+      {
+        "id": "floor_lamp_3_spot_7eab288e-32d4-419c-a45a-3cda31f4432f",
+        "type": "floor_lamp_3_spot",
+        "x": 599.6145324707031,
+        "y": 247.82774353027344,
+        "angle": 0
+      },
+      {
+        "id": "floor_lamp_efad0d47-f2cf-435f-92be-83f6161c3421",
+        "type": "floor_lamp",
+        "x": 305.24847412109375,
+        "y": 218.71463012695312,
+        "angle": 0
+      },
+      {
+        "id": "wall_spotlight_e184413a-9398-4e76-8925-17437830fadc",
+        "type": "wall_spotlight",
+        "x": 765.2358093261719,
+        "y": 282.7635192871094,
+        "angle": 0
+      },
+      {
+        "id": "wall_spotlight_16a4d67f-f8fd-4bee-a30b-bb7f1b7b076c",
+        "type": "wall_spotlight",
+        "x": 848.6934204101562,
+        "y": 201.89370727539062,
+        "angle": 285
       }
     ]
   },
@@ -382,8 +424,8 @@
     {
       "name": "desk_chair",
       "count": 2,
-      "width": 63.5,
-      "depth": 61,
+      "width": 70.1,
+      "depth": 70.1,
       "height": "96.5–106.7",
       "price": 369
     },
@@ -467,7 +509,7 @@
     },
     {
       "name": "shoe_rack",
-      "count": 3,
+      "count": 4,
       "width": 60,
       "depth": 30,
       "height": "35",
@@ -560,9 +602,9 @@
     {
       "name": "wireless_charger",
       "count": 2,
-      "width": 11.4,
-      "depth": 8.3,
-      "height": "7",
+      "width": 6.1,
+      "depth": 6.1,
+      "height": "10.5",
       "price": 29.99
     },
     {
@@ -577,8 +619,8 @@
       "name": "laptop_stand",
       "count": 2,
       "width": 17.7,
-      "depth": 6.4,
-      "height": "9.8",
+      "depth": 9.8,
+      "height": "6.4",
       "price": 34.98
     },
     {
@@ -611,5 +653,5 @@
       ]
     }
   },
-  "updated_at": "2026-09-30T22:25:29 America/New_York"
+  "updated_at": "2026-09-30T23:56:15 America/New_York"
 }
