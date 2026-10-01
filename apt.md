@@ -37,8 +37,8 @@ nav:
 .swatch.sofa { clip-path: polygon(0 0,100% 0,100% 100%,50% 100%,50% 60%,0 60%); }
 .swatch.sofa.left { clip-path: polygon(0 0,100% 0,100% 60%,50% 60%,50% 100%,0 100%); }
 .swatch.sofa.straight { clip-path: none; }
-.swatch.desk_chair, .swatch.dining_chair, .swatch.night_lamp, .swatch.mouse { border-radius: 50%; }
-.swatch.dining_table { border-radius: 8px; }
+.swatch.desk_chair, .swatch.night_lamp, .swatch.mouse { border-radius: 50%; }
+.swatch.dining_table, .swatch.dining_chair { border-radius: 0; }
 .catalogue-title { font-family: "CMU Typewriter", monospace; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .catalogue-sub { color: #888; font-size: 10px; margin-top: 3px; }
 .apartment-page .content .add-button { display: grid; place-items: center; padding: 0; width: 27px; height: 27px; font-size: 18px; line-height: 1; }
@@ -584,17 +584,17 @@ function shapeMarkup(item) {
 	let shape;
 	if (item.type === "sofa") {
 		shape = `<path class="body" fill="${fill}" d="${roomPath(localShape(item))}"/>`;
-	} else if (["desk_chair", "dining_chair", "night_lamp", "mouse"].includes(item.type)) {
+	} else if (["desk_chair", "night_lamp", "mouse"].includes(item.type)) {
 		shape = `<ellipse class="body" fill="${fill}" cx="0" cy="0" rx="${width / 2}" ry="${depth / 2}"/>`;
 	} else {
-		const radius = item.type === "dining_table" ? Math.min(width, depth) * .13 : 1;
+		const radius = ["dining_table", "dining_chair"].includes(item.type) ? 0 : 1;
 		shape = `<rect class="body" fill="${fill}" x="${-width / 2}" y="${-depth / 2}" width="${width}" height="${depth}" rx="${radius}"/>`;
 	}
 	const fontSize = Math.min(10, Math.min(width, depth) * .9 / (item.type.length * .6));
 	const label = fontSize < 6 ? "" : `<text x="0" y="0" style="font-size:${fontSize}px">${item.type}</text>`;
-	const ring = selectedId !== item.id ? "" : ["desk_chair", "dining_chair", "night_lamp", "mouse"].includes(item.type)
+	const ring = selectedId !== item.id ? "" : ["desk_chair", "night_lamp", "mouse"].includes(item.type)
 		? `<ellipse class="selection-ring" cx="0" cy="0" rx="${width / 2 + 5}" ry="${depth / 2 + 5}"/>`
-		: `<rect class="selection-ring" x="${-width / 2 - 5}" y="${-depth / 2 - 5}" width="${width + 10}" height="${depth + 10}" rx="4"/>`;
+		: `<rect class="selection-ring" x="${-width / 2 - 5}" y="${-depth / 2 - 5}" width="${width + 10}" height="${depth + 10}" rx="${["dining_table", "dining_chair"].includes(item.type) ? 0 : 4}"/>`;
 	return `<g class="furniture${selectedId === item.id ? " selected" : ""}" data-id="${item.id}" transform="translate(${format(item.x)} ${format(item.y)}) rotate(${format(item.angle)})"><title>${item.type}: ${size.width} × ${size.depth} cm</title>${shape}${label}${ring}</g>`;
 }
 
