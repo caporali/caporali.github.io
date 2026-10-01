@@ -133,7 +133,7 @@ nav:
 		<section class="stage-panel">
 			<div class="stage-heading"><strong id="plan-name"></strong><span id="plan-summary"></span></div>
 			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
-			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="total for placed items, before tax, delivery, and discounts"></span><span id="non-plan-total" title="total for items marked plan ☐ in furniture.md, before tax, delivery, and discounts"></span></div><div class="footer-right"><span class="sync-actions"><span id="save-status" role="status"></span><button id="sync-login" type="button" hidden>sign in</button><button id="sync-save" type="button" hidden>save online</button></span><span id="spent-total" title="paid IKEA order total, including tax and shipping">paid · $6,035.48</span></div></div>
+			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="placed items not yet bought, before tax, delivery, and discounts"></span><span id="non-plan-total" title="items marked plan ☐ and not yet bought in furniture.md, before tax, delivery, and discounts"></span></div><div class="footer-right"><span class="sync-actions"><span id="save-status" role="status"></span><button id="sync-login" type="button" hidden>sign in</button><button id="sync-save" type="button" hidden>save online</button></span><span id="spent-total" title="paid IKEA order total, including tax and shipping">paid · $6,035.48</span></div></div>
 		</section>
 	</main>
 	<div id="selection" class="selection" role="dialog" aria-label="selected furniture" hidden></div>
@@ -212,8 +212,11 @@ if (!response.ok) throw new Error(`could not load data.json: ${response.status}`
 const data = await response.json();
 const furnitureResponse = await fetch("/files/apt/markdown/furniture.md", { cache: "no-store" });
 if (!furnitureResponse.ok) throw new Error(`could not load furniture.md: ${furnitureResponse.status}`);
-const nonPlanTotal = (await furnitureResponse.text()).split("\n")
-	.filter(row => /^\|\s*[☑☐]\s*\|\s*☐\s*\|/.test(row))
+const furnitureRows = (await furnitureResponse.text()).split("\n");
+const boughtItems = new Set(furnitureRows.filter(row => /^\|\s*☑\s*\|/.test(row))
+	.map(row => row.match(/\[`([a-z_]+)`\]/)?.[1]).filter(Boolean));
+const nonPlanTotal = furnitureRows
+	.filter(row => /^\|\s*☐\s*\|\s*☐\s*\|/.test(row))
 	.reduce((sum, row) => {
 		const cells = row.split("|").map(cell => cell.trim());
 		return sum + Number(cells[4]) * Number(cells[5].replaceAll(",", "").match(/\$([\d.]+)/)[1]);
@@ -678,7 +681,7 @@ function renderAll() {
 	renderFurniture();
 	renderCatalogue();
 	renderSelection();
-	const total = items.reduce((sum, item) => sum + itemSize(item).price, 0);
+	const total = items.reduce((sum, item) => sum + (boughtItems.has(item.type) ? 0 : itemSize(item).price), 0);
 	planTotal.textContent = `placed · ${formatPrice.format(total)}`;
 }
 
