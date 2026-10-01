@@ -40,8 +40,8 @@
 | ☐ | ☐ | [`mirror`](https://www.ikea.com/us/en/p/nissedal-mirror-white-90503775/) | 1 | $69.99 | — | — |
 | ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-90282180/) | 4 | $29.99 | `109.9 × 26` | `5.1` |
 | ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-50282182/) | 3 | $39.99 | `189.9 × 26` | `5.1` |
-| ☐ | ☑ | [`dining_table`](https://www.article.com/product/24725/emmer-71-glass-dining-table-oak) | 1 | $699.00 | `180.3 × 90.2` | `76.2` |
-| ☐ | ☑ | [`dining_chair`](https://www.article.com/product/19215/fonra-dining-chair-oak-and-santolina-gray) | 4 | $269.00 | `54.6 × 55.9` | `76.2` |
+| ☑ | ☑ | [`dining_table`](https://www.article.com/product/24725/emmer-71-glass-dining-table-oak) | 1 | $699.00 | `180.3 × 90.2` | `76.2` |
+| ☑ | ☑ | [`dining_chair`](https://www.article.com/product/19215/fonra-dining-chair-oak-and-santolina-gray) | 4 | $269.00 | `54.6 × 55.9` | `76.2` |
 | ☑ | ☑ | [`night_lamp`](https://www.ikea.com/us/en/p/taernaby-table-lamp-dimmable-beige-10508079/) | 2 | $34.99 | `15.2 × 15.2` | `25.4` |
 | ☑ | ☑ | [`floor_lamp_3_spot`](https://www.ikea.com/us/en/p/hektar-floor-lamp-with-3-spotlights-dark-gray-40393618/) | 2 | $109.99 | `30.5 × 30.5` | `175.3` |
 | ☑ | ☑ | [`floor_lamp`](https://www.ikea.com/us/en/p/hektar-floor-lamp-dark-gray-70216544/) | 1 | $89.99 | `33 × 33` | `180.3` |
