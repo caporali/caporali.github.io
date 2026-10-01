@@ -94,11 +94,18 @@ nav:
 .document-tools #document-state.online::before { background: #4d9b70; }
 .document-tools #document-status { flex: 1; color: #777; }
 .apartment-page .content .document-tools button { padding: 5px 9px; font-size: 11px; }
-.document-source { display: block; width: calc(100% - 64px); max-width: 1100px; min-height: calc(100dvh - 180px); margin: 20px auto 32px; padding: 16px; border: 1px solid #ddd; border-radius: 7px; font-family: "CMU Typewriter", monospace; font-size: 12px; line-height: 1.5; resize: vertical; }
-.document-source[hidden] { display: none; }
+.document-editor { position: relative; width: calc(100% - 64px); max-width: 1100px; height: calc(100dvh - 180px); min-height: 400px; margin: 20px auto 32px; font-family: "CMU Typewriter", monospace; font-size: 12px; line-height: 1.5; tab-size: 4; }
+.document-editor[hidden] { display: none; }
+.document-highlight, .document-source { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; font: inherit; line-height: inherit; letter-spacing: 0; tab-size: inherit; white-space: pre; overflow: auto; }
+.document-highlight { pointer-events: none; color: #272727; scrollbar-width: none; }
+.document-highlight::-webkit-scrollbar { display: none; }
+.document-source { background: transparent; color: transparent; -webkit-text-fill-color: transparent; caret-color: #272727; resize: none; outline: none; }
+.document-source::selection { background: rgba(100, 150, 225, .25); }
+.syntax-mark { color: #8351a0; }.syntax-heading { color: #255c93; font-weight: 700; }.syntax-code { color: #317a4c; }
+.syntax-link { color: #2676a4; }.syntax-emphasis { color: #a45b39; }.syntax-check { color: #3c8b64; }.syntax-table { color: #929aa1; }
 .markdown { max-width: 1100px; margin: 0 auto; padding: 32px; font-size: 13px; line-height: 1.55; }
 .info-view .markdown { max-width: 760px; }
-.info-view .document-tools, .info-view .document-source { max-width: 760px; }
+.info-view .document-tools, .info-view .document-editor { max-width: 760px; }
 .info-view .md-row span:first-child { width: 34%; }
 .markdown h1, .markdown h2, .markdown h3 { line-height: 1.25; margin: 1.2em 0 .55em; }
 .markdown h1:first-child { margin-top: 0; }
@@ -131,7 +138,7 @@ nav:
 	.markdown { padding: 16px; }
 	.document-tools { flex-wrap: wrap; padding: 12px 16px 0; }
 	.document-tools #document-status { flex-basis: 100%; order: 1; }
-	.document-source { width: calc(100% - 32px); min-height: 60dvh; margin-top: 16px; }
+	.document-editor { width: calc(100% - 32px); height: 60dvh; min-height: 320px; margin-top: 16px; }
 	.document-page .markdown { overflow-x: auto; }.furniture-table { min-width: 800px; }
 	.info-view .markdown { overflow-x: visible; }
 	.info-view .md-table { table-layout: fixed; }
@@ -159,7 +166,7 @@ nav:
 <main id="document-view" class="document-page" hidden>
 	<div class="document-tools"><span id="document-state" role="status">offline</span><button id="document-login" type="button">sign in</button><span id="document-status" role="status"></span><button id="document-edit" type="button">edit text</button><button id="document-save" type="button" hidden>save online</button></div>
 	<article id="document-preview" class="markdown"></article>
-	<textarea id="document-source" class="document-source" aria-label="markdown source" spellcheck="false" hidden></textarea>
+	<div id="document-editor" class="document-editor" hidden><pre id="document-highlight" class="document-highlight" aria-hidden="true"></pre><textarea id="document-source" class="document-source" aria-label="markdown source" spellcheck="false" wrap="off"></textarea></div>
 </main>
 <script type="module">
 
@@ -216,6 +223,37 @@ function renderMarkdown(source) {
 		}
 	}
 	return output.join("\n");
+}
+
+function highlightInline(value) {
+	const tokens = /(`[^`\n]+`|\[[^\]\n]+\]\([^)\n]+\)|\*\*[^*\n]+\*\*|\*[^*\n]+\*|☑|☐|\|)/g;
+	let result = "";
+	let index = 0;
+	for (const match of value.matchAll(tokens)) {
+		result += escapeHtml(value.slice(index, match.index));
+		const token = match[0];
+		const type = token.startsWith("`") ? "code" : token.startsWith("[") ? "link"
+			: token.startsWith("*") ? "emphasis" : token === "|" ? "table" : "check";
+		result += `<span class="syntax-${type}">${escapeHtml(token)}</span>`;
+		index = match.index + token.length;
+	}
+	return result + escapeHtml(value.slice(index));
+}
+
+function highlightMarkdown(source) {
+	let fenced = false;
+	return source.split("\n").map(line => {
+		if (/^\s*```/.test(line)) {
+			fenced = !fenced;
+			return `<span class="syntax-mark">${escapeHtml(line)}</span>`;
+		}
+		if (fenced) return `<span class="syntax-code">${escapeHtml(line)}</span>`;
+		const heading = line.match(/^(\s*#{1,6}\s)(.*)$/);
+		if (heading) return `<span class="syntax-mark">${escapeHtml(heading[1])}</span><span class="syntax-heading">${highlightInline(heading[2])}</span>`;
+		const list = line.match(/^(\s*(?:[-*]|\d+\.)\s)(.*)$/);
+		if (list) return `<span class="syntax-mark">${escapeHtml(list[1])}</span>${highlightInline(list[2])}`;
+		return highlightInline(line);
+	}).join("\n") + " ";
 }
 
 const requestedView = new URLSearchParams(location.search).get("view");
@@ -949,6 +987,8 @@ initOnline();
 } else {
 	const name = `${view}.md`;
 	const preview = document.querySelector("#document-preview");
+	const editor = document.querySelector("#document-editor");
+	const highlight = document.querySelector("#document-highlight");
 	const source = document.querySelector("#document-source");
 	const state = document.querySelector("#document-state");
 	const status = document.querySelector("#document-status");
@@ -985,12 +1025,19 @@ initOnline();
 		} catch (_) { status.textContent = "local draft storage unavailable"; }
 	}
 
+	function paintSource() {
+		highlight.innerHTML = highlightMarkdown(source.value);
+		highlight.scrollTop = source.scrollTop;
+		highlight.scrollLeft = source.scrollLeft;
+	}
+
 	function showEditor(editing) {
 		preview.hidden = editing;
-		source.hidden = !editing;
+		editor.hidden = !editing;
 		save.hidden = !editing;
 		edit.textContent = editing ? "preview" : "edit text";
-		if (!editing) preview.innerHTML = renderMarkdown(source.value);
+		if (editing) paintSource();
+		else preview.innerHTML = renderMarkdown(source.value);
 	}
 
 	async function documentRequest(method, body = null) {
@@ -1090,6 +1137,7 @@ initOnline();
 	} catch (_) {
 		preview.textContent = `could not load ${name}`;
 	}
+	paintSource();
 	setDocumentOnline(false);
 	if (sessionToken) void refreshDocument();
 	login.addEventListener("click", () => {
@@ -1100,8 +1148,15 @@ initOnline();
 			status.textContent = "";
 		} else if (!beginLogin()) status.textContent = "browser session storage is required for login";
 	});
-	edit.addEventListener("click", () => showEditor(source.hidden));
-	source.addEventListener("input", () => { storeDraft(); status.textContent = "local draft"; });
+	edit.addEventListener("click", () => { showEditor(editor.hidden); if (!editor.hidden) source.focus(); });
+	source.addEventListener("input", () => { paintSource(); storeDraft(); status.textContent = "local draft"; });
+	source.addEventListener("scroll", () => { highlight.scrollTop = source.scrollTop; highlight.scrollLeft = source.scrollLeft; });
+	source.addEventListener("keydown", event => {
+		if (event.key !== "Tab" || event.shiftKey) return;
+		event.preventDefault();
+		source.setRangeText("\t", source.selectionStart, source.selectionEnd, "end");
+		source.dispatchEvent(new Event("input"));
+	});
 	save.addEventListener("click", () => { void saveDocument(); });
 	window.addEventListener("offline", () => { if (sessionToken) setDocumentOnline(false); });
 	window.addEventListener("online", () => { if (sessionToken && !documentOnline) void refreshDocument(); });
