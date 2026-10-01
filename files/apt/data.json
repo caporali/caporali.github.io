@@ -186,6 +186,14 @@
       "price": 579
     },
     {
+      "name": "dresser",
+      "count": 1,
+      "width": 140,
+      "depth": 47.9,
+      "height": "74.9",
+      "price": 249.99
+    },
+    {
       "name": "nightstand",
       "count": 2,
       "width": 34.9,
@@ -244,7 +252,7 @@
           "name": "left_chaise",
           "width": 249.9,
           "depth": 180,
-          "price": 2309
+          "price": 1940
         },
         {
           "name": "straight",

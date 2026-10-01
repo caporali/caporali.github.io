@@ -52,8 +52,10 @@ nav:
 #plan-svg { width: 100%; height: 100%; display: block; touch-action: none; user-select: none; -webkit-user-select: none; }
 #plan-svg.panning, #plan-svg.panning .furniture { cursor: grabbing; }
 .stage-footer { grid-column: 2; grid-row: 3; display: flex; justify-content: space-between; gap: 15px; padding: 10px 22px 15px; color: #888; font-size: 10px; }
+.price-totals { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 #save-status { white-space: nowrap; }
-#plan-total { color: #555; white-space: nowrap; font-family: "CMU Typewriter", monospace; }
+#save-status:empty { display: none; }
+#plan-total, #non-plan-total { color: #555; white-space: nowrap; font-family: "CMU Typewriter", monospace; }
 .sync-actions { display: flex; align-items: center; justify-content: flex-end; gap: 7px; flex-wrap: wrap; }
 .apartment-page .content .sync-actions button { padding: 4px 8px; font-size: 10px; }
 #sync-choice { width: min(390px, calc(100vw - 28px)); padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 12px 35px rgba(0,0,0,.15); }
@@ -94,9 +96,9 @@ nav:
 .md-table { display: table; width: 100%; border-collapse: collapse; margin: 0 0 18px; }
 .md-row { display: table-row; }.md-row span { display: table-cell; padding: 8px 10px; border-bottom: 1px solid #e4eae6; vertical-align: top; }
 .furniture-table { table-layout: fixed; }.furniture-table .md-row span:nth-child(1), .furniture-table .md-row span:nth-child(2) { width: 5%; text-align: center; }
-.furniture-table .md-row span:nth-child(3) { width: 20%; overflow-wrap: anywhere; }.furniture-table .md-row span:nth-child(4) { width: 6%; }
-.furniture-table .md-row span:nth-child(5) { width: 22%; white-space: nowrap; }.furniture-table .md-row span:nth-child(6) { width: 14%; }
-.furniture-table .md-row span:nth-child(7) { width: 28%; overflow-wrap: break-word; }
+.furniture-table .md-row span:nth-child(3) { width: 20%; overflow-wrap: anywhere; }.furniture-table .md-row span:nth-child(4) { width: 5%; }
+.furniture-table .md-row span:nth-child(5) { width: 14%; text-align: right; }.furniture-table .md-row span:nth-child(6) { width: 20%; white-space: nowrap; }
+.furniture-table .md-row span:nth-child(7) { width: 13%; }.furniture-table .md-row span:nth-child(8) { width: 18%; overflow-wrap: break-word; }
 .furniture-table .md-row.group-start:not(:nth-child(2)) span { border-top: 2px solid #c8d5d0; }
 .md-header span { font-weight: 700; border-bottom-color: #bfcfca; }
 @media (max-width: 700px) {
@@ -113,7 +115,7 @@ nav:
 	.stage-footer { padding: 8px 12px; font-size: 9px; }
 	.selection { max-width: calc(100vw - 16px); }
 	.markdown { padding: 16px; }
-	.document-page .markdown { overflow-x: auto; }.furniture-table { min-width: 860px; }
+	.document-page .markdown { overflow-x: auto; }.furniture-table { min-width: 950px; }
 	.info-view .markdown { overflow-x: visible; }
 	.info-view .md-table { table-layout: fixed; }
 	.info-view .md-row span { overflow-wrap: anywhere; }
@@ -130,7 +132,7 @@ nav:
 		<section class="stage-panel">
 			<div class="stage-heading"><strong id="plan-name"></strong><span id="plan-summary"></span></div>
 			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
-			<div class="stage-footer"><span>drag furniture · drag empty space to pan on touch · pinch to zoom · ctrl-drag to pan on desktop</span><span class="sync-actions"><span id="plan-total" title="estimated total for placed furniture, before tax, delivery, and discounts"></span><span id="save-status">saved locally</span><button id="sync-login" type="button" hidden>sign in</button><button id="sync-save" type="button" hidden>save online</button></span></div>
+			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="total for placed items, before tax, delivery, and discounts"></span><span id="non-plan-total" title="total for buy items marked plan ☐ in furniture.md, before tax, delivery, and discounts"></span></div><span class="sync-actions"><span id="save-status" role="status"></span><button id="sync-login" type="button" hidden>sign in</button><button id="sync-save" type="button" hidden>save online</button></span></div>
 		</section>
 	</main>
 	<div id="selection" class="selection" role="dialog" aria-label="selected furniture" hidden></div>
@@ -169,7 +171,7 @@ function renderMarkdown(source) {
 			i++;
 		} else if (line.startsWith("|") && lines[i + 1]?.trim().match(/^\|[\s:|-]+\|$/)) {
 			const cells = row => row.trim().slice(1, -1).split("|").map(cell => `<span>${inlineMarkdown(cell.trim())}</span>`);
-			const kind = line.startsWith("| buy | plan | item | n. |") ? " furniture-table" : "";
+			const kind = line.startsWith("| buy | plan | item | n. | price |") ? " furniture-table" : "";
 			output.push(`<div class="md-table${kind}"><div class="md-row md-header">${cells(lines[i]).join("")}</div>`);
 			i += 2;
 			let previousItem = "";
@@ -207,6 +209,16 @@ if (view === "plan") {
 const response = await fetch("/files/apt/data.json", { cache: "no-store" });
 if (!response.ok) throw new Error(`could not load data.json: ${response.status}`);
 const data = await response.json();
+const furnitureResponse = await fetch("/files/apt/markdown/furniture.md", { cache: "no-store" });
+if (!furnitureResponse.ok) throw new Error(`could not load furniture.md: ${furnitureResponse.status}`);
+const nonPlanTotal = (await furnitureResponse.text()).split("\n")
+	.filter(row => /^\|\s*☑\s*\|\s*☐\s*\|/.test(row))
+	.reduce((sum, row) => {
+		const cells = row.split("|").map(cell => cell.trim());
+		return sum + Number(cells[4]) * Number(cells[5].replaceAll(",", "").match(/\$([\d.]+)/)[1]);
+	}, 0);
+const formatPrice = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+document.querySelector("#non-plan-total").textContent = `not on plan · ${formatPrice.format(nonPlanTotal)}`;
 let syncApi = "";
 try {
 	const syncSettings = await fetch("/files/apt/sync/config.json", { cache: "no-store" });
@@ -214,7 +226,7 @@ try {
 } catch (_) { /* online saving is optional */ }
 const catalogue = Object.fromEntries(data.catalogue.map(item => [item.name, item]));
 const colors = {
-	bed: "#a7c8d0", nightstand: "#a7c8d0", desk: "#b9d1ae",
+	bed: "#a7c8d0", dresser: "#a7c8d0", nightstand: "#a7c8d0", desk: "#b9d1ae",
 	desk_chair: "#b9d1ae", sofa: "#e9c2a8", sofa_stool: "#e9c2a8",
 	tv_unit: "#ddcbb0", sideboard: "#ddcbb0", bench: "#ddcbb0",
 	coffee_table: "#ddcbb0", side_table: "#ddcbb0", shoe_rack: "#ddcbb0", dining_table: "#ddcbb0", dining_chair: "#ddcbb0",
@@ -305,7 +317,7 @@ function itemSize(item) {
 function saveItems() {
 	try {
 		localStorage.setItem(storageKey(planKey), JSON.stringify(items));
-		syncStatus.textContent = "saved locally";
+		syncStatus.textContent = "";
 	} catch (_) {
 		syncStatus.textContent = "local saving unavailable, download data.json";
 	}
@@ -333,7 +345,7 @@ function disconnectOnline() {
 	onlineRemote = null;
 	syncLogin.textContent = "sign in";
 	syncSave.hidden = true;
-	syncStatus.textContent = "saved locally";
+	syncStatus.textContent = "";
 }
 
 async function onlineRequest(method, body = null) {
@@ -358,7 +370,7 @@ function scheduleOnlineSave(delay = 15000) {
 		syncStatus.textContent = "saved online";
 		return;
 	}
-	syncStatus.textContent = "saved locally, online pending";
+	syncStatus.textContent = "online pending";
 	onlineTimer = setTimeout(() => { void saveOnline(); }, delay);
 }
 
@@ -402,7 +414,7 @@ async function refreshOnline() {
 	try { reconcileOnline(await onlineRequest("GET")); }
 	catch (error) {
 		if (error.status === 401) disconnectOnline();
-		else syncStatus.textContent = "online unavailable, saved locally";
+		else syncStatus.textContent = "online unavailable";
 	}
 }
 
@@ -433,7 +445,7 @@ async function saveOnline() {
 			if (error.result.layout) reconcileOnline(error.result);
 			else await refreshOnline();
 		} else {
-			syncStatus.textContent = "online save failed, saved locally";
+			syncStatus.textContent = "online save failed";
 			onlineTimer = setTimeout(() => { void saveOnline(); }, 30000);
 		}
 	} finally {
@@ -473,7 +485,7 @@ syncChoice.addEventListener("click", event => {
 		onlineSnapshot = JSON.stringify(onlineRemote.layout);
 		onlineRemote = null;
 		scheduleOnlineSave();
-	} else syncStatus.textContent = "saved locally, online choice pending";
+	} else syncStatus.textContent = "online choice pending";
 });
 
 function updateHistoryButtons() {
@@ -665,9 +677,8 @@ function renderAll() {
 	renderFurniture();
 	renderCatalogue();
 	renderSelection();
-	const hasChaise = items.some(item => item.type === "sofa" && item.variant !== "straight");
-	const total = items.reduce((sum, item) => sum + (item.type === "sofa_stool" && hasChaise ? 0 : itemSize(item).price), 0);
-	planTotal.textContent = `placed · est. ${new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(total)}`;
+	const total = items.reduce((sum, item) => sum + itemSize(item).price, 0);
+	planTotal.textContent = `placed · ${formatPrice.format(total)}`;
 }
 
 function exportData() {
