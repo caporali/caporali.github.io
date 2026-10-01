@@ -55,7 +55,8 @@ nav:
 .price-totals { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 #save-status { white-space: nowrap; }
 #save-status:empty { display: none; }
-#plan-total, #non-plan-total { color: #555; white-space: nowrap; font-family: "CMU Typewriter", monospace; }
+#plan-total, #non-plan-total, #spent-total { color: #555; white-space: nowrap; font-family: "CMU Typewriter", monospace; }
+.footer-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
 .sync-actions { display: flex; align-items: center; justify-content: flex-end; gap: 7px; flex-wrap: wrap; }
 .apartment-page .content .sync-actions button { padding: 4px 8px; font-size: 10px; }
 #sync-choice { width: min(390px, calc(100vw - 28px)); padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 12px 35px rgba(0,0,0,.15); }
@@ -132,7 +133,7 @@ nav:
 		<section class="stage-panel">
 			<div class="stage-heading"><strong id="plan-name"></strong><span id="plan-summary"></span></div>
 			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
-			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="total for placed items, before tax, delivery, and discounts"></span><span id="non-plan-total" title="total for buy items marked plan ☐ in furniture.md, before tax, delivery, and discounts"></span></div><span class="sync-actions"><span id="save-status" role="status"></span><button id="sync-login" type="button" hidden>sign in</button><button id="sync-save" type="button" hidden>save online</button></span></div>
+			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="total for placed items, before tax, delivery, and discounts"></span><span id="non-plan-total" title="total for items marked plan ☐ in furniture.md, before tax, delivery, and discounts"></span></div><div class="footer-right"><span class="sync-actions"><span id="save-status" role="status"></span><button id="sync-login" type="button" hidden>sign in</button><button id="sync-save" type="button" hidden>save online</button></span><span id="spent-total" title="paid IKEA order total, including tax and shipping">paid · $6,035.48</span></div></div>
 		</section>
 	</main>
 	<div id="selection" class="selection" role="dialog" aria-label="selected furniture" hidden></div>
@@ -171,7 +172,7 @@ function renderMarkdown(source) {
 			i++;
 		} else if (line.startsWith("|") && lines[i + 1]?.trim().match(/^\|[\s:|-]+\|$/)) {
 			const cells = row => row.trim().slice(1, -1).split("|").map(cell => `<span>${inlineMarkdown(cell.trim())}</span>`);
-			const kind = line.startsWith("| buy | plan | item | n. | price |") ? " furniture-table" : "";
+			const kind = line.startsWith("| bought | plan | item | n. | price |") ? " furniture-table" : "";
 			output.push(`<div class="md-table${kind}"><div class="md-row md-header">${cells(lines[i]).join("")}</div>`);
 			i += 2;
 			let previousItem = "";
@@ -212,7 +213,7 @@ const data = await response.json();
 const furnitureResponse = await fetch("/files/apt/markdown/furniture.md", { cache: "no-store" });
 if (!furnitureResponse.ok) throw new Error(`could not load furniture.md: ${furnitureResponse.status}`);
 const nonPlanTotal = (await furnitureResponse.text()).split("\n")
-	.filter(row => /^\|\s*☑\s*\|\s*☐\s*\|/.test(row))
+	.filter(row => /^\|\s*[☑☐]\s*\|\s*☐\s*\|/.test(row))
 	.reduce((sum, row) => {
 		const cells = row.split("|").map(cell => cell.trim());
 		return sum + Number(cells[4]) * Number(cells[5].replaceAll(",", "").match(/\$([\d.]+)/)[1]);
@@ -284,8 +285,8 @@ function loadItems(key) {
 		const saved = JSON.parse(localStorage.getItem(storageKey(key)));
 		if (Array.isArray(saved)) {
 			for (const item of saved) {
-				if (item?.type === "desk" && item.variant === "electric") item.variant = "big";
-				if (item?.type === "desk" && item.variant === "fixed") item.variant = "small";
+				if (item?.type === "desk" && ["electric", "fixed", "small"].includes(item.variant)) item.variant = "big";
+				if (item?.type === "sofa" && ["right_chaise", "straight"].includes(item.variant)) item.variant = "left_chaise";
 				if (item?.type === "table_lamp") item.type = "night_lamp";
 				if (item?.type === "dining_table") delete item.variant;
 			}
@@ -636,7 +637,7 @@ function renderCatalogue() {
 	const sofaVariant = items.find(piece => piece.type === "sofa")?.variant;
 	cataloguePanel.innerHTML = data.catalogue.map(item => {
 		const swatch = item.name === "sofa" ? sofaVariant === "straight" ? "straight" : sofaVariant === "left_chaise" ? "left" : "" : "";
-		const detail = item.variants ? `${item.variants.length} options` : `${item.width} × ${item.depth} cm`;
+		const detail = item.variants?.length > 1 ? `${item.variants.length} options` : `${item.width} × ${item.depth} cm`;
 		return `<div class="catalogue-row"><span class="swatch ${item.name} ${swatch}" style="background:${colors[item.name]}"></span>`
 			+ `<div><div class="catalogue-title" title="${item.name}">${item.name}</div>`
 			+ `<div class="catalogue-sub">${detail} · ${counts[item.name]}/${item.count} placed</div></div>`
@@ -652,10 +653,10 @@ function renderSelection() {
 	}
 	const size = itemSize(item);
 	const dimensions = `${size.width} × ${size.depth} cm`;
-	const options = catalogue[item.type].variants?.map(variant => {
+	const options = catalogue[item.type].variants?.length > 1 ? catalogue[item.type].variants.map(variant => {
 		const label = `${variant.name} · ${variant.width} × ${variant.depth} cm`;
 		return `<option value="${variant.name}" ${(item.variant || catalogue[item.type].variants[0].name) === variant.name ? "selected" : ""}>${label}</option>`;
-	}).join("");
+	}).join("") : "";
 	const variants = options ? `<div class="variant-row"><label for="variant-input">option</label><select id="variant-input">${options}</select></div>` : "";
 	selectionPanel.innerHTML = `<div class="selected-name">${item.type}</div><div class="selected-size">${dimensions} · height ${size.height === "—" ? "unlisted" : `${size.height} cm`}</div>`
 		+ (item.type === "bed" ? `<div class="drawer-note">drawers: ${catalogue.bed.drawer_depth} cm each side</div>` : "")
@@ -701,7 +702,7 @@ function addItem(type) {
 	if (items.filter(item => item.type === type).length >= size.count) return;
 	const [x, y] = plan.spawn;
 	const id = `${type}_${crypto.randomUUID()}`;
-	items.push({ id, type, x, y, angle: 0 });
+	items.push({ id, type, x, y, angle: 0, ...(size.variants ? { variant: size.variants[0].name } : {}) });
 	selectedId = id;
 	popupPoint = null;
 	saveItems();

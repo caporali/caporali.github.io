@@ -410,13 +410,6 @@
           "depth": 80,
           "height": "61.9–126",
           "price": 579.99
-        },
-        {
-          "name": "small",
-          "width": 120,
-          "depth": 60,
-          "height": "61.9–126",
-          "price": 499.99
         }
       ],
       "price": 579.99
@@ -439,25 +432,13 @@
       "chaise_width": 125.1,
       "variants": [
         {
-          "name": "right_chaise",
-          "width": 249.9,
-          "depth": 180,
-          "price": 2309
-        },
-        {
           "name": "left_chaise",
           "width": 249.9,
           "depth": 180,
           "price": 1940
-        },
-        {
-          "name": "straight",
-          "width": 249.9,
-          "depth": 107,
-          "price": 1730
         }
       ],
-      "price": 2309
+      "price": 1940
     },
     {
       "name": "sofa_stool",
@@ -653,5 +634,5 @@
       ]
     }
   },
-  "updated_at": "2026-09-30T23:56:15 America/New_York"
+  "updated_at": "2026-10-01T02:53:49 America/New_York"
 }
