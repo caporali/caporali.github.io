@@ -13,4 +13,5 @@
 
 # local
 /.trash
-files/apt/sync
+*.pem
+files/apt/sync/
