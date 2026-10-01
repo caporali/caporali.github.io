@@ -79,6 +79,7 @@
 # todo
 
 ## tbd
+- example
 - re-measure sofa
 - organizer for the walk-in closet
 - organizer(s) for the entrance closets
