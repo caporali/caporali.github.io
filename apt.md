@@ -231,7 +231,7 @@ const colors = {
 	tv_unit: "#ddcbb0", sideboard: "#ddcbb0", bench: "#ddcbb0",
 	coffee_table: "#ddcbb0", side_table: "#ddcbb0", shoe_rack: "#ddcbb0", dining_table: "#ddcbb0", dining_chair: "#ddcbb0",
 	armrest_tray: "#e9c2a8", wall_shelf: "#ddcbb0",
-	night_lamp: "#e9c2a8", wireless_charger: "#b9d1ae",
+	night_lamp: "#e9c2a8", floor_lamp_3_spot: "#e9c2a8", floor_lamp: "#e9c2a8", wall_spotlight: "#e9c2a8", wireless_charger: "#b9d1ae",
 	magsafe_charger: "#b9d1ae", laptop_stand: "#b9d1ae", mouse: "#b9d1ae", mouse_pad: "#b9d1ae",
 };
 const svg = document.querySelector("#plan-svg");
@@ -596,7 +596,7 @@ function shapeMarkup(item) {
 	let shape;
 	if (item.type === "sofa") {
 		shape = `<path class="body" fill="${fill}" d="${roomPath(localShape(item))}"/>`;
-	} else if (["desk_chair", "night_lamp", "mouse"].includes(item.type)) {
+	} else if (["desk_chair", "night_lamp", "floor_lamp_3_spot", "floor_lamp", "wall_spotlight", "mouse"].includes(item.type)) {
 		shape = `<ellipse class="body" fill="${fill}" cx="0" cy="0" rx="${width / 2}" ry="${depth / 2}"/>`;
 	} else {
 		const radius = ["dining_table", "dining_chair"].includes(item.type) ? 0 : 1;
@@ -604,7 +604,7 @@ function shapeMarkup(item) {
 	}
 	const fontSize = Math.min(10, Math.min(width, depth) * .9 / (item.type.length * .6));
 	const label = fontSize < 6 ? "" : `<text x="0" y="0" style="font-size:${fontSize}px">${item.type}</text>`;
-	const ring = selectedId !== item.id ? "" : ["desk_chair", "night_lamp", "mouse"].includes(item.type)
+	const ring = selectedId !== item.id ? "" : ["desk_chair", "night_lamp", "floor_lamp_3_spot", "floor_lamp", "wall_spotlight", "mouse"].includes(item.type)
 		? `<ellipse class="selection-ring" cx="0" cy="0" rx="${width / 2 + 5}" ry="${depth / 2 + 5}"/>`
 		: `<rect class="selection-ring" x="${-width / 2 - 5}" y="${-depth / 2 - 5}" width="${width + 10}" height="${depth + 10}" rx="${["dining_table", "dining_chair"].includes(item.type) ? 0 : 4}"/>`;
 	return `<g class="furniture${selectedId === item.id ? " selected" : ""}" data-id="${item.id}" transform="translate(${format(item.x)} ${format(item.y)}) rotate(${format(item.angle)})"><title>${item.type}: ${size.width} × ${size.depth} cm</title>${shape}${label}${ring}</g>`;
