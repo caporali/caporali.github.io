@@ -29,9 +29,14 @@ nav:
 .apartment-page .content button:disabled { cursor: not-allowed; opacity: .4; }
 .apartment-page #navlist a[aria-current="page"] { text-decoration: underline; }
 .app-shell { display: grid; grid-template-columns: 245px minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; height: calc(100dvh - 42px); }
-.catalogue-panel { grid-column: 1; grid-row: 2; min-width: 0; min-height: 0; margin: 0 0 0 18px; overflow: auto; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; }
+.catalogue-panel { grid-column: 1; grid-row: 2; display: flex; flex-direction: column; min-width: 0; min-height: 0; margin: 0 0 0 18px; overflow: hidden; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; }
 .catalogue-panel h1 { margin: 0; padding: 21px 19px 15px; font-size: 14px; }
-.catalogue-list { padding: 0 12px 18px; }
+.catalogue-list { flex: 1; min-height: 0; overflow: auto; padding: 0 12px 18px; }
+.catalogue-sync { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid #e5e5e5; font-size: 11px; }
+.catalogue-sync #sync-state { flex: 1; font-family: "CMU Typewriter", monospace; }
+.catalogue-sync #sync-state::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: #aaa; vertical-align: 1px; }
+.catalogue-sync #sync-state.online::before { background: #4d9b70; }
+.apartment-page .content .catalogue-sync button { padding: 4px 8px; font-size: 11px; }
 .catalogue-row { display: grid; grid-template-columns: 28px 1fr 28px; gap: 9px; align-items: center; padding: 10px 6px; border-top: 1px solid #eff1ee; }
 .swatch { width: 25px; height: 25px; border: 1px solid #555; border-radius: 4px; }
 .swatch.sofa { clip-path: polygon(0 0,100% 0,100% 100%,50% 100%,50% 60%,0 60%); }
@@ -49,6 +54,7 @@ nav:
 .stage { grid-column: 2; grid-row: 1 / 3; position: relative; min-height: 0; margin: 18px 18px 0; border: 1px solid #e5e5e5; border-radius: 10px; background: #fff; overflow: hidden; }
 .history-actions { position: absolute; top: 12px; left: 12px; z-index: 1; display: flex; gap: 4px; }
 .apartment-page .content .history-actions button { width: 28px; height: 28px; padding: 0; font-size: 17px; line-height: 1; }
+.apartment-page .content #sync-save { position: absolute; top: 12px; right: 12px; z-index: 1; padding: 5px 10px; font-size: 11px; }
 #plan-svg { width: 100%; height: 100%; display: block; touch-action: none; user-select: none; -webkit-user-select: none; }
 #plan-svg.panning, #plan-svg.panning .furniture { cursor: grabbing; }
 .stage-footer { grid-column: 2; grid-row: 3; display: flex; justify-content: space-between; gap: 15px; padding: 10px 22px 15px; color: #888; font-size: 10px; }
@@ -57,8 +63,6 @@ nav:
 #save-status:empty { display: none; }
 #plan-total, #non-plan-total, #spent-total { color: #555; white-space: nowrap; font-family: "CMU Typewriter", monospace; }
 .footer-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
-.sync-actions { display: flex; align-items: center; justify-content: flex-end; gap: 7px; flex-wrap: wrap; }
-.apartment-page .content .sync-actions button { padding: 4px 8px; font-size: 10px; }
 #sync-choice { width: min(390px, calc(100vw - 28px)); padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 12px 35px rgba(0,0,0,.15); }
 #sync-choice::backdrop { background: rgba(0,0,0,.3); }
 #sync-choice h2 { margin: 0 0 9px; font-size: 16px; }
@@ -111,7 +115,7 @@ nav:
 	.stage-panel { order: 1; display: flex; flex-direction: column; }.stage { height: 54dvh; min-height: 310px; margin: 0 8px; }
 	.stage-heading { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 13px; min-height: 40px; }
 	.catalogue-panel { order: 2; height: auto; margin: 0 8px 16px; }
-	.catalogue-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+	.catalogue-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); overflow: visible; }
 	.catalogue-row { grid-template-columns: 24px minmax(0,1fr) 28px; gap: 5px; }
 	.stage-footer { padding: 8px 12px; font-size: 9px; }
 	.selection { max-width: calc(100vw - 16px); }
@@ -129,11 +133,12 @@ nav:
 		<aside class="catalogue-panel">
 			<h1>furniture</h1>
 			<div id="catalogue" class="catalogue-list"></div>
+			<div class="catalogue-sync"><span id="sync-state" role="status">offline</span><button id="sync-login" type="button">sign in</button></div>
 		</aside>
 		<section class="stage-panel">
 			<div class="stage-heading"><strong id="plan-name"></strong><span id="plan-summary"></span></div>
-			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
-			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="placed items not yet bought, before tax, delivery, and discounts"></span><span id="non-plan-total" title="items marked plan ☐ and not yet bought in furniture.md, before tax, delivery, and discounts"></span></div><div class="footer-right"><span class="sync-actions"><span id="save-status" role="status"></span><button id="sync-login" type="button" hidden>sign in</button><button id="sync-save" type="button" hidden>save online</button></span><span id="spent-total" title="IKEA $6,035.48, Brooklinen $1,435.81, and Branch $786.89, including tax and shipping">paid · $8,258.18</span></div></div>
+			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><button id="sync-save" type="button" title="restore the last saved layout">sync</button><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
+			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="placed items not yet bought, before tax, delivery, and discounts"></span><span id="non-plan-total" title="items marked plan ☐ and not yet bought in furniture.md, before tax, delivery, and discounts"></span></div><div class="footer-right"><span id="save-status" role="status"></span><span id="spent-total" title="IKEA $6,035.48, Brooklinen $1,435.81, and Branch $786.89, including tax and shipping">paid · $8,258.18</span></div></div>
 		</section>
 	</main>
 	<div id="selection" class="selection" role="dialog" aria-label="selected furniture" hidden></div>
@@ -241,6 +246,7 @@ const undoButton = document.querySelector("#undo");
 const redoButton = document.querySelector("#redo");
 const planKey = "libertytowers_E1801";
 const syncStatus = document.querySelector("#save-status");
+const syncState = document.querySelector("#sync-state");
 const planTotal = document.querySelector("#plan-total");
 const syncLogin = document.querySelector("#sync-login");
 const syncSave = document.querySelector("#sync-save");
@@ -257,6 +263,7 @@ let popupPoint = null;
 const histories = new Map();
 let history;
 let sessionToken = null;
+let onlineReady = false;
 let onlineHash = null;
 let onlineSnapshot = null;
 let onlineRemote = null;
@@ -309,6 +316,18 @@ function validItem(item) {
 		&& (item.variant === undefined || catalogue[item.type].variants?.some(variant => variant.name === item.variant));
 }
 
+function savedLayout() {
+	try {
+		const saved = JSON.parse(localStorage.getItem(`${storageKey(planKey)}_online`));
+		if (Array.isArray(saved) && saved.every(validItem)) return saved;
+	} catch (_) { /* local storage may be unavailable */ }
+	return initialItems(planKey);
+}
+
+function rememberOnlineLayout(layout) {
+	try { localStorage.setItem(`${storageKey(planKey)}_online`, JSON.stringify(layout)); } catch (_) { /* local storage may be unavailable */ }
+}
+
 function itemSize(item) {
 	const size = catalogue[item.type];
 	return size.variants ? { ...size, ...size.variants.find(variant => variant.name === (item.variant || size.variants[0].name)) } : size;
@@ -321,7 +340,7 @@ function saveItems() {
 	} catch (_) {
 		syncStatus.textContent = "local saving unavailable, download data.json";
 	}
-	if (syncApi && sessionToken) scheduleOnlineSave();
+	if (onlineReady) scheduleOnlineSave();
 }
 
 function authRedirect() {
@@ -336,6 +355,15 @@ function authRedirect() {
 	} catch (_) { /* session storage may be unavailable */ }
 }
 
+function setOnlineState(ready) {
+	onlineReady = ready;
+	if (!ready) clearTimeout(onlineTimer);
+	syncState.textContent = ready ? "online" : "offline";
+	syncState.classList.toggle("online", ready);
+	syncLogin.textContent = sessionToken ? ready ? "sign out" : "retry" : "sign in";
+	syncSave.title = ready ? "save the current layout online" : "restore the last saved layout";
+}
+
 function disconnectOnline() {
 	clearTimeout(onlineTimer);
 	try { sessionStorage.removeItem("apt_online_session"); } catch (_) { /* session storage may be unavailable */ }
@@ -343,8 +371,7 @@ function disconnectOnline() {
 	onlineHash = null;
 	onlineSnapshot = null;
 	onlineRemote = null;
-	syncLogin.textContent = "sign in";
-	syncSave.hidden = true;
+	setOnlineState(false);
 	syncStatus.textContent = "";
 }
 
@@ -365,7 +392,7 @@ async function onlineRequest(method, body = null) {
 
 function scheduleOnlineSave(delay = 15000) {
 	clearTimeout(onlineTimer);
-	if (!sessionToken || !onlineHash || onlineRemote) return;
+	if (!onlineReady || !onlineHash || onlineRemote) return;
 	if (JSON.stringify(items) === onlineSnapshot) {
 		syncStatus.textContent = "saved online";
 		return;
@@ -389,7 +416,22 @@ function useOnlineLayout(remote) {
 	renderAll();
 }
 
+function restoreSavedLayout() {
+	const saved = savedLayout();
+	const changed = JSON.stringify(items) !== JSON.stringify(saved);
+	if (changed) {
+		items = structuredClone(saved);
+		selectedId = null;
+		popupPoint = null;
+		saveItems();
+		recordHistory();
+		renderAll();
+	}
+	syncStatus.textContent = changed ? "restored last saved layout" : "already at last saved layout";
+}
+
 function reconcileOnline(remote) {
+	rememberOnlineLayout(remote.layout);
 	const local = JSON.stringify(items);
 	const online = JSON.stringify(remote.layout);
 	if (local === online || local === JSON.stringify(initialItems(planKey))) {
@@ -411,16 +453,23 @@ function reconcileOnline(remote) {
 async function refreshOnline() {
 	if (!sessionToken) return;
 	syncStatus.textContent = "checking online layout";
-	try { reconcileOnline(await onlineRequest("GET")); }
+	try {
+		const remote = await onlineRequest("GET");
+		setOnlineState(true);
+		reconcileOnline(remote);
+	}
 	catch (error) {
 		if (error.status === 401) disconnectOnline();
-		else syncStatus.textContent = "online unavailable";
+		else {
+			setOnlineState(false);
+			syncStatus.textContent = "online unavailable";
+		}
 	}
 }
 
 async function saveOnline() {
 	clearTimeout(onlineTimer);
-	if (!sessionToken || onlineSaving) return;
+	if (!onlineReady || onlineSaving) return;
 	if (onlineRemote) {
 		if (!syncChoice.open) syncChoice.showModal();
 		return;
@@ -438,6 +487,7 @@ async function saveOnline() {
 		const result = await onlineRequest("POST", { items: JSON.parse(snapshot), base_hash: onlineHash });
 		onlineHash = result.hash;
 		onlineSnapshot = JSON.stringify(result.layout);
+		rememberOnlineLayout(result.layout);
 		syncStatus.textContent = "saved online";
 	} catch (error) {
 		if (error.status === 401) disconnectOnline();
@@ -445,8 +495,8 @@ async function saveOnline() {
 			if (error.result.layout) reconcileOnline(error.result);
 			else await refreshOnline();
 		} else {
+			setOnlineState(false);
 			syncStatus.textContent = "online save failed";
-			onlineTimer = setTimeout(() => { void saveOnline(); }, 30000);
 		}
 	} finally {
 		onlineSaving = false;
@@ -458,22 +508,22 @@ async function saveOnline() {
 function initOnline() {
 	if (!syncApi) return;
 	authRedirect();
-	syncLogin.hidden = false;
 	try { sessionToken = sessionStorage.getItem("apt_online_session"); } catch (_) { /* session storage may be unavailable */ }
+	setOnlineState(false);
 	if (!sessionToken) return;
-	syncLogin.textContent = "disconnect";
-	syncSave.hidden = false;
 	void refreshOnline();
 }
 
 syncLogin.addEventListener("click", () => {
-	if (sessionToken) return disconnectOnline();
+	if (sessionToken) return onlineReady ? disconnectOnline() : void refreshOnline();
 	const bytes = crypto.getRandomValues(new Uint8Array(16));
 	const nonce = Array.from(bytes, byte => byte.toString(16).padStart(2, "0")).join("");
 	try { sessionStorage.setItem("apt_auth_nonce", nonce); } catch (_) { syncStatus.textContent = "browser session storage is required for login"; return; }
 	location.assign(`${syncApi}/auth/start?origin=${encodeURIComponent(location.origin)}&nonce=${nonce}`);
 });
-syncSave.addEventListener("click", () => { void saveOnline(); });
+syncSave.addEventListener("click", () => { if (onlineReady) void saveOnline(); else restoreSavedLayout(); });
+window.addEventListener("offline", () => { if (sessionToken) setOnlineState(false); });
+window.addEventListener("online", () => { if (sessionToken && !onlineReady) void refreshOnline(); });
 syncChoice.addEventListener("click", event => {
 	const button = event.target.closest("[data-sync-choice]");
 	if (!button) return;
