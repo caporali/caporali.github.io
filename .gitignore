@@ -14,4 +14,3 @@
 # local
 /.trash
 *.pem
-files/apt/sync/sync_test.js

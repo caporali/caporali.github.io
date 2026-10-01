@@ -5,7 +5,6 @@ permalink: /apt.html
 author_name: '\caporali'
 body_class: apartment-page
 show_footer: false
-header_download: true
 apple_touch_icon: "/files/images/apt_icon.png"
 apple_mobile_app: true
 nav:
@@ -32,7 +31,7 @@ nav:
 .catalogue-panel { grid-column: 1; grid-row: 2; display: flex; flex-direction: column; min-width: 0; min-height: 0; margin: 0 0 0 18px; overflow: hidden; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; }
 .catalogue-panel h1 { margin: 0; padding: 21px 19px 15px; font-size: 14px; }
 .catalogue-list { flex: 1; min-height: 0; overflow: auto; padding: 0 12px 18px; }
-.catalogue-sync { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid #e5e5e5; font-size: 11px; }
+.catalogue-sync { grid-column: 1; grid-row: 3; display: flex; align-items: center; gap: 8px; margin-left: 18px; padding: 10px 0 15px; font-size: 11px; }
 .catalogue-sync #sync-state { flex: 1; font-family: "CMU Typewriter", monospace; }
 .catalogue-sync #sync-state::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: #aaa; vertical-align: 1px; }
 .catalogue-sync #sync-state.online::before { background: #4d9b70; }
@@ -89,8 +88,17 @@ nav:
 .drawer-clearance { pointer-events: none; }
 .drawer-clearance rect { fill: rgba(213, 149, 96, .18); stroke: #bb7951; stroke-width: 1.5; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; }
 .document-page { min-height: calc(100dvh - 42px); background: #fff; }
+.document-tools { display: flex; align-items: center; gap: 8px; max-width: 1100px; margin: 0 auto; padding: 20px 32px 0; font-size: 11px; }
+.document-tools #document-state { font-family: "CMU Typewriter", monospace; }
+.document-tools #document-state::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: #aaa; vertical-align: 1px; }
+.document-tools #document-state.online::before { background: #4d9b70; }
+.document-tools #document-status { flex: 1; color: #777; }
+.apartment-page .content .document-tools button { padding: 5px 9px; font-size: 11px; }
+.document-source { display: block; width: calc(100% - 64px); max-width: 1100px; min-height: calc(100dvh - 180px); margin: 20px auto 32px; padding: 16px; border: 1px solid #ddd; border-radius: 7px; font-family: "CMU Typewriter", monospace; font-size: 12px; line-height: 1.5; resize: vertical; }
+.document-source[hidden] { display: none; }
 .markdown { max-width: 1100px; margin: 0 auto; padding: 32px; font-size: 13px; line-height: 1.55; }
 .info-view .markdown { max-width: 760px; }
+.info-view .document-tools, .info-view .document-source { max-width: 760px; }
 .info-view .md-row span:first-child { width: 34%; }
 .markdown h1, .markdown h2, .markdown h3 { line-height: 1.25; margin: 1.2em 0 .55em; }
 .markdown h1:first-child { margin-top: 0; }
@@ -115,11 +123,15 @@ nav:
 	.stage-panel { order: 1; display: flex; flex-direction: column; }.stage { height: 54dvh; min-height: 310px; margin: 0 8px; }
 	.stage-heading { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 13px; min-height: 40px; }
 	.catalogue-panel { order: 2; height: auto; margin: 0 8px 16px; }
+	.catalogue-sync { order: 3; margin: -8px 8px 16px; padding: 0 5px; }
 	.catalogue-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); overflow: visible; }
 	.catalogue-row { grid-template-columns: 24px minmax(0,1fr) 28px; gap: 5px; }
 	.stage-footer { padding: 8px 12px; font-size: 9px; }
 	.selection { max-width: calc(100vw - 16px); }
 	.markdown { padding: 16px; }
+	.document-tools { flex-wrap: wrap; padding: 12px 16px 0; }
+	.document-tools #document-status { flex-basis: 100%; order: 1; }
+	.document-source { width: calc(100% - 32px); min-height: 60dvh; margin-top: 16px; }
 	.document-page .markdown { overflow-x: auto; }.furniture-table { min-width: 800px; }
 	.info-view .markdown { overflow-x: visible; }
 	.info-view .md-table { table-layout: fixed; }
@@ -133,8 +145,8 @@ nav:
 		<aside class="catalogue-panel">
 			<h1>furniture</h1>
 			<div id="catalogue" class="catalogue-list"></div>
-			<div class="catalogue-sync"><span id="sync-state" role="status">offline</span><button id="sync-login" type="button">sign in</button></div>
 		</aside>
+		<div class="catalogue-sync"><span id="sync-state" role="status">offline</span><button id="sync-login" type="button">sign in</button></div>
 		<section class="stage-panel">
 			<div class="stage-heading"><strong id="plan-name"></strong><span id="plan-summary"></span></div>
 			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><button id="sync-save" type="button" title="restore the last saved layout">sync</button><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
@@ -144,7 +156,11 @@ nav:
 	<div id="selection" class="selection" role="dialog" aria-label="selected furniture" hidden></div>
 	<dialog id="sync-choice"><h2>two layouts found</h2><p>this browser has a local draft that differs from the layout on github. choose which version to use.</p><div class="sync-choice-actions"><button type="button" data-sync-choice="local">keep local draft</button><button type="button" data-sync-choice="online">load online layout</button><button type="button" data-sync-choice="later">decide later</button></div></dialog>
 </div>
-<main id="document-view" class="document-page" hidden><article id="document-preview" class="markdown"></article></main>
+<main id="document-view" class="document-page" hidden>
+	<div class="document-tools"><span id="document-state" role="status">offline</span><button id="document-login" type="button">sign in</button><span id="document-status" role="status"></span><button id="document-edit" type="button">edit text</button><button id="document-save" type="button" hidden>save online</button></div>
+	<article id="document-preview" class="markdown"></article>
+	<textarea id="document-source" class="document-source" aria-label="markdown source" spellcheck="false" hidden></textarea>
+</main>
 <script type="module">
 
 const escapeHtml = value => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
@@ -204,10 +220,39 @@ function renderMarkdown(source) {
 
 const requestedView = new URLSearchParams(location.search).get("view");
 const view = ["furniture", "info"].includes(requestedView) ? requestedView : "plan";
+const syncApi = "https://api.apt-save.workers.dev";
+
+function authRedirect() {
+	const params = new URLSearchParams(location.hash.slice(1));
+	const token = params.get("apt_session");
+	if (!token) return;
+	window.history.replaceState(null, "", location.pathname + location.search);
+	try {
+		const nonce = sessionStorage.getItem("apt_auth_nonce");
+		sessionStorage.removeItem("apt_auth_nonce");
+		if (nonce && nonce === params.get("apt_nonce")) sessionStorage.setItem("apt_online_session", token);
+	} catch (_) { /* session storage may be unavailable */ }
+}
+
+function beginLogin() {
+	const bytes = crypto.getRandomValues(new Uint8Array(16));
+	const nonce = Array.from(bytes, byte => byte.toString(16).padStart(2, "0")).join("");
+	try { sessionStorage.setItem("apt_auth_nonce", nonce); } catch (_) { return false; }
+	location.assign(`${syncApi}/auth/start?origin=${encodeURIComponent(location.origin)}&nonce=${nonce}&view=${view}`);
+	return true;
+}
+
+function clearSession() {
+	try { sessionStorage.removeItem("apt_online_session"); } catch (_) { /* session storage may be unavailable */ }
+	sessionToken = null;
+}
+
+authRedirect();
+let sessionToken = null;
+try { sessionToken = sessionStorage.getItem("apt_online_session"); } catch (_) { /* session storage may be unavailable */ }
 document.querySelector("#plan-view").hidden = view !== "plan";
 document.querySelector("#document-view").hidden = view === "plan";
 document.querySelector("#document-view").classList.toggle("info-view", view === "info");
-document.querySelector("#export-item").hidden = view !== "plan";
 document.querySelectorAll("#navlist a").forEach(link => {
 	if (new URL(link.href).searchParams.get("view") === view) link.setAttribute("aria-current", "page");
 });
@@ -224,11 +269,11 @@ const nonPlanTotal = furnitureRows
 	.filter(row => /^\|\s*☐\s*\|\s*☐\s*\|/.test(row))
 	.reduce((sum, row) => {
 		const cells = row.split("|").map(cell => cell.trim());
-		return sum + Number(cells[4]) * Number(cells[5].replaceAll(",", "").match(/\$([\d.]+)/)[1]);
+		const price = cells[5]?.replaceAll(",", "").match(/\$([\d.]+)/);
+		return sum + (price && Number.isFinite(Number(cells[4])) ? Number(cells[4]) * Number(price[1]) : 0);
 	}, 0);
 const formatPrice = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 document.querySelector("#non-plan-total").textContent = `not on plan · ${formatPrice.format(nonPlanTotal)}`;
-const syncApi = "https://api.apt-save.workers.dev";
 const catalogue = Object.fromEntries(data.catalogue.map(item => [item.name, item]));
 const colors = {
 	bed: "#a7c8d0", dresser: "#a7c8d0", nightstand: "#a7c8d0", desk: "#b9d1ae",
@@ -262,7 +307,6 @@ let view;
 let popupPoint = null;
 const histories = new Map();
 let history;
-let sessionToken = null;
 let onlineReady = false;
 let onlineHash = null;
 let onlineSnapshot = null;
@@ -338,21 +382,9 @@ function saveItems() {
 		localStorage.setItem(storageKey(planKey), JSON.stringify(items));
 		syncStatus.textContent = "";
 	} catch (_) {
-		syncStatus.textContent = "local saving unavailable, download data.json";
+		syncStatus.textContent = "local saving unavailable";
 	}
 	if (onlineReady) scheduleOnlineSave();
-}
-
-function authRedirect() {
-	const params = new URLSearchParams(location.hash.slice(1));
-	const token = params.get("apt_session");
-	if (!token) return;
-	window.history.replaceState(null, "", location.pathname + location.search);
-	try {
-		const nonce = sessionStorage.getItem("apt_auth_nonce");
-		sessionStorage.removeItem("apt_auth_nonce");
-		if (nonce && nonce === params.get("apt_nonce")) sessionStorage.setItem("apt_online_session", token);
-	} catch (_) { /* session storage may be unavailable */ }
 }
 
 function setOnlineState(ready) {
@@ -366,8 +398,7 @@ function setOnlineState(ready) {
 
 function disconnectOnline() {
 	clearTimeout(onlineTimer);
-	try { sessionStorage.removeItem("apt_online_session"); } catch (_) { /* session storage may be unavailable */ }
-	sessionToken = null;
+	clearSession();
 	onlineHash = null;
 	onlineSnapshot = null;
 	onlineRemote = null;
@@ -394,7 +425,7 @@ function scheduleOnlineSave(delay = 15000) {
 	clearTimeout(onlineTimer);
 	if (!onlineReady || !onlineHash || onlineRemote) return;
 	if (JSON.stringify(items) === onlineSnapshot) {
-		syncStatus.textContent = "saved online";
+		syncStatus.textContent = "";
 		return;
 	}
 	syncStatus.textContent = "online pending";
@@ -440,7 +471,7 @@ function reconcileOnline(remote) {
 			onlineHash = remote.hash;
 			onlineSnapshot = online;
 			onlineRemote = null;
-			syncStatus.textContent = "saved online";
+			syncStatus.textContent = "";
 		}
 		return;
 	}
@@ -476,7 +507,7 @@ async function saveOnline() {
 	}
 	if (!onlineHash) return refreshOnline();
 	if (JSON.stringify(items) === onlineSnapshot) {
-		syncStatus.textContent = "saved online";
+		syncStatus.textContent = "";
 		return;
 	}
 	const snapshot = JSON.stringify(items);
@@ -488,7 +519,7 @@ async function saveOnline() {
 		onlineHash = result.hash;
 		onlineSnapshot = JSON.stringify(result.layout);
 		rememberOnlineLayout(result.layout);
-		syncStatus.textContent = "saved online";
+		syncStatus.textContent = "";
 	} catch (error) {
 		if (error.status === 401) disconnectOnline();
 		else if (error.status === 409) {
@@ -506,9 +537,6 @@ async function saveOnline() {
 }
 
 function initOnline() {
-	if (!syncApi) return;
-	authRedirect();
-	try { sessionToken = sessionStorage.getItem("apt_online_session"); } catch (_) { /* session storage may be unavailable */ }
 	setOnlineState(false);
 	if (!sessionToken) return;
 	void refreshOnline();
@@ -516,10 +544,7 @@ function initOnline() {
 
 syncLogin.addEventListener("click", () => {
 	if (sessionToken) return onlineReady ? disconnectOnline() : void refreshOnline();
-	const bytes = crypto.getRandomValues(new Uint8Array(16));
-	const nonce = Array.from(bytes, byte => byte.toString(16).padStart(2, "0")).join("");
-	try { sessionStorage.setItem("apt_auth_nonce", nonce); } catch (_) { syncStatus.textContent = "browser session storage is required for login"; return; }
-	location.assign(`${syncApi}/auth/start?origin=${encodeURIComponent(location.origin)}&nonce=${nonce}`);
+	if (!beginLogin()) syncStatus.textContent = "browser session storage is required for login";
 });
 syncSave.addEventListener("click", () => { if (onlineReady) void saveOnline(); else restoreSavedLayout(); });
 window.addEventListener("offline", () => { if (sessionToken) setOnlineState(false); });
@@ -731,21 +756,6 @@ function renderAll() {
 	planTotal.textContent = `placed · ${formatPrice.format(total)}`;
 }
 
-function exportData() {
-	const keys = Object.keys(data.plans);
-	const payload = {
-		...data,
-		updated_at: new Date().toLocaleString("sv-SE", { timeZone: "America/New_York" }).replace(" ", "T") + " America/New_York",
-		layouts: Object.fromEntries(keys.map(key => [key, key === planKey ? items : loadItems(key)])),
-	};
-	const link = document.createElement("a");
-	link.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2) + "\n"], { type: "application/json" }));
-	link.download = "data.json";
-	link.click();
-	setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-	return payload;
-}
-
 function addItem(type) {
 	const size = catalogue[type];
 	if (items.filter(item => item.type === type).length >= size.count) return;
@@ -770,7 +780,6 @@ function changeSelected(mutator) {
 
 undoButton.addEventListener("click", () => stepHistory(-1));
 redoButton.addEventListener("click", () => stepHistory(1));
-document.querySelector("#export-data").addEventListener("click", event => { event.preventDefault(); exportData(); });
 cataloguePanel.addEventListener("click", event => {
 	const button = event.target.closest("[data-add]");
 	if (button) addItem(button.dataset.add);
@@ -940,12 +949,161 @@ initOnline();
 } else {
 	const name = `${view}.md`;
 	const preview = document.querySelector("#document-preview");
+	const source = document.querySelector("#document-source");
+	const state = document.querySelector("#document-state");
+	const status = document.querySelector("#document-status");
+	const login = document.querySelector("#document-login");
+	const edit = document.querySelector("#document-edit");
+	const save = document.querySelector("#document-save");
+	const draftKey = `apartment_doc_draft_${view}`;
+	let baseText = "";
+	let remoteText = null;
+	let remoteSha = null;
+	let documentOnline = false;
+	let saving = false;
+
+	function setDocumentOnline(ready) {
+		documentOnline = ready;
+		state.textContent = ready ? "online" : "offline";
+		state.classList.toggle("online", ready);
+		login.textContent = sessionToken ? ready ? "sign out" : "retry" : "sign in";
+		save.disabled = !ready || saving;
+	}
+
+	function readDraft() {
+		try {
+			const draft = JSON.parse(localStorage.getItem(draftKey));
+			if (typeof draft?.base === "string" && typeof draft.text === "string") return draft;
+		} catch (_) { /* local storage may be unavailable */ }
+		return null;
+	}
+
+	function storeDraft() {
+		try {
+			if (source.value === baseText) localStorage.removeItem(draftKey);
+			else localStorage.setItem(draftKey, JSON.stringify({ base: baseText, text: source.value }));
+		} catch (_) { status.textContent = "local draft storage unavailable"; }
+	}
+
+	function showEditor(editing) {
+		preview.hidden = editing;
+		source.hidden = !editing;
+		save.hidden = !editing;
+		edit.textContent = editing ? "preview" : "edit text";
+		if (!editing) preview.innerHTML = renderMarkdown(source.value);
+	}
+
+	async function documentRequest(method, body = null) {
+		const response = await fetch(`${syncApi}/api/document?name=${view}`, { method, cache: "no-store", headers: {
+			Authorization: `Bearer ${sessionToken}`, ...(body ? { "Content-Type": "application/json" } : {}),
+		}, ...(body ? { body: JSON.stringify(body) } : {}) });
+		const result = await response.json();
+		if (!response.ok) {
+			const error = new Error(result.error || "online document unavailable");
+			error.status = response.status;
+			error.result = result;
+			throw error;
+		}
+		return result;
+	}
+
+	async function refreshDocument() {
+		if (!sessionToken) return;
+		status.textContent = "checking online document";
+		try {
+			const remote = await documentRequest("GET");
+			remoteText = remote.text;
+			remoteSha = remote.sha;
+			const draft = readDraft();
+			if (draft && draft.text !== remote.text) {
+				baseText = draft.base;
+				source.value = draft.text;
+				showEditor(true);
+				status.textContent = "local draft";
+			} else {
+				baseText = remote.text;
+				source.value = remote.text;
+				storeDraft();
+				if (preview.hidden) showEditor(false);
+				else preview.innerHTML = renderMarkdown(remote.text);
+				status.textContent = "";
+			}
+			setDocumentOnline(true);
+		} catch (error) {
+			if (error.status === 401) clearSession();
+			setDocumentOnline(false);
+			status.textContent = error.status === 401 ? "sign in again" : "online unavailable";
+		}
+	}
+
+	async function saveDocument() {
+		if (!documentOnline || saving) return;
+		if (baseText !== remoteText && source.value !== remoteText) {
+			if (!window.confirm("the online document changed since this draft began. replace the online version with your draft?")) return;
+			baseText = remoteText;
+			storeDraft();
+		}
+		saving = true;
+		save.disabled = true;
+		status.textContent = "saving online";
+		try {
+			const snapshot = source.value;
+			const result = await documentRequest("POST", { text: snapshot, base_sha: remoteSha });
+			remoteText = result.text;
+			remoteSha = result.sha;
+			baseText = result.text;
+			storeDraft();
+			status.textContent = source.value === snapshot ? "saved online" : "local draft";
+		} catch (error) {
+			if (error.status === 401) {
+				clearSession();
+				setDocumentOnline(false);
+				status.textContent = "sign in again";
+			} else if (error.status === 409) {
+				if (error.result.sha) {
+					remoteText = error.result.text;
+					remoteSha = error.result.sha;
+				} else await refreshDocument();
+				status.textContent = "online changed, review and save again";
+			} else {
+				setDocumentOnline(false);
+				status.textContent = "online save failed";
+			}
+		} finally {
+			saving = false;
+			save.disabled = !documentOnline;
+		}
+	}
+
 	try {
 		const response = await fetch(`/files/apt/markdown/${name}`, { cache: "no-store" });
 		if (!response.ok) throw new Error(`http ${response.status}`);
-		preview.innerHTML = renderMarkdown(await response.text());
+		baseText = await response.text();
+		const draft = readDraft();
+		if (draft && draft.text !== draft.base) {
+			baseText = draft.base;
+			source.value = draft.text;
+			showEditor(true);
+			status.textContent = "local draft";
+		} else source.value = baseText;
+		preview.innerHTML = renderMarkdown(source.value);
 	} catch (_) {
 		preview.textContent = `could not load ${name}`;
 	}
+	setDocumentOnline(false);
+	if (sessionToken) void refreshDocument();
+	login.addEventListener("click", () => {
+		if (sessionToken) {
+			if (!documentOnline) return void refreshDocument();
+			clearSession();
+			setDocumentOnline(false);
+			status.textContent = "";
+		} else if (!beginLogin()) status.textContent = "browser session storage is required for login";
+	});
+	edit.addEventListener("click", () => showEditor(source.hidden));
+	source.addEventListener("input", () => { storeDraft(); status.textContent = "local draft"; });
+	save.addEventListener("click", () => { void saveDocument(); });
+	window.addEventListener("offline", () => { if (sessionToken) setDocumentOnline(false); });
+	window.addEventListener("online", () => { if (sessionToken && !documentOnline) void refreshDocument(); });
 }
 </script>

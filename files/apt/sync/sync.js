@@ -11,6 +11,8 @@ const settings = {
 };
 const planKey = "libertytowers_E1801";
 const filePath = "files/apt/data.json";
+const documentPaths = { furniture: "files/apt/markdown/furniture.md", info: "files/apt/markdown/info.md" };
+const sessionLifetime = 30 * 60;
 const apiVersion = "2026-03-10";
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
@@ -48,7 +50,7 @@ async function digest(value) {
 	return base64url(new Uint8Array(await crypto.subtle.digest("SHA-256", encoder.encode(value))));
 }
 
-export async function layoutHash(items) {
+async function layoutHash(items) {
 	return digest(JSON.stringify(items));
 }
 
@@ -65,10 +67,22 @@ function requireConfig(env, names) {
 	if (names.some(name => !env[name])) throw new HttpError(503, "online saving is not configured");
 }
 
-function authCookie(request) {
+async function signAuthCookie(value, env) {
+	const body = base64url(encoder.encode(JSON.stringify(value)));
+	const key = await crypto.subtle.importKey("raw", encoder.encode(env.SESSION_SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+	const signature = base64url(new Uint8Array(await crypto.subtle.sign("HMAC", key, encoder.encode(body))));
+	return `${body}.${signature}`;
+}
+
+async function authCookie(request, env) {
 	const value = request.headers.get("Cookie")?.match(/(?:^|;\s*)apt_oauth=([^;]+)/)?.[1];
 	if (!value) throw new HttpError(400, "login session expired");
-	try { return JSON.parse(decoder.decode(unbase64url(value))); }
+	try {
+		const [body, signature] = value.split(".");
+		const key = await crypto.subtle.importKey("raw", encoder.encode(env.SESSION_SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["verify"]);
+		if (!await crypto.subtle.verify("HMAC", key, unbase64url(signature), encoder.encode(body))) throw new Error("invalid signature");
+		return JSON.parse(decoder.decode(unbase64url(body)));
+	}
 	catch { throw new HttpError(400, "invalid login session"); }
 }
 
@@ -79,20 +93,24 @@ function cookieHeader(value, secure) {
 async function signSession(env) {
 	const now = Math.floor(Date.now() / 1000);
 	const header = base64url(encoder.encode(JSON.stringify({ alg: "HS256", typ: "JWT" })));
-	const payload = base64url(encoder.encode(JSON.stringify({ sub: String(env.GITHUB_USER_ID), aud: env.SITE_ORIGIN, iat: now, exp: now + 8 * 3600 })));
+	const payload = base64url(encoder.encode(JSON.stringify({ sub: String(env.GITHUB_USER_ID), aud: env.SITE_ORIGIN,
+		iss: env.API_ORIGIN, iat: now, exp: now + sessionLifetime })));
 	const key = await crypto.subtle.importKey("raw", encoder.encode(env.SESSION_SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
 	const body = `${header}.${payload}`;
 	const signature = base64url(new Uint8Array(await crypto.subtle.sign("HMAC", key, encoder.encode(body))));
 	return `${body}.${signature}`;
 }
 
-export async function verifySession(token, env) {
+async function verifySession(token, env) {
 	try {
 		const parts = token.split(".");
 		if (parts.length !== 3) return false;
 		const header = JSON.parse(decoder.decode(unbase64url(parts[0])));
 		const payload = JSON.parse(decoder.decode(unbase64url(parts[1])));
-		if (header.alg !== "HS256" || payload.sub !== String(env.GITHUB_USER_ID) || payload.aud !== env.SITE_ORIGIN || payload.exp <= Date.now() / 1000) return false;
+		const now = Math.floor(Date.now() / 1000);
+		if (header.alg !== "HS256" || payload.sub !== String(env.GITHUB_USER_ID) || payload.aud !== env.SITE_ORIGIN
+			|| payload.iss !== env.API_ORIGIN || !Number.isInteger(payload.iat) || !Number.isInteger(payload.exp)
+			|| payload.iat > now + 60 || payload.exp <= now || payload.exp - payload.iat > sessionLifetime) return false;
 		const key = await crypto.subtle.importKey("raw", encoder.encode(env.SESSION_SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["verify"]);
 		return crypto.subtle.verify("HMAC", key, unbase64url(parts[2]), encoder.encode(`${parts[0]}.${parts[1]}`));
 	} catch { return false; }
@@ -102,10 +120,12 @@ async function startAuth(request, env) {
 	requireConfig(env, ["SITE_ORIGIN", "API_ORIGIN", "GITHUB_CLIENT_ID", "GITHUB_USER_ID", "SESSION_SECRET"]);
 	const url = new URL(request.url);
 	const nonce = url.searchParams.get("nonce");
-	if (url.searchParams.get("origin") !== env.SITE_ORIGIN || !nonce || !/^[A-Za-z0-9_-]{20,128}$/.test(nonce)) throw new HttpError(400, "invalid login request");
+	const view = url.searchParams.get("view") || "plan";
+	if (url.searchParams.get("origin") !== env.SITE_ORIGIN || !nonce || !/^[A-Za-z0-9_-]{20,128}$/.test(nonce)
+		|| !["plan", "furniture", "info"].includes(view)) throw new HttpError(400, "invalid login request");
 	const state = randomValue();
 	const verifier = randomValue();
-	const cookie = base64url(encoder.encode(JSON.stringify({ state, verifier, nonce, created: Date.now() })));
+	const cookie = await signAuthCookie({ state, verifier, nonce, view, created: Date.now() }, env);
 	const authorize = new URL("https://github.com/login/oauth/authorize");
 	authorize.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
 	authorize.searchParams.set("redirect_uri", `${env.API_ORIGIN}/auth/callback`);
@@ -118,8 +138,9 @@ async function startAuth(request, env) {
 async function finishAuth(request, env) {
 	requireConfig(env, ["SITE_ORIGIN", "API_ORIGIN", "GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET", "GITHUB_USER_ID", "SESSION_SECRET"]);
 	const url = new URL(request.url);
-	const saved = authCookie(request);
-	if (saved.state !== url.searchParams.get("state") || Date.now() - saved.created > 600000 || !url.searchParams.get("code")) throw new HttpError(400, "invalid login callback");
+	const saved = await authCookie(request, env);
+	if (saved.state !== url.searchParams.get("state") || !Number.isInteger(saved.created)
+		|| saved.created > Date.now() + 60000 || Date.now() - saved.created > 600000 || !url.searchParams.get("code")) throw new HttpError(400, "invalid login callback");
 	const form = new URLSearchParams({ client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET,
 		code: url.searchParams.get("code"), redirect_uri: `${env.API_ORIGIN}/auth/callback`, code_verifier: saved.verifier });
 	const exchange = await fetch("https://github.com/login/oauth/access_token", { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/x-www-form-urlencoded" }, body: form });
@@ -130,7 +151,8 @@ async function finishAuth(request, env) {
 	if (!profile.ok) throw new HttpError(502, "could not verify github account");
 	const user = await profile.json();
 	if (String(user.id) !== String(env.GITHUB_USER_ID)) throw new HttpError(403, "this github account cannot edit the apartment plan");
-	const destination = new URL("/apt.html?view=plan", env.SITE_ORIGIN);
+	const view = ["plan", "furniture", "info"].includes(saved.view) ? saved.view : "plan";
+	const destination = new URL(`/apt.html?view=${view}`, env.SITE_ORIGIN);
 	destination.hash = new URLSearchParams({ apt_session: await signSession(env), apt_nonce: saved.nonce }).toString();
 	return new Response(null, { status: 302, headers: { Location: destination.href, "Set-Cookie": cookieHeader("", url.protocol === "https:").replace("Max-Age=600", "Max-Age=0"), "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" } });
 }
@@ -152,13 +174,18 @@ async function appToken(env) {
 	return (await response.json()).token;
 }
 
-async function githubFile(env, token) {
-	const url = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${filePath}?ref=${encodeURIComponent(env.GITHUB_BRANCH)}`;
+async function githubContent(env, token, path) {
+	const url = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}?ref=${encodeURIComponent(env.GITHUB_BRANCH)}`;
 	const response = await fetch(url, { headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token}`, "User-Agent": "caporali-apt-save", "X-GitHub-Api-Version": apiVersion } });
-	if (!response.ok) throw new HttpError(502, "could not read data.json from github");
+	if (!response.ok) throw new HttpError(502, "could not read file from github");
 	const file = await response.json();
 	if (file.encoding !== "base64" || !file.sha) throw new HttpError(502, "unexpected github file response");
-	return { sha: file.sha, data: JSON.parse(decoder.decode(unbase64(file.content))) };
+	return { sha: file.sha, text: decoder.decode(unbase64(file.content)) };
+}
+
+async function githubFile(env, token) {
+	const file = await githubContent(env, token, filePath);
+	return { sha: file.sha, data: JSON.parse(file.text) };
 }
 
 function validateItems(items, data) {
@@ -178,7 +205,7 @@ function validateItems(items, data) {
 	});
 }
 
-export async function mergeLayout(data, items, baseHash, now = new Date()) {
+async function mergeLayout(data, items, baseHash, now = new Date()) {
 	if (!data.layouts?.[planKey] || !data.plans?.[planKey]) throw new HttpError(502, "apartment layout is missing");
 	const currentHash = await layoutHash(data.layouts[planKey]);
 	if (baseHash !== currentHash) return { conflict: true, layout: data.layouts[planKey], hash: currentHash, updated_at: data.updated_at };
@@ -189,15 +216,28 @@ export async function mergeLayout(data, items, baseHash, now = new Date()) {
 	return { updated, layout: next, hash: await layoutHash(next), updated_at: updated.updated_at };
 }
 
-async function handleLayout(request, env) {
+function requestOrigin(request, env) {
 	const origin = request.headers.get("Origin");
 	if (origin !== env.SITE_ORIGIN) throw new HttpError(403, "origin is not allowed");
-	if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: { "Access-Control-Allow-Origin": origin,
+	return origin;
+}
+
+function preflight(origin) {
+	return new Response(null, { status: 204, headers: { "Access-Control-Allow-Origin": origin,
 		"Access-Control-Allow-Methods": "GET, POST, OPTIONS", "Access-Control-Allow-Headers": "Authorization, Content-Type", "Access-Control-Max-Age": "600", Vary: "Origin" } });
-	requireConfig(env, ["SITE_ORIGIN", "GITHUB_USER_ID", "SESSION_SECRET", "GITHUB_OWNER", "GITHUB_REPO", "GITHUB_BRANCH"]);
+}
+
+async function authorizedToken(request, env) {
+	requireConfig(env, ["SITE_ORIGIN", "API_ORIGIN", "GITHUB_USER_ID", "SESSION_SECRET", "GITHUB_OWNER", "GITHUB_REPO", "GITHUB_BRANCH"]);
 	const bearer = request.headers.get("Authorization")?.match(/^Bearer (.+)$/)?.[1];
 	if (!bearer || !await verifySession(bearer, env)) throw new HttpError(401, "sign in again to save online");
-	const token = await appToken(env);
+	return appToken(env);
+}
+
+async function handleLayout(request, env) {
+	const origin = requestOrigin(request, env);
+	if (request.method === "OPTIONS") return preflight(origin);
+	const token = await authorizedToken(request, env);
 	const file = await githubFile(env, token);
 	const layout = file.data.layouts?.[planKey];
 	if (!Array.isArray(layout)) throw new HttpError(502, "apartment layout is missing");
@@ -221,6 +261,34 @@ async function handleLayout(request, env) {
 	return json({ saved: true, hash: result.hash, layout: result.layout, updated_at: result.updated_at, commit: commit?.html_url }, 200, origin);
 }
 
+async function handleDocument(request, env) {
+	const origin = requestOrigin(request, env);
+	if (request.method === "OPTIONS") return preflight(origin);
+	const name = new URL(request.url).searchParams.get("name");
+	if (!Object.hasOwn(documentPaths, name)) throw new HttpError(404, "document not found");
+	if (!["GET", "POST"].includes(request.method)) throw new HttpError(405, "method not allowed");
+	const path = documentPaths[name];
+	const token = await authorizedToken(request, env);
+	const file = await githubContent(env, token, path);
+	if (request.method === "GET") return json(file, 200, origin);
+	const raw = await request.text();
+	if (raw.length > 250000) throw new HttpError(413, "document is too large");
+	let body;
+	try { body = JSON.parse(raw); } catch { throw new HttpError(400, "invalid json"); }
+	if (typeof body?.text !== "string" || !body.text.length || body.text.length > 200000 || body.text.includes("\0")
+		|| !/^[0-9a-f]{40}$/.test(body.base_sha)) throw new HttpError(400, "invalid document");
+	if (body.base_sha !== file.sha) return json({ error: "conflict", ...file }, 409, origin);
+	if (body.text === file.text) return json({ saved: true, ...file }, 200, origin);
+	const url = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}`;
+	const response = await fetch(url, { method: "PUT", headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token}`, "User-Agent": "caporali-apt-save",
+		"Content-Type": "application/json", "X-GitHub-Api-Version": apiVersion }, body: JSON.stringify({ message: `update apartment ${name}.md`,
+		content: base64(encoder.encode(body.text)), sha: file.sha, branch: env.GITHUB_BRANCH }) });
+	if (response.status === 409 || response.status === 422) return json({ error: "conflict", message: "the document changed during saving" }, 409, origin);
+	if (!response.ok) throw new HttpError(502, "github could not save the document");
+	const saved = await response.json();
+	return json({ saved: true, text: body.text, sha: saved.content?.sha, commit: saved.commit?.html_url }, 200, origin);
+}
+
 export default {
 	async fetch(request, bindings) {
 		const env = { ...settings, ...bindings };
@@ -230,6 +298,7 @@ export default {
 			if (path === "/auth/start" && request.method === "GET") return await startAuth(request, env);
 			if (path === "/auth/callback" && request.method === "GET") return await finishAuth(request, env);
 			if (path === "/api/layout") return await handleLayout(request, env);
+			if (path === "/api/document") return await handleDocument(request, env);
 			throw new HttpError(404, "not found");
 		} catch (error) {
 			const origin = request.headers.get("Origin") === env.SITE_ORIGIN ? env.SITE_ORIGIN : null;
