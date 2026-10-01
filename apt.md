@@ -37,9 +37,8 @@ nav:
 .swatch.sofa { clip-path: polygon(0 0,100% 0,100% 100%,50% 100%,50% 60%,0 60%); }
 .swatch.sofa.left { clip-path: polygon(0 0,100% 0,100% 60%,50% 60%,50% 100%,0 100%); }
 .swatch.sofa.straight { clip-path: none; }
-.swatch.desk_chair, .swatch.night_lamp { border-radius: 50%; }
+.swatch.desk_chair, .swatch.dining_chair, .swatch.night_lamp, .swatch.mouse { border-radius: 50%; }
 .swatch.dining_table { border-radius: 8px; }
-.swatch.dining_table.round { border-radius: 50%; }
 .catalogue-title { font-family: "CMU Typewriter", monospace; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .catalogue-sub { color: #888; font-size: 10px; margin-top: 3px; }
 .apartment-page .content .add-button { display: grid; place-items: center; padding: 0; width: 27px; height: 27px; font-size: 18px; line-height: 1; }
@@ -54,6 +53,14 @@ nav:
 #plan-svg.panning, #plan-svg.panning .furniture { cursor: grabbing; }
 .stage-footer { grid-column: 2; grid-row: 3; display: flex; justify-content: space-between; gap: 15px; padding: 10px 22px 15px; color: #888; font-size: 10px; }
 #save-status { white-space: nowrap; }
+#plan-total { color: #555; white-space: nowrap; font-family: "CMU Typewriter", monospace; }
+.sync-actions { display: flex; align-items: center; justify-content: flex-end; gap: 7px; flex-wrap: wrap; }
+.apartment-page .content .sync-actions button { padding: 4px 8px; font-size: 10px; }
+#sync-choice { width: min(390px, calc(100vw - 28px)); padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 12px 35px rgba(0,0,0,.15); }
+#sync-choice::backdrop { background: rgba(0,0,0,.3); }
+#sync-choice h2 { margin: 0 0 9px; font-size: 16px; }
+#sync-choice p { margin: 0 0 16px; font-size: 12px; }
+#sync-choice .sync-choice-actions { display: flex; gap: 7px; flex-wrap: wrap; }
 .selection { position: fixed; z-index: 10; width: 218px; padding: 13px; background: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.12); }
 .selection[hidden] { display: none; }
 .selected-name { font-family: "CMU Typewriter", monospace; font-size: 13px; font-weight: 700; }
@@ -86,10 +93,10 @@ nav:
 .markdown a { color: #ff0f00; overflow-wrap: anywhere; }
 .md-table { display: table; width: 100%; border-collapse: collapse; margin: 0 0 18px; }
 .md-row { display: table-row; }.md-row span { display: table-cell; padding: 8px 10px; border-bottom: 1px solid #e4eae6; vertical-align: top; }
-.furniture-table { table-layout: fixed; }.furniture-table .md-row span:nth-child(1) { width: 6%; text-align: center; }
-.furniture-table .md-row span:nth-child(2) { width: 20%; }.furniture-table .md-row span:nth-child(3) { width: 6%; }
-.furniture-table .md-row span:nth-child(4) { width: 22%; white-space: nowrap; }.furniture-table .md-row span:nth-child(5) { width: 14%; }
-.furniture-table .md-row span:nth-child(6) { width: 32%; overflow-wrap: break-word; }
+.furniture-table { table-layout: fixed; }.furniture-table .md-row span:nth-child(1), .furniture-table .md-row span:nth-child(2) { width: 5%; text-align: center; }
+.furniture-table .md-row span:nth-child(3) { width: 20%; overflow-wrap: anywhere; }.furniture-table .md-row span:nth-child(4) { width: 6%; }
+.furniture-table .md-row span:nth-child(5) { width: 22%; white-space: nowrap; }.furniture-table .md-row span:nth-child(6) { width: 14%; }
+.furniture-table .md-row span:nth-child(7) { width: 28%; overflow-wrap: break-word; }
 .furniture-table .md-row.group-start:not(:nth-child(2)) span { border-top: 2px solid #c8d5d0; }
 .md-header span { font-weight: 700; border-bottom-color: #bfcfca; }
 @media (max-width: 700px) {
@@ -123,10 +130,11 @@ nav:
 		<section class="stage-panel">
 			<div class="stage-heading"><strong id="plan-name"></strong><span id="plan-summary"></span></div>
 			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
-			<div class="stage-footer"><span>drag furniture · drag empty space to pan on touch · pinch to zoom · ctrl-drag to pan on desktop</span><span id="save-status">saved locally</span></div>
+			<div class="stage-footer"><span>drag furniture · drag empty space to pan on touch · pinch to zoom · ctrl-drag to pan on desktop</span><span class="sync-actions"><span id="plan-total" title="estimated total for placed furniture, before tax, delivery, and discounts"></span><span id="save-status">saved locally</span><button id="sync-login" type="button" hidden>sign in</button><button id="sync-save" type="button" hidden>save online</button></span></div>
 		</section>
 	</main>
 	<div id="selection" class="selection" role="dialog" aria-label="selected furniture" hidden></div>
+	<dialog id="sync-choice"><h2>two layouts found</h2><p>this browser has a local draft that differs from the layout on github. choose which version to use.</p><div class="sync-choice-actions"><button type="button" data-sync-choice="local">keep local draft</button><button type="button" data-sync-choice="online">load online layout</button><button type="button" data-sync-choice="later">decide later</button></div></dialog>
 </div>
 <main id="document-view" class="document-page" hidden><article id="document-preview" class="markdown"></article></main>
 <script type="module">
@@ -161,7 +169,7 @@ function renderMarkdown(source) {
 			i++;
 		} else if (line.startsWith("|") && lines[i + 1]?.trim().match(/^\|[\s:|-]+\|$/)) {
 			const cells = row => row.trim().slice(1, -1).split("|").map(cell => `<span>${inlineMarkdown(cell.trim())}</span>`);
-			const kind = line.startsWith("| list | item | n. |") ? " furniture-table" : "";
+			const kind = line.startsWith("| buy | plan | item | n. |") ? " furniture-table" : "";
 			output.push(`<div class="md-table${kind}"><div class="md-row md-header">${cells(lines[i]).join("")}</div>`);
 			i += 2;
 			let previousItem = "";
@@ -199,15 +207,20 @@ if (view === "plan") {
 const response = await fetch("/files/apt/data.json", { cache: "no-store" });
 if (!response.ok) throw new Error(`could not load data.json: ${response.status}`);
 const data = await response.json();
+let syncApi = "";
+try {
+	const syncSettings = await fetch("/files/apt/sync/config.json", { cache: "no-store" });
+	if (syncSettings.ok) syncApi = (await syncSettings.json()).api_url?.replace(/\/$/, "") || "";
+} catch (_) { /* online saving is optional */ }
 const catalogue = Object.fromEntries(data.catalogue.map(item => [item.name, item]));
 const colors = {
 	bed: "#a7c8d0", nightstand: "#a7c8d0", desk: "#b9d1ae",
 	desk_chair: "#b9d1ae", sofa: "#e9c2a8", sofa_stool: "#e9c2a8",
 	tv_unit: "#ddcbb0", sideboard: "#ddcbb0", bench: "#ddcbb0",
-	coffee_table: "#ddcbb0", side_table: "#ddcbb0", shoe_rack: "#ddcbb0", dining_table: "#ddcbb0",
-	mattress: "#a7c8d0", drawer_pack: "#a7c8d0", power_strip: "#b9d1ae",
-	armrest_tray: "#e9c2a8", wall_shelf: "#ddcbb0", table_leg: "#ddcbb0",
-	night_lamp: "#e9c2a8", wireless_charger: "#b9d1ae", cookware_set: "#ddcbb0", flatware_set: "#ddcbb0", flatware_tray: "#ddcbb0",
+	coffee_table: "#ddcbb0", side_table: "#ddcbb0", shoe_rack: "#ddcbb0", dining_table: "#ddcbb0", dining_chair: "#ddcbb0",
+	armrest_tray: "#e9c2a8", wall_shelf: "#ddcbb0",
+	night_lamp: "#e9c2a8", wireless_charger: "#b9d1ae",
+	magsafe_charger: "#b9d1ae", laptop_stand: "#b9d1ae", mouse: "#b9d1ae", mouse_pad: "#b9d1ae",
 };
 const svg = document.querySelector("#plan-svg");
 const cataloguePanel = document.querySelector("#catalogue");
@@ -215,6 +228,11 @@ const selectionPanel = document.querySelector("#selection");
 const undoButton = document.querySelector("#undo");
 const redoButton = document.querySelector("#redo");
 const planKey = "libertytowers_E1801";
+const syncStatus = document.querySelector("#save-status");
+const planTotal = document.querySelector("#plan-total");
+const syncLogin = document.querySelector("#sync-login");
+const syncSave = document.querySelector("#sync-save");
+const syncChoice = document.querySelector("#sync-choice");
 let plan;
 let items = [];
 let selectedId = null;
@@ -226,6 +244,12 @@ let view;
 let popupPoint = null;
 const histories = new Map();
 let history;
+let sessionToken = null;
+let onlineHash = null;
+let onlineSnapshot = null;
+let onlineRemote = null;
+let onlineTimer = null;
+let onlineSaving = false;
 
 const format = value => Number(value.toFixed(1));
 const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
@@ -250,10 +274,18 @@ function loadItems(key) {
 			for (const item of saved) {
 				if (item?.type === "desk" && item.variant === "electric") item.variant = "big";
 				if (item?.type === "desk" && item.variant === "fixed") item.variant = "small";
-				if (item?.type === "trestle") item.type = "table_leg";
 				if (item?.type === "table_lamp") item.type = "night_lamp";
+				if (item?.type === "dining_table") delete item.variant;
 			}
-			if (saved.every(validItem)) return saved;
+			if (saved.every(validItem)) {
+				const marker = `${storageKey(key)}_article_chairs`;
+				if (!localStorage.getItem(marker)) {
+					if (!saved.some(item => item.type === "dining_chair")) saved.push(...initialItems(key).filter(item => item.type === "dining_chair"));
+					localStorage.setItem(storageKey(key), JSON.stringify(saved));
+					localStorage.setItem(marker, "1");
+				}
+				return saved;
+			}
 		}
 	} catch (_) { /* local storage may be unavailable */ }
 	return initialItems(key);
@@ -273,11 +305,176 @@ function itemSize(item) {
 function saveItems() {
 	try {
 		localStorage.setItem(storageKey(planKey), JSON.stringify(items));
-		document.querySelector("#save-status").textContent = "saved locally";
+		syncStatus.textContent = "saved locally";
 	} catch (_) {
-		document.querySelector("#save-status").textContent = "local saving unavailable, download data.json";
+		syncStatus.textContent = "local saving unavailable, download data.json";
+	}
+	if (syncApi && sessionToken) scheduleOnlineSave();
+}
+
+function authRedirect() {
+	const params = new URLSearchParams(location.hash.slice(1));
+	const token = params.get("apt_session");
+	if (!token) return;
+	window.history.replaceState(null, "", location.pathname + location.search);
+	try {
+		const nonce = sessionStorage.getItem("apt_auth_nonce");
+		sessionStorage.removeItem("apt_auth_nonce");
+		if (nonce && nonce === params.get("apt_nonce")) sessionStorage.setItem("apt_online_session", token);
+	} catch (_) { /* session storage may be unavailable */ }
+}
+
+function disconnectOnline() {
+	clearTimeout(onlineTimer);
+	try { sessionStorage.removeItem("apt_online_session"); } catch (_) { /* session storage may be unavailable */ }
+	sessionToken = null;
+	onlineHash = null;
+	onlineSnapshot = null;
+	onlineRemote = null;
+	syncLogin.textContent = "sign in";
+	syncSave.hidden = true;
+	syncStatus.textContent = "saved locally";
+}
+
+async function onlineRequest(method, body = null) {
+	const response = await fetch(`${syncApi}/api/layout`, { method, cache: "no-store", headers: {
+		Authorization: `Bearer ${sessionToken}`, ...(body ? { "Content-Type": "application/json" } : {}),
+	}, ...(body ? { body: JSON.stringify(body) } : {}) });
+	let result;
+	try { result = await response.json(); } catch (_) { throw new Error("invalid response from online save"); }
+	if (!response.ok) {
+		const error = new Error(result.error || "online save failed");
+		error.status = response.status;
+		error.result = result;
+		throw error;
+	}
+	return result;
+}
+
+function scheduleOnlineSave(delay = 15000) {
+	clearTimeout(onlineTimer);
+	if (!sessionToken || !onlineHash || onlineRemote) return;
+	if (JSON.stringify(items) === onlineSnapshot) {
+		syncStatus.textContent = "saved online";
+		return;
+	}
+	syncStatus.textContent = "saved locally, online pending";
+	onlineTimer = setTimeout(() => { void saveOnline(); }, delay);
+}
+
+function useOnlineLayout(remote) {
+	try { localStorage.setItem(`${storageKey(planKey)}_before_online`, JSON.stringify(items)); } catch (_) { /* local storage may be unavailable */ }
+	items = structuredClone(remote.layout);
+	history = { steps: [JSON.stringify(items)], index: 0 };
+	histories.set(planKey, history);
+	updateHistoryButtons();
+	selectedId = null;
+	popupPoint = null;
+	onlineHash = remote.hash;
+	onlineSnapshot = JSON.stringify(remote.layout);
+	onlineRemote = null;
+	saveItems();
+	renderAll();
+}
+
+function reconcileOnline(remote) {
+	const local = JSON.stringify(items);
+	const online = JSON.stringify(remote.layout);
+	if (local === online || local === JSON.stringify(initialItems(planKey))) {
+		if (local !== online) useOnlineLayout(remote);
+		else {
+			onlineHash = remote.hash;
+			onlineSnapshot = online;
+			onlineRemote = null;
+			syncStatus.textContent = "saved online";
+		}
+		return;
+	}
+	onlineHash = null;
+	onlineRemote = remote;
+	syncStatus.textContent = "choose a layout to sync";
+	if (!syncChoice.open) syncChoice.showModal();
+}
+
+async function refreshOnline() {
+	if (!sessionToken) return;
+	syncStatus.textContent = "checking online layout";
+	try { reconcileOnline(await onlineRequest("GET")); }
+	catch (error) {
+		if (error.status === 401) disconnectOnline();
+		else syncStatus.textContent = "online unavailable, saved locally";
 	}
 }
+
+async function saveOnline() {
+	clearTimeout(onlineTimer);
+	if (!sessionToken || onlineSaving) return;
+	if (onlineRemote) {
+		if (!syncChoice.open) syncChoice.showModal();
+		return;
+	}
+	if (!onlineHash) return refreshOnline();
+	if (JSON.stringify(items) === onlineSnapshot) {
+		syncStatus.textContent = "saved online";
+		return;
+	}
+	const snapshot = JSON.stringify(items);
+	onlineSaving = true;
+	syncSave.disabled = true;
+	syncStatus.textContent = "saving online";
+	try {
+		const result = await onlineRequest("POST", { items: JSON.parse(snapshot), base_hash: onlineHash });
+		onlineHash = result.hash;
+		onlineSnapshot = JSON.stringify(result.layout);
+		syncStatus.textContent = "saved online";
+	} catch (error) {
+		if (error.status === 401) disconnectOnline();
+		else if (error.status === 409) {
+			if (error.result.layout) reconcileOnline(error.result);
+			else await refreshOnline();
+		} else {
+			syncStatus.textContent = "online save failed, saved locally";
+			onlineTimer = setTimeout(() => { void saveOnline(); }, 30000);
+		}
+	} finally {
+		onlineSaving = false;
+		syncSave.disabled = false;
+		if (sessionToken && onlineHash && !onlineRemote && JSON.stringify(items) !== snapshot) scheduleOnlineSave();
+	}
+}
+
+function initOnline() {
+	if (!syncApi) return;
+	authRedirect();
+	syncLogin.hidden = false;
+	try { sessionToken = sessionStorage.getItem("apt_online_session"); } catch (_) { /* session storage may be unavailable */ }
+	if (!sessionToken) return;
+	syncLogin.textContent = "disconnect";
+	syncSave.hidden = false;
+	void refreshOnline();
+}
+
+syncLogin.addEventListener("click", () => {
+	if (sessionToken) return disconnectOnline();
+	const bytes = crypto.getRandomValues(new Uint8Array(16));
+	const nonce = Array.from(bytes, byte => byte.toString(16).padStart(2, "0")).join("");
+	try { sessionStorage.setItem("apt_auth_nonce", nonce); } catch (_) { syncStatus.textContent = "browser session storage is required for login"; return; }
+	location.assign(`${syncApi}/auth/start?origin=${encodeURIComponent(location.origin)}&nonce=${nonce}`);
+});
+syncSave.addEventListener("click", () => { void saveOnline(); });
+syncChoice.addEventListener("click", event => {
+	const button = event.target.closest("[data-sync-choice]");
+	if (!button) return;
+	const choice = button.dataset.syncChoice;
+	syncChoice.close();
+	if (choice === "online") useOnlineLayout(onlineRemote);
+	else if (choice === "local") {
+		onlineHash = onlineRemote.hash;
+		onlineSnapshot = JSON.stringify(onlineRemote.layout);
+		onlineRemote = null;
+		scheduleOnlineSave();
+	} else syncStatus.textContent = "saved locally, online choice pending";
+});
 
 function updateHistoryButtons() {
 	undoButton.disabled = history.index === 0;
@@ -387,7 +584,7 @@ function shapeMarkup(item) {
 	let shape;
 	if (item.type === "sofa") {
 		shape = `<path class="body" fill="${fill}" d="${roomPath(localShape(item))}"/>`;
-	} else if (item.type === "desk_chair" || item.type === "night_lamp" || (item.type === "dining_table" && item.variant === "round")) {
+	} else if (["desk_chair", "dining_chair", "night_lamp", "mouse"].includes(item.type)) {
 		shape = `<ellipse class="body" fill="${fill}" cx="0" cy="0" rx="${width / 2}" ry="${depth / 2}"/>`;
 	} else {
 		const radius = item.type === "dining_table" ? Math.min(width, depth) * .13 : 1;
@@ -395,7 +592,7 @@ function shapeMarkup(item) {
 	}
 	const fontSize = Math.min(10, Math.min(width, depth) * .9 / (item.type.length * .6));
 	const label = fontSize < 6 ? "" : `<text x="0" y="0" style="font-size:${fontSize}px">${item.type}</text>`;
-	const ring = selectedId !== item.id ? "" : item.type === "desk_chair" || item.type === "night_lamp" || item.type === "dining_table" && item.variant === "round"
+	const ring = selectedId !== item.id ? "" : ["desk_chair", "dining_chair", "night_lamp", "mouse"].includes(item.type)
 		? `<ellipse class="selection-ring" cx="0" cy="0" rx="${width / 2 + 5}" ry="${depth / 2 + 5}"/>`
 		: `<rect class="selection-ring" x="${-width / 2 - 5}" y="${-depth / 2 - 5}" width="${width + 10}" height="${depth + 10}" rx="4"/>`;
 	return `<g class="furniture${selectedId === item.id ? " selected" : ""}" data-id="${item.id}" transform="translate(${format(item.x)} ${format(item.y)}) rotate(${format(item.angle)})"><title>${item.type}: ${size.width} × ${size.depth} cm</title>${shape}${label}${ring}</g>`;
@@ -425,10 +622,8 @@ function renderFurniture() {
 function renderCatalogue() {
 	const counts = Object.fromEntries(data.catalogue.map(item => [item.name, items.filter(piece => piece.type === item.name).length]));
 	const sofaVariant = items.find(piece => piece.type === "sofa")?.variant;
-	const tableRound = items.find(piece => piece.type === "dining_table")?.variant === "round";
 	cataloguePanel.innerHTML = data.catalogue.map(item => {
-		const swatch = item.name === "sofa" ? sofaVariant === "straight" ? "straight" : sofaVariant === "left_chaise" ? "left" : ""
-			: item.name === "dining_table" && tableRound ? "round" : "";
+		const swatch = item.name === "sofa" ? sofaVariant === "straight" ? "straight" : sofaVariant === "left_chaise" ? "left" : "" : "";
 		const detail = item.variants ? `${item.variants.length} options` : `${item.width} × ${item.depth} cm`;
 		return `<div class="catalogue-row"><span class="swatch ${item.name} ${swatch}" style="background:${colors[item.name]}"></span>`
 			+ `<div><div class="catalogue-title" title="${item.name}">${item.name}</div>`
@@ -444,10 +639,9 @@ function renderSelection() {
 		return;
 	}
 	const size = itemSize(item);
-	const dimensions = item.type === "dining_table" && item.variant === "round" ? `Ø ${size.width} cm` : `${size.width} × ${size.depth} cm`;
+	const dimensions = `${size.width} × ${size.depth} cm`;
 	const options = catalogue[item.type].variants?.map(variant => {
-		const label = variant.name === "round" ? `round · Ø ${variant.width} cm`
-			: `${variant.name} · ${variant.width} × ${variant.depth} cm`;
+		const label = `${variant.name} · ${variant.width} × ${variant.depth} cm`;
 		return `<option value="${variant.name}" ${(item.variant || catalogue[item.type].variants[0].name) === variant.name ? "selected" : ""}>${label}</option>`;
 	}).join("");
 	const variants = options ? `<div class="variant-row"><label for="variant-input">option</label><select id="variant-input">${options}</select></div>` : "";
@@ -471,6 +665,9 @@ function renderAll() {
 	renderFurniture();
 	renderCatalogue();
 	renderSelection();
+	const hasChaise = items.some(item => item.type === "sofa" && item.variant !== "straight");
+	const total = items.reduce((sum, item) => sum + (item.type === "sofa_stool" && hasChaise ? 0 : itemSize(item).price), 0);
+	planTotal.textContent = `placed · est. ${new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(total)}`;
 }
 
 function exportData() {
@@ -678,6 +875,7 @@ document.addEventListener("keydown", event => {
 });
 
 selectPlan();
+initOnline();
 } else {
 	const name = `${view}.md`;
 	const preview = document.querySelector("#document-preview");

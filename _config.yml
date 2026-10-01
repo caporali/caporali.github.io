@@ -5,7 +5,7 @@ markdown: kramdown
 kramdown:
   input: GFM
   math_engine: mathjax
-description: "Ph.D. student at Princeton ORFE"
+description: "Ph.D. candidate at Princeton ORFE"
 profile_picture: "/files/images/profile_pic_caporali.jpg"
 # favicon: true
 # favicon_location: "/files/images/princeton_logo.png"
@@ -20,7 +20,3 @@ nav:
     link: "/"
   - name: "Resume"
     link: "/files/cv/cv_caporali.pdf"
-  # - name: "Flashcards"
-  #   link: "/flashcards"
-  # - name: "Surface"
-  #   link: "/surface"

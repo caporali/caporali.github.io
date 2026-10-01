@@ -60,13 +60,6 @@
         "angle": 0
       },
       {
-        "id": "sideboard_355789e1-4490-495c-9796-e0071bbb4e4e",
-        "type": "sideboard",
-        "x": 53.72703552246094,
-        "y": 426.93707275390625,
-        "angle": 90
-      },
-      {
         "id": "bed_08de3794-79e8-45f7-9a79-ddc80964eba8",
         "type": "bed",
         "x": 200.45989990234375,
@@ -128,6 +121,48 @@
         "x": 498.8449401855469,
         "y": 473.50738525390625,
         "angle": 90
+      },
+      {
+        "id": "wireless_charger_dd0b059e-4e49-4f74-8453-9149e152545b",
+        "type": "wireless_charger",
+        "x": 255.370361328125,
+        "y": 338.08612060546875,
+        "angle": 45
+      },
+      {
+        "id": "wireless_charger_a69507e4-b787-4639-bd90-845bac24f535",
+        "type": "wireless_charger",
+        "x": 254.9969482421875,
+        "y": 496.34918212890625,
+        "angle": 135
+      },
+      {
+        "id": "dining_chair_article_1",
+        "type": "dining_chair",
+        "x": 360,
+        "y": 244,
+        "angle": 0
+      },
+      {
+        "id": "dining_chair_article_2",
+        "type": "dining_chair",
+        "x": 424,
+        "y": 244,
+        "angle": 0
+      },
+      {
+        "id": "dining_chair_article_3",
+        "type": "dining_chair",
+        "x": 360,
+        "y": 336,
+        "angle": 180
+      },
+      {
+        "id": "dining_chair_article_4",
+        "type": "dining_chair",
+        "x": 424,
+        "y": 336,
+        "angle": 180
       }
     ]
   },
@@ -144,21 +179,19 @@
         {
           "name": "king",
           "width": 208.9,
-          "depth": 211.1
-        },
-        {
-          "name": "queen",
-          "width": 168,
-          "depth": 211.1
+          "depth": 211.1,
+          "price": 579
         }
-      ]
+      ],
+      "price": 579
     },
     {
       "name": "nightstand",
       "count": 2,
       "width": 34.9,
       "depth": 25.1,
-      "height": "34.9"
+      "height": "34.9",
+      "price": 30
     },
     {
       "name": "desk",
@@ -171,22 +204,26 @@
           "name": "big",
           "width": 140,
           "depth": 80,
-          "height": "61.9–126"
+          "height": "61.9–126",
+          "price": 579.99
         },
         {
           "name": "small",
           "width": 120,
           "depth": 60,
-          "height": "61.9–126"
+          "height": "61.9–126",
+          "price": 499.99
         }
-      ]
+      ],
+      "price": 579.99
     },
     {
       "name": "desk_chair",
       "count": 2,
       "width": 63.5,
       "depth": 61,
-      "height": "96.5–106.7"
+      "height": "96.5–106.7",
+      "price": 369
     },
     {
       "name": "sofa",
@@ -200,115 +237,103 @@
         {
           "name": "right_chaise",
           "width": 249.9,
-          "depth": 180
+          "depth": 180,
+          "price": 2309
         },
         {
           "name": "left_chaise",
           "width": 249.9,
-          "depth": 180
+          "depth": 180,
+          "price": 2309
         },
         {
           "name": "straight",
           "width": 249.9,
-          "depth": 107
+          "depth": 107,
+          "price": 1730
         }
-      ]
+      ],
+      "price": 2309
     },
     {
       "name": "sofa_stool",
       "count": 1,
       "width": 126,
       "depth": 77.2,
-      "height": "46"
+      "height": "46",
+      "price": 369
     },
     {
       "name": "tv_unit",
       "count": 1,
       "width": 178.8,
       "depth": 41.9,
-      "height": "56.2"
+      "height": "56.2",
+      "price": 499.99
     },
     {
       "name": "sideboard",
       "count": 2,
       "width": 160.7,
       "depth": 41.9,
-      "height": "83.2"
+      "height": "83.2",
+      "price": 599
     },
     {
       "name": "bench",
       "count": 1,
       "width": 180,
       "depth": 40.6,
-      "height": "43.8"
+      "height": "43.8",
+      "price": 399
     },
     {
       "name": "coffee_table",
       "count": 1,
       "width": 115.9,
       "depth": 39.1,
-      "height": "32.1"
+      "height": "32.1",
+      "price": 249.99
     },
     {
       "name": "side_table",
       "count": 2,
       "width": 80,
       "depth": 31,
-      "height": "52"
+      "height": "52",
+      "price": 59.99
     },
     {
       "name": "shoe_rack",
       "count": 3,
       "width": 60,
       "depth": 30,
-      "height": "35"
+      "height": "35",
+      "price": 16.99
     },
     {
       "name": "dining_table",
       "count": 1,
-      "width": 229.9,
-      "depth": 89.9,
-      "height": "74.9",
-      "variants": [
-        {
-          "name": "long",
-          "width": 229.9,
-          "depth": 89.9
-        },
-        {
-          "name": "round",
-          "width": 115,
-          "depth": 115
-        }
-      ]
+      "width": 180.3,
+      "depth": 90.2,
+      "height": "76.2",
+      "price": 699
     },
     {
-      "name": "mattress",
-      "count": 1,
-      "width": 193,
-      "depth": 201.9,
-      "height": "24.1"
-    },
-    {
-      "name": "drawer_pack",
-      "count": 2,
-      "width": 101.9,
-      "depth": 61.9,
-      "height": "28.9"
-    },
-    {
-      "name": "power_strip",
-      "count": 2,
-      "width": 30.5,
-      "depth": 5.1,
-      "height": "—"
+      "name": "dining_chair",
+      "count": 4,
+      "width": 54.6,
+      "depth": 55.9,
+      "height": "76.2",
+      "price": 269
     },
     {
       "name": "armrest_tray",
       "count": 2,
       "width": 65.1,
       "depth": 37.1,
-      "height": "—"
+      "height": "—",
+      "price": 19.99
     },
     {
       "name": "wall_shelf",
@@ -320,61 +345,71 @@
         {
           "name": "short",
           "width": 29.8,
-          "depth": 26
+          "depth": 26,
+          "price": 7.99
         },
         {
           "name": "medium",
           "width": 109.9,
-          "depth": 26
+          "depth": 26,
+          "price": 29.99
         },
         {
           "name": "long",
           "width": 189.9,
-          "depth": 26
+          "depth": 26,
+          "price": 39.99
         }
-      ]
-    },
-    {
-      "name": "table_leg",
-      "count": 1,
-      "width": 58.1,
-      "depth": 34.9,
-      "height": "69.9–93"
+      ],
+      "price": 7.99
     },
     {
       "name": "night_lamp",
       "count": 2,
       "width": 15.2,
       "depth": 15.2,
-      "height": "25.4"
+      "height": "25.4",
+      "price": 34.99
     },
     {
       "name": "wireless_charger",
       "count": 2,
       "width": 11.4,
       "depth": 8.3,
-      "height": "7"
+      "height": "7",
+      "price": 29.99
     },
     {
-      "name": "cookware_set",
-      "count": 1,
-      "width": 55.2,
-      "depth": 30.5,
-      "height": "15.9"
+      "name": "magsafe_charger",
+      "count": 2,
+      "width": 8,
+      "depth": 8,
+      "height": "10",
+      "price": 8.99
     },
     {
-      "name": "flatware_set",
-      "count": 1,
-      "width": 22.9,
-      "depth": 14.6,
-      "height": "3.2"
+      "name": "laptop_stand",
+      "count": 2,
+      "width": 17.7,
+      "depth": 6.4,
+      "height": "9.8",
+      "price": 34.98
     },
     {
-      "name": "flatware_tray",
+      "name": "mouse",
       "count": 1,
-      "width": 51.8,
-      "depth": 49.5,
-      "height": "5.7"
+      "width": 6.8,
+      "depth": 10.5,
+      "height": "3.8",
+      "price": 21.49
+    },
+    {
+      "name": "mouse_pad",
+      "count": 2,
+      "width": 80,
+      "depth": 29.7,
+      "height": "0.3",
+      "price": 12.99
     }
   ],
   "plans": {
@@ -390,5 +425,5 @@
       ]
     }
   },
-  "updated_at": "2026-09-30T14:49:05 America/New_York"
+  "updated_at": "2026-09-30T19:50:29 America/New_York"
 }
