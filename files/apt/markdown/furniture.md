@@ -13,6 +13,7 @@
 | ☑ | ☐ | [`down_alternative_pillow`](https://www.brooklinen.com/products/down-alternative-pillow) | 4 | $59 | — | — | |
 | ☑ | ☐ | [`drawer_pack`](https://www.ikea.com/us/en/p/malm-underbed-storage-box-for-high-bed-white-20252723/) | 1 | $100.00 | `101.9 × 61.9` | `28.9` | |
 | ☑ | ☐ | [`skubb_box_set`](https://www.ikea.com/us/en/p/skubb-box-set-of-3-white-80596497/) | 4 | $7.99 | `19.7 × 38.1` | `12.1` | `set_of_3` |
+| ☑ | ☐ | [`hanger`](https://www.ikea.com/us/en/p/bumerang-hanger-natural-30238543/) | 4 | $7.99 | — | — | `BUMERANG, natural, 8-pack` |
 | ☑ | ☑ | [`dresser`](https://www.ikea.com/us/en/p/storklinta-6-drawer-dresser-white-anchor-unlock-function-60561248/) | 1 | $249.99 | `140 × 47.9` | `74.9` | `white` |
 | ☑ | ☑ | [`nightstand`](https://www.ikea.com/us/en/p/eket-wall-mounted-shelving-unit-white-s39285808/) | 2 | $30.00 | `34.9 × 25.1` | `34.9` | |
 | ☑ | ☑ | [`desk`](https://www.ikea.com/us/en/p/mittzon-desk-sit-stand-electric-white-s29528572/) | 2 | $579.99 | `140 × 80` | `61.9–126` | `big` |
@@ -70,7 +71,9 @@
 # todo
 
 ## tbd
+- re-measure sofa
 - placemats
+- mirror in the hall
 - organizer for the walk-in closet
 - organizer(s) for the entrance closets
 - organizer(s) for bathroom sinks
