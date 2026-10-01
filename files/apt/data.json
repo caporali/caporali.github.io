@@ -335,8 +335,8 @@
       {
         "id": "floor_lamp_3_spot_7eab288e-32d4-419c-a45a-3cda31f4432f",
         "type": "floor_lamp_3_spot",
-        "x": 599.6145324707031,
-        "y": 247.82774353027344,
+        "x": 591.4766540527344,
+        "y": 249.03335571289062,
         "angle": 0
       },
       {
@@ -634,5 +634,5 @@
       ]
     }
   },
-  "updated_at": "2026-10-01T18:04:14 America/New_York"
+  "updated_at": "2026-10-01T18:04:49 America/New_York"
 }
