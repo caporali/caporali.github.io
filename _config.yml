@@ -7,8 +7,6 @@ kramdown:
   math_engine: mathjax
 description: "Ph.D. candidate at Princeton ORFE"
 profile_picture: "/files/images/profile_pic_caporali.jpg"
-# favicon: true
-# favicon_location: "/files/images/princeton_logo.png"
 footer: true
 footer_url: "https://github.com/ankitsultana/researcher"
 sass:

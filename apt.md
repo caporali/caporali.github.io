@@ -223,11 +223,7 @@ const nonPlanTotal = furnitureRows
 	}, 0);
 const formatPrice = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 document.querySelector("#non-plan-total").textContent = `not on plan · ${formatPrice.format(nonPlanTotal)}`;
-let syncApi = "";
-try {
-	const syncSettings = await fetch("/files/apt/sync/config.json", { cache: "no-store" });
-	if (syncSettings.ok) syncApi = (await syncSettings.json()).api_url?.replace(/\/$/, "") || "";
-} catch (_) { /* online saving is optional */ }
+const syncApi = "https://api.apt-save.workers.dev";
 const catalogue = Object.fromEntries(data.catalogue.map(item => [item.name, item]));
 const colors = {
 	bed: "#a7c8d0", dresser: "#a7c8d0", nightstand: "#a7c8d0", desk: "#b9d1ae",
