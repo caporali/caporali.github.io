@@ -56,7 +56,6 @@
 
 *Notes.*
 - dimensions are rounded to `0.1 cm`.
-- floor lamp footprints use the base diameter, and the wall spotlight uses its maximum depth.
 
 # websites
 
