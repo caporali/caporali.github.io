@@ -37,7 +37,7 @@
 | ☑ | ☐ | [`cookware_set`](https://www.ikea.com/us/en/p/hemkomst-7-piece-cookware-set-stainless-steel-50577018/) | 1 | `55.2 × 30.5` | `15.9` | |
 | ☑ | ☐ | [`flatware_set`](https://www.ikea.com/us/en/p/foernuft-20-piece-flatware-set-stainless-steel-90043076/) | 1 | `22.9 × 14.6` | `3.2` | |
 | ☑ | ☐ | [`flatware_tray`](https://www.ikea.com/us/en/p/uppdatera-flatware-tray-tray-with-knife-rack-anthracite-light-bamboo-s39611801/) | 1 | `51.8 × 49.5` | `5.7` | |
-| ☑ | ☐ | [`jewelry_tray`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | `26.8 × 19.9` | `3.9` | MIGAKU HOME, 28-grid black walnut |
+| ☑ | ☐ | [`jewelry_tray`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | `26.8 × 19.9` | `3.9` | |
 | ☑ | ☑ | [`magsafe_charger`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | `8 × 8` | `10` |  |
 | ☑ | ☑ | [`laptop_stand`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | `17.7 × 6.4` | `9.8` | |
 | ☑ | ☑ | [`mouse`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | `6.8 × 10.5` | `3.8` | |
