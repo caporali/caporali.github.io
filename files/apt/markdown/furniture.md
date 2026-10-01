@@ -4,7 +4,7 @@
 | --- | --- | --- | ---: | ---: | ---: | ---: | --- |
 | ☑ | ☑ | [`bed`](https://www.ikea.com/us/en/p/malm-high-bed-frame-2-storage-boxes-white-loenset-s69176068/) | 1 | $579.00 | `208.9 × 211.1` | `100` | `king` |
 | ☑ | ☐ | [`mattress`](https://www.ikea.com/us/en/p/valevag-pocket-spring-mattress-medium-firm-white-40511853/) | 1 | $499.00 | `193 × 201.9` | `24.1` | `king` |
-| ☑ | ☐ | [`mattress_protector`](https://www.ikea.com/us/en/p/grusnarv-waterproof-mattress-protector-20522145/) | 1 | $29.99 | `193 × 203.2` | — | `king` |
+| ☑ | ☐ | [`mattress_protector`](https://www.ikea.com/us/en/p/grusnarv-waterproof-mattress-protector-20522145/) | 2 | $29.99 | `193 × 203.2` | — | `king` |
 | ☑ | ☐ | [`bath_sheet`](https://www.ikea.com/us/en/p/brokglim-bath-sheet-white-60612035/) | 2 | $24.99 | `99.1 × 149.9` | — | `white` |
 | ☑ | ☐ | [`classic_percale_fitted_sheet`](https://www.brooklinen.com/products/classic-fitted-sheets) | 2 | $69 | — | — | |
 | ☑ | ☐ | [`classic_percale_pillowcase_set`](https://www.brooklinen.com/products/classic-pillowcases) | 4 | $69 | — | — | |
