@@ -31,9 +31,8 @@
 | ☑ | ☑ | [`side_table`](https://www.ikea.com/us/en/p/holmerud-side-table-oak-effect-40541421/) | 2 | $59.99 | `80 × 31` | `52` | |
 | ☑ | ☑ | [`shoe_rack`](https://www.ikea.com/us/en/p/vasskaer-hallway-furniture-set-of-3-bamboo-s29614904/) | 1 | $50.97 | `60 × 30` | `35` | `set_of_3` |
 | ☑ | ☑ | [`shoe_rack`](https://www.ikea.com/us/en/p/vasskaer-shoe-rack-bamboo-80624645/) | 1 | $16.99 | `60 × 30` | `35` | |
-| ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-50282177/) | 4 | $7.99 | `29.8 × 26` | `5.1` | `short` |
-| ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-90282180/) | 2 | $29.99 | `109.9 × 26` | `5.1` | `medium` |
-| ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-50282182/) | 1 | $39.99 | `189.9 × 26` | `5.1` | `long` |
+| ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-90282180/) | 4 | $29.99 | `109.9 × 26` | `5.1` | `medium` |
+| ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-50282182/) | 3 | $39.99 | `189.9 × 26` | `5.1` | `long` |
 | ☑ | ☑ | [`dining_table`](https://www.article.com/product/24725/emmer-71-glass-dining-table-oak) | 1 | $699.00 | `180.3 × 90.2` | `76.2` | |
 | ☑ | ☑ | [`dining_chair`](https://www.article.com/product/19215/fonra-dining-chair-oak-and-santolina-gray) | 4 | $269.00 | `54.6 × 55.9` | `76.2` | |
 | ☑ | ☑ | [`night_lamp`](https://www.ikea.com/us/en/p/taernaby-table-lamp-dimmable-beige-10508079/) | 2 | $34.99 | `15.2 × 15.2` | `25.4` | |
