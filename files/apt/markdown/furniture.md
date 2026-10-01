@@ -59,7 +59,7 @@
 
 | website | account | selection |
 | --- | --- | --- |
-| [`ikea`](https://www.ikea.com/us/en/favorites/1db87ea5-23ce-4dfa-bab5-a98c50f7af39/?view=retail) | `francescocaporali@outlook.com` | `f&s` list |
+| [`ikea`](https://www.ikea.com/us/en/favorites/1db87ea5-23ce-4dfa-bab5-a98c50f7af39/?view=retail) | `keller.selina@googlemail.com` | `f&s` list |
 | [`amazon`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | `francescocaporali@outlook.com` | `f&s` list |
 | [`article`](https://www.article.com/furniture-bundles/467/the-spacious-table-bundle) |  | `emmer 71" table (oak) / 4x fonra chair (oak and santolina gray)` |
 | [`branch`](https://www.branchfurniture.com/products/ergonomic-chair) |  | `ergonomic chair` |
