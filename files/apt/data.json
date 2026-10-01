@@ -160,8 +160,8 @@
       {
         "id": "sofa_stool_eade7afa-ecda-4a25-8611-8bdfafa3faea",
         "type": "sofa_stool",
-        "x": 604.5277252197266,
-        "y": 138.76537322998047,
+        "x": 692.4886627197266,
+        "y": 94.30156707763672,
         "angle": 0
       },
       {
@@ -634,5 +634,5 @@
       ]
     }
   },
-  "updated_at": "2026-10-01T18:29:50 America/New_York"
+  "updated_at": "2026-10-01T18:30:02 America/New_York"
 }
