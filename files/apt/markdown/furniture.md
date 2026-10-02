@@ -62,12 +62,12 @@
 | ☐ | ☑ | [`mouse`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | $21.49 | `6.8 × 10.5` | `3.8` |
 | ☐ | ☑ | [`mouse_pad`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $12.99 | `80 × 29.7` | `0.3` |
 
-## `codex` updates
-- I added to the list cutting board with the following link 
-
 *Notes.*
 - dimensions are rounded to `0.1 cm`.
 - brooklinen prices are discounted cart amounts before tax. four pillows total $257.21.
+
+## `codex` updates
+- I added to the list cutting board with the following link 
 
 # websites
 
