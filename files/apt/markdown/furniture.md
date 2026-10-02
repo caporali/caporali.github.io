@@ -61,13 +61,13 @@
 | ☐ | ☑ | [`laptop_stand`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $34.98 | `17.7 × 9.8` | `6.4` |
 | ☐ | ☑ | [`mouse`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | $21.49 | `6.8 × 10.5` | `3.8` |
 | ☐ | ☑ | [`mouse_pad`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $12.99 | `80 × 29.7` | `0.3` |
+| ☐ | ☐ | [`cutting_board`](https://a.co/d/0i3dhnfW) | 1 | $24.95 | `50.8 × 40.6` | `1.0` |
 
 *Notes.*
 - dimensions are rounded to `0.1 cm`.
 - brooklinen prices are discounted cart amounts before tax. four pillows total $257.21.
 
 ## `codex` updates
-- I added to the list cutting board with the following link https://a.co/d/0i3dhnfW 
 
 # websites
 
