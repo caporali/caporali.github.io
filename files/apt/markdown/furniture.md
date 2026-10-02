@@ -67,7 +67,7 @@
 - brooklinen prices are discounted cart amounts before tax. four pillows total $257.21.
 
 ## `codex` updates
-- I added to the list cutting board with the following link 
+- I added to the list cutting board with the following link https://a.co/d/0i3dhnfW 
 
 # websites
 
