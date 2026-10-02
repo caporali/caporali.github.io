@@ -66,6 +66,9 @@
 - dimensions are rounded to `0.1 cm`.
 - brooklinen prices are discounted cart amounts before tax. four pillows total $257.21.
 
+## `codex` updates
+- I added to the list cutting board with the following link https://a.co/d/0i3dhnfW 
+
 # websites
 
 | website | account | selection |
@@ -92,6 +95,7 @@
 - tv
 - polaroid frames
 - frames on the wall
+- cutting board
 
 ## from princeton
 - glasses (2)
