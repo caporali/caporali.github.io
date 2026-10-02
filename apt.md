@@ -157,7 +157,7 @@ nav:
 		<section class="stage-panel">
 			<div class="stage-heading"><strong id="plan-name"></strong><span id="plan-summary"></span></div>
 			<div class="stage"><div class="history-actions"><button id="undo" type="button" aria-label="undo" title="undo" disabled>↶</button><button id="redo" type="button" aria-label="redo" title="redo" disabled>↷</button></div><button id="sync-save" type="button" title="restore the last saved layout">sync</button><svg id="plan-svg" role="img" aria-label="interactive apartment plan"></svg></div>
-			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="placed items not yet bought, before tax, delivery, and discounts"></span><span id="non-plan-total" title="items marked plan ☐ and not yet bought in furniture.md, before tax, delivery, and discounts"></span></div><div class="footer-right"><span id="save-status" role="status"></span><span id="spent-total" title="IKEA $6,035.48, Brooklinen $1,435.81, and Branch $786.89, including tax and shipping">paid · $8,258.18</span></div></div>
+			<div class="stage-footer"><div class="price-totals"><span id="plan-total" title="placed items not yet bought, before tax, delivery, and discounts"></span><span id="non-plan-total" title="items marked plan ☐ and not yet bought in furniture.md, before tax, delivery, and discounts"></span></div><div class="footer-right"><span id="save-status" role="status"></span><span id="spent-total" title="IKEA $6,035.48, Brooklinen $1,435.81, Branch $786.89, Article $1,096.64 (subtotal $1,076.00), including tax and shipping">paid · $9,354.82</span></div></div>
 		</section>
 	</main>
 	<div id="selection" class="selection" role="dialog" aria-label="selected furniture" hidden></div>
