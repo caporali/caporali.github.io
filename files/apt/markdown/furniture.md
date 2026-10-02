@@ -92,6 +92,7 @@
 - tv
 - polaroid frames
 - frames on the wall
+- cutting board
 
 ## from princeton
 - glasses (2)
