@@ -71,11 +71,6 @@
 *Notes.*
 
 - dimensions are rounded to `0.1 cm`.
-- brooklinen prices are discounted cart amounts before tax. four pillows total $257.21.
-- walmart orders total $109.26 including tax: black pitcher and filters $93.39, bamboo flatware tray $15.87. the filter pack's individual price and model are awaiting confirmation.
-- the sideboard remains bought until cancellation and refund are confirmed.
-- ikea items still to buy total $2,956.76 before tax. the guttane coffee table is currently unavailable in the supplied list.
-- amazon order bought by f on october 5, 2026: $219.14 before tax, $233.66 including tax. includes two shower curtain liners, two magsafe chargers, two laptop stands, and two mouse pads.
 
 ## `codex` updates
 
