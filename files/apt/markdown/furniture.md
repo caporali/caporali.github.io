@@ -6,10 +6,11 @@
 | ☑ | ☐ | [`mattress`](https://www.ikea.com/us/en/p/valevag-pocket-spring-mattress-medium-firm-white-40511853/) | 1 | $499.00 | `193 × 201.9` | `24.1` |
 | ☑ | ☐ | [`mattress_protector`](https://www.ikea.com/us/en/p/grusnarv-waterproof-mattress-protector-20522145/) | 2 | $29.99 | `193 × 203.2` | — |
 | ☑ | ☐ | [`bath_sheet`](https://www.ikea.com/us/en/p/brokglim-bath-sheet-white-60612035/) | 2 | $24.99 | `99.1 × 149.9` | — |
-| ☐ | ☐ | [`shower_curtain_liner`](https://www.ikea.com/us/en/p/naelk-shower-curtain-liner-clear-00626498/) | 2 | $4.99 | — | — |
+| ☑ | ☐ | [`shower_curtain_liner`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $6.99 | `182.9 × 182.9` | — |
 | ☐ | ☐ | [`shower_curtain_rings`](https://www.ikea.com/us/en/p/hassjoen-shower-curtain-rings-white-00466008/) | 2 | $1.99 | — | — |
 | ☐ | ☐ | [`soap_dispenser`](https://www.ikea.com/us/en/p/ekoln-soap-dispenser-dark-gray-40441619/) | 3 | $9.99 | — | — |
 | ☐ | ☐ | [`soap_dispenser`](https://www.ikea.com/us/en/p/ekoln-soap-dispenser-beige-60493004/) | 1 | $9.99 | — | — |
+| ☐ | ☐ | [`door_hook`](https://www.ikea.com/us/en/p/sekiner-hook-for-door-white-60498110/) | 6 | $1.99 | — | — |
 | ☑ | ☐ | [`classic_percale_fitted_sheet`](https://www.brooklinen.com/products/classic-fitted-sheets) | 2 | $84.15 | — | — |
 | ☑ | ☐ | [`classic_percale_pillowcase_set`](https://www.brooklinen.com/products/classic-pillowcases) | 2 | $67.15 | — | — |
 | ☑ | ☐ | [`classic_percale_pillowcase_set`](https://www.brooklinen.com/products/classic-pillowcases) | 2 | $58.65 | — | — |
@@ -21,7 +22,7 @@
 | ☑ | ☐ | [`drawer_pack`](https://www.ikea.com/us/en/p/malm-underbed-storage-box-for-high-bed-white-20252723/) | 1 | $100.00 | `101.9 × 61.9` | `28.9` |
 | ☑ | ☐ | [`skubb_box_set`](https://www.ikea.com/us/en/p/skubb-box-set-of-3-white-80596497/) | 4 | $7.99 | `19.7 × 38.1` | `12.1` |
 | ☑ | ☐ | [`hanger`](https://www.ikea.com/us/en/p/bumerang-hanger-natural-30238543/) | 4 | $7.99 | — | — |
-| ☐ | ☐ | [`storage_combination`](https://www.ikea.com/us/en/p/jonaxel-storage-combination-white-s79305098/) | 3 | $49.99 | — | — |
+| ☐ | ☐ | [`storage_combination`](https://www.ikea.com/us/en/p/jonaxel-storage-combination-white-s79305098/) | 4 | $49.99 | `49.8 × 51.1` | `69.9` |
 | ☑ | ☑ | [`dresser`](https://www.ikea.com/us/en/p/storklinta-6-drawer-dresser-white-anchor-unlock-function-60561248/) | 1 | $249.99 | `140 × 47.9` | `74.9` |
 | ☑ | ☑ | [`nightstand`](https://www.ikea.com/us/en/p/eket-wall-mounted-shelving-unit-white-s39285808/) | 2 | $30.00 | `34.9 × 25.1` | `34.9` |
 | ☑ | ☑ | [`desk`](https://www.ikea.com/us/en/p/mittzon-desk-sit-stand-electric-white-s29528572/) | 2 | $579.99 | `140 × 80` | `61.9–126` |
@@ -31,13 +32,14 @@
 | ☐ | ☑ | [`sofa_stool`](https://www.ikea.com/us/en/p/uppakra-ottoman-johanneshov-dark-gray-s59619373/) | 1 | $369.00 | `126 × 77.2` | `46` |
 | ☑ | ☑ | [`armrest_tray`](https://www.ikea.com/us/en/p/roedeby-armrest-tray-bamboo-40417577/) | 2 | $19.99 | `65.1 × 37.1` | — |
 | ☑ | ☑ | [`tv_unit`](https://www.ikea.com/us/en/p/stockholm-2025-tv-unit-with-sliding-doors-oak-veneer-90586638/) | 1 | $499.99 | `178.8 × 41.9` | `56.2` |
-| ☑ | ☑ | [`sideboard`](https://www.ikea.com/us/en/p/stockholm-2025-sideboard-oak-veneer-10586604/) | 1 | $599.00 | `160.7 × 41.9` | `83.2` |
+| ☑ | ☐ | [`sideboard`](https://www.ikea.com/us/en/p/stockholm-2025-sideboard-oak-veneer-10586604/) | 1 | $599.00 | `160.7 × 41.9` | `83.2` |
 | ☑ | ☑ | [`bench`](https://www.ikea.com/us/en/p/stockholm-2025-shelving-unit-bench-oak-veneer-90586515/) | 1 | $399.00 | `180 × 40.6` | `43.8` |
 | ☐ | ☑ | [`coffee_table`](https://www.ikea.com/us/en/p/guttane-coffee-table-oak-10587712/) | 1 | $249.99 | `115.9 × 39.1` | `32.1` |
 | ☑ | ☑ | [`side_table`](https://www.ikea.com/us/en/p/holmerud-side-table-oak-effect-40541421/) | 2 | $59.99 | `80 × 31` | `52` |
 | ☑ | ☑ | [`shoe_rack`](https://www.ikea.com/us/en/p/vasskaer-hallway-furniture-set-of-3-bamboo-s29614904/) | 1 | $50.97 | `60 × 30` | `35` |
 | ☑ | ☑ | [`shoe_rack`](https://www.ikea.com/us/en/p/vasskaer-shoe-rack-bamboo-80624645/) | 1 | $16.99 | `60 × 30` | `35` |
-| ☐ | ☐ | [`mirror`](https://www.ikea.com/us/en/p/nissedal-mirror-white-90503775/) | 1 | $69.99 | — | — |
+| ☐ | ☐ | [`shoe_rack`](https://www.ikea.com/us/en/p/mackapaer-shoe-rack-white-50530993/) | 2 | $29.99 | `78.1 × 32.1` | `40` |
+| ☐ | ☐ | [`mirror`](https://www.ikea.com/us/en/p/nissedal-mirror-white-90503775/) | 1 | $69.99 | `40 × 150` | — |
 | ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-90282180/) | 4 | $29.99 | `109.9 × 26` | `5.1` |
 | ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-50282182/) | 3 | $39.99 | `189.9 × 26` | `5.1` |
 | ☑ | ☑ | [`dining_table`](https://www.article.com/product/24725/emmer-71-glass-dining-table-oak) | 1 | $699.00 | `180.3 × 90.2` | `76.2` |
@@ -55,17 +57,25 @@
 | ☐ | ☐ | [`placemat`](https://www.ikea.com/us/en/p/flygfisk-placemat-dark-gray-20569251/) | 4 | $2.99 | — | — |
 | ☑ | ☐ | [`cookware_set`](https://www.ikea.com/us/en/p/hemkomst-7-piece-cookware-set-stainless-steel-50577018/) | 1 | $149.99 | `55.2 × 30.5` | `15.9` |
 | ☑ | ☐ | [`flatware_set`](https://www.ikea.com/us/en/p/foernuft-20-piece-flatware-set-stainless-steel-90043076/) | 1 | $12.99 | `22.9 × 14.6` | `3.2` |
-| ☐ | ☐ | [`flatware_tray`](https://www.ikea.com/us/en/p/uppdatera-flatware-tray-tray-with-knife-rack-anthracite-light-bamboo-s39611801/) | 1 | $42.98 | `51.8 × 49.5` | `5.7` |
-| ☐ | ☐ | [`jewelry_tray`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | $23.99 | `26.8 × 19.9` | `3.9` |
-| ☐ | ☑ | [`magsafe_charger`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $8.99 | `8 × 8` | `10` |
-| ☐ | ☑ | [`laptop_stand`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $34.98 | `17.7 × 9.8` | `6.4` |
-| ☐ | ☑ | [`mouse`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | $21.49 | `6.8 × 10.5` | `3.8` |
-| ☐ | ☑ | [`mouse_pad`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $12.99 | `80 × 29.7` | `0.3` |
-| ☐ | ☐ | [`cutting_board`](https://a.co/d/0i3dhnfW) | 1 | $24.95 | `50.8 × 40.6` | `1.0` |
+| ☑ | ☐ | [`flatware_tray`](https://www.walmart.com/ip/416356895) | 1 | $14.88 | `35.5 × 25.5–39` | `5` |
+| ☑ | ☐ | [`water_pitcher`](https://www.walmart.com/ip/15908910107) | 1 | $49.99 | `20.6 × 15` | `21.6` |
+| ☑ | ☐ | [`water_filter_pack`](https://www.walmart.com/ip/15913105975) / [standard](https://www.walmart.com/ip/501229035) | 1 | — | — | — |
+| ☑ | ☐ | [`key_bowl`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | $20.99 | `20.1 × 20.1` | — |
+| ☑ | ☐ | [`jewelry_tray`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | $23.99 | `26.8 × 19.9` | `3.9` |
+| ☑ | ☑ | [`magsafe_charger`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $8.99 | `8 × 8` | `10` |
+| ☑ | ☑ | [`laptop_stand`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $34.99 | `17.7 × 9.8` | `6.4` |
+| ☑ | ☑ | [`mouse`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 1 | $21.29 | `6.8 × 10.5` | `3.8` |
+| ☑ | ☑ | [`mouse_pad`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $12.99 | `80 × 29.7` | `0.3` |
+| ☑ | ☐ | [`cutting_board`](https://a.co/d/0i3dhnfW) | 1 | $24.95 | `50.8 × 40.6` | `1.0` |
 
 *Notes.*
+
 - dimensions are rounded to `0.1 cm`.
 - brooklinen prices are discounted cart amounts before tax. four pillows total $257.21.
+- walmart orders total $109.26 including tax: black pitcher and filters $93.39, bamboo flatware tray $15.87. the filter pack's individual price and model are awaiting confirmation.
+- the sideboard remains bought until cancellation and refund are confirmed.
+- ikea items still to buy total $2,956.76 before tax. the guttane coffee table is currently unavailable in the supplied list.
+- amazon order bought by f on october 5, 2026: $219.14 before tax, $233.66 including tax. includes two shower curtain liners, two magsafe chargers, two laptop stands, and two mouse pads.
 
 ## `codex` updates
 
@@ -78,27 +88,26 @@
 | [`article`](https://www.article.com/furniture-bundles/467/the-spacious-table-bundle) |  | `emmer 71" table (oak) / 4x fonra chair (oak and santolina gray)` |
 | [`branch`](https://www.branchfurniture.com/products/ergonomic-chair) |  | `ergonomic chair` |
 | [`brooklinen`](https://www.brooklinen.com/pages/wishlist) | `keller.selina@googlemail.com` | `f&s` list |
+| [`walmart`](https://www.walmart.com/) | | `pitcher (filters), kitchen organizer` |
 
 # todo
 
 ## tbd
-- re-meaure sofa
-- organizer for the walk-in closet
+
+- cancel the stockholm 2025 sideboard order on october 6 (confirm cancellation and refund)
 - organizer(s) for the entrance closets
 - organizer(s) for bathroom sinks
 
 ## details
+
 - bookshelves in the office
-- stools for the kitchen counter
 - carpet(s)
 - plant(s)
 - tv
 - polaroid frames
 - frames on the wall
-- cutting board
 
 ## from princeton
+
 - glasses (2)
-- swiffer
-- toolbox
 
