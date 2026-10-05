@@ -7,10 +7,10 @@
 | ☑ | ☐ | [`mattress_protector`](https://www.ikea.com/us/en/p/grusnarv-waterproof-mattress-protector-20522145/) | 2 | $29.99 | `193 × 203.2` | — |
 | ☑ | ☐ | [`bath_sheet`](https://www.ikea.com/us/en/p/brokglim-bath-sheet-white-60612035/) | 2 | $24.99 | `99.1 × 149.9` | — |
 | ☑ | ☐ | [`shower_curtain_liner`](https://www.amazon.com/hz/wishlist/ls/35M83Y4OHBP84/ref=nav_wishlist_lists_1) | 2 | $6.99 | `182.9 × 182.9` | — |
-| ☐ | ☐ | [`shower_curtain_rings`](https://www.ikea.com/us/en/p/hassjoen-shower-curtain-rings-white-00466008/) | 2 | $1.99 | — | — |
-| ☐ | ☐ | [`soap_dispenser`](https://www.ikea.com/us/en/p/ekoln-soap-dispenser-dark-gray-40441619/) | 3 | $9.99 | — | — |
-| ☐ | ☐ | [`soap_dispenser`](https://www.ikea.com/us/en/p/ekoln-soap-dispenser-beige-60493004/) | 1 | $9.99 | — | — |
-| ☐ | ☐ | [`door_hook`](https://www.ikea.com/us/en/p/sekiner-hook-for-door-white-60498110/) | 6 | $1.99 | — | — |
+| ☑ | ☐ | [`shower_curtain_rings`](https://www.ikea.com/us/en/p/hassjoen-shower-curtain-rings-white-00466008/) | 2 | $1.99 | — | — |
+| ☑ | ☐ | [`soap_dispenser`](https://www.ikea.com/us/en/p/ekoln-soap-dispenser-dark-gray-40441619/) | 3 | $9.99 | — | — |
+| ☑ | ☐ | [`soap_dispenser`](https://www.ikea.com/us/en/p/ekoln-soap-dispenser-beige-60493004/) | 1 | $9.99 | — | — |
+| ☑ | ☐ | [`door_hook`](https://www.ikea.com/us/en/p/sekiner-hook-for-door-white-60498110/) | 6 | $1.99 | — | — |
 | ☑ | ☐ | [`classic_percale_fitted_sheet`](https://www.brooklinen.com/products/classic-fitted-sheets) | 2 | $84.15 | — | — |
 | ☑ | ☐ | [`classic_percale_pillowcase_set`](https://www.brooklinen.com/products/classic-pillowcases) | 2 | $67.15 | — | — |
 | ☑ | ☐ | [`classic_percale_pillowcase_set`](https://www.brooklinen.com/products/classic-pillowcases) | 2 | $58.65 | — | — |
@@ -22,14 +22,14 @@
 | ☑ | ☐ | [`drawer_pack`](https://www.ikea.com/us/en/p/malm-underbed-storage-box-for-high-bed-white-20252723/) | 1 | $100.00 | `101.9 × 61.9` | `28.9` |
 | ☑ | ☐ | [`skubb_box_set`](https://www.ikea.com/us/en/p/skubb-box-set-of-3-white-80596497/) | 4 | $7.99 | `19.7 × 38.1` | `12.1` |
 | ☑ | ☐ | [`hanger`](https://www.ikea.com/us/en/p/bumerang-hanger-natural-30238543/) | 4 | $7.99 | — | — |
-| ☐ | ☐ | [`storage_combination`](https://www.ikea.com/us/en/p/jonaxel-storage-combination-white-s79305098/) | 4 | $49.99 | `49.8 × 51.1` | `69.9` |
+| ☑ | ☐ | [`storage_combination`](https://www.ikea.com/us/en/p/jonaxel-storage-combination-white-s79305098/) | 4 | $49.99 | `49.8 × 51.1` | `69.9` |
 | ☑ | ☑ | [`dresser`](https://www.ikea.com/us/en/p/storklinta-6-drawer-dresser-white-anchor-unlock-function-60561248/) | 1 | $249.99 | `140 × 47.9` | `74.9` |
 | ☑ | ☑ | [`nightstand`](https://www.ikea.com/us/en/p/eket-wall-mounted-shelving-unit-white-s39285808/) | 2 | $30.00 | `34.9 × 25.1` | `34.9` |
 | ☑ | ☑ | [`desk`](https://www.ikea.com/us/en/p/mittzon-desk-sit-stand-electric-white-s29528572/) | 2 | $579.99 | `140 × 80` | `61.9–126` |
 | ☑ | ☑ | [`desk_chair`](https://www.branchfurniture.com/products/ergonomic-chair) | 2 | $369.00 | `70.1 × 70.1` | `96.5–106.7` |
 | ☑ | ☐ | [`power_strip`](https://www.ikea.com/us/en/p/koppla-5-outlet-power-strip-2-usb-ports-white-10280825/) | 2 | $34.99 | `30.5 × 5.1` | — |
-| ☐ | ☑ | [`sofa`](https://www.ikea.com/us/en/p/uppakra-sectional-3-seat-with-chaise-left-johanneshov-dark-gray-s39619944/) | 1 | $1,940.00 | `249.9 × 180` | `94.9` |
-| ☐ | ☑ | [`sofa_stool`](https://www.ikea.com/us/en/p/uppakra-ottoman-johanneshov-dark-gray-s59619373/) | 1 | $369.00 | `126 × 77.2` | `46` |
+| ☑ | ☑ | [`sofa`](https://www.ikea.com/us/en/p/uppakra-sectional-3-seat-with-chaise-left-johanneshov-dark-gray-s39619944/) | 1 | $1,940.00 | `249.9 × 180` | `94.9` |
+| ☑ | ☑ | [`sofa_stool`](https://www.ikea.com/us/en/p/uppakra-ottoman-johanneshov-dark-gray-s59619373/) | 1 | $369.00 | `126 × 77.2` | `46` |
 | ☑ | ☑ | [`armrest_tray`](https://www.ikea.com/us/en/p/roedeby-armrest-tray-bamboo-40417577/) | 2 | $19.99 | `65.1 × 37.1` | — |
 | ☑ | ☑ | [`tv_unit`](https://www.ikea.com/us/en/p/stockholm-2025-tv-unit-with-sliding-doors-oak-veneer-90586638/) | 1 | $499.99 | `178.8 × 41.9` | `56.2` |
 | ☑ | ☐ | [`sideboard`](https://www.ikea.com/us/en/p/stockholm-2025-sideboard-oak-veneer-10586604/) | 1 | $599.00 | `160.7 × 41.9` | `83.2` |
@@ -38,8 +38,8 @@
 | ☑ | ☑ | [`side_table`](https://www.ikea.com/us/en/p/holmerud-side-table-oak-effect-40541421/) | 2 | $59.99 | `80 × 31` | `52` |
 | ☑ | ☑ | [`shoe_rack`](https://www.ikea.com/us/en/p/vasskaer-hallway-furniture-set-of-3-bamboo-s29614904/) | 1 | $50.97 | `60 × 30` | `35` |
 | ☑ | ☑ | [`shoe_rack`](https://www.ikea.com/us/en/p/vasskaer-shoe-rack-bamboo-80624645/) | 1 | $16.99 | `60 × 30` | `35` |
-| ☐ | ☐ | [`shoe_rack`](https://www.ikea.com/us/en/p/mackapaer-shoe-rack-white-50530993/) | 2 | $29.99 | `78.1 × 32.1` | `40` |
-| ☐ | ☐ | [`mirror`](https://www.ikea.com/us/en/p/nissedal-mirror-white-90503775/) | 1 | $69.99 | `40 × 150` | — |
+| ☑ | ☐ | [`shoe_rack`](https://www.ikea.com/us/en/p/mackapaer-shoe-rack-white-50530993/) | 2 | $29.99 | `78.1 × 32.1` | `40` |
+| ☑ | ☐ | [`mirror`](https://www.ikea.com/us/en/p/nissedal-mirror-white-90503775/) | 1 | $69.99 | `40 × 150` | — |
 | ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-90282180/) | 4 | $29.99 | `109.9 × 26` | `5.1` |
 | ☑ | ☑ | [`wall_shelf`](https://www.ikea.com/us/en/p/lack-wall-shelf-white-50282182/) | 3 | $39.99 | `189.9 × 26` | `5.1` |
 | ☑ | ☑ | [`dining_table`](https://www.article.com/product/24725/emmer-71-glass-dining-table-oak) | 1 | $699.00 | `180.3 × 90.2` | `76.2` |
@@ -54,7 +54,7 @@
 | ☑ | ☐ | [`solhetta_bulb_e17`](https://www.ikea.com/us/en/p/solhetta-led-bulb-e17-reflector-r14-550-lm-dimmable-00550511/) | 2 | $5.99 | — | — |
 | ☑ | ☑ | [`wireless_charger`](https://www.ikea.com/us/en/p/vaestmaerke-wireless-charging-stand-50618429/) | 2 | $29.99 | `6.1 × 6.1` | `10.5` |
 | ☑ | ☐ | [`dinnerware_set`](https://www.ikea.com/us/en/p/ikea-365-18-piece-dinnerware-set-white-30621362/) | 1 | $79.99 | — | — |
-| ☐ | ☐ | [`placemat`](https://www.ikea.com/us/en/p/flygfisk-placemat-dark-gray-20569251/) | 4 | $2.99 | — | — |
+| ☑ | ☐ | [`placemat`](https://www.ikea.com/us/en/p/flygfisk-placemat-dark-gray-20569251/) | 4 | $2.99 | — | — |
 | ☑ | ☐ | [`cookware_set`](https://www.ikea.com/us/en/p/hemkomst-7-piece-cookware-set-stainless-steel-50577018/) | 1 | $149.99 | `55.2 × 30.5` | `15.9` |
 | ☑ | ☐ | [`flatware_set`](https://www.ikea.com/us/en/p/foernuft-20-piece-flatware-set-stainless-steel-90043076/) | 1 | $12.99 | `22.9 × 14.6` | `3.2` |
 | ☑ | ☐ | [`flatware_tray`](https://www.walmart.com/ip/416356895) | 1 | $14.88 | `35.5 × 25.5–39` | `5` |
@@ -73,6 +73,8 @@
 - dimensions are rounded to `0.1 cm`.
 
 ## `codex` updates
+
+- ikea order bought by f: $2,970.33 including tax. coffee table remains pending.
 
 # websites
 
