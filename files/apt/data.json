@@ -29,7 +29,7 @@
         "type": "dining_table",
         "x": 377.141845703125,
         "y": 282.1141357421875,
-        "angle": 0
+        "angle": 90
       },
       {
         "id": "desk_f082a973-298b-4de4-a9c1-cdad24070731",
@@ -627,5 +627,5 @@
       ]
     }
   },
-  "updated_at": "2026-10-05T00:11:00 America/New_York"
+  "updated_at": "2026-10-05T00:15:03 America/New_York"
 }
