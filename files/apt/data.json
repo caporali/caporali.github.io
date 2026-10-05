@@ -126,7 +126,7 @@
         "id": "dining_chair_article_2",
         "type": "dining_chair",
         "x": 399.6112976074219,
-        "y": 252.76568603515625,
+        "y": 252.37908935546875,
         "angle": 0
       },
       {
@@ -627,5 +627,5 @@
       ]
     }
   },
-  "updated_at": "2026-10-05T00:31:12 America/New_York"
+  "updated_at": "2026-10-05T00:31:59 America/New_York"
 }
