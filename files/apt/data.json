@@ -25,8 +25,8 @@
         "angle": 90
       },
       {
-        "id": "dining_table_3ae56627-13ae-47d9-99ce-c9a38db8d94f",
-        "type": "dining_table",
+        "id": "temporary_dining_table_3ae56627-13ae-47d9-99ce-c9a38db8d94f",
+        "type": "temporary_dining_table",
         "x": 372.4583435058594,
         "y": 282.5007019042969,
         "angle": 0
@@ -496,6 +496,16 @@
       "depth": 90.2,
       "height": "76.2",
       "price": 699
+    },
+    {
+      "name": "temporary_dining_table",
+      "count": 1,
+      "width": 106.7,
+      "depth": 106.7,
+      "height": "76.2",
+      "shape": "round",
+      "color": "#ffffff",
+      "price": 40
     },
     {
       "name": "dining_chair",

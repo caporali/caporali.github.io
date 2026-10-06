@@ -705,11 +705,12 @@ function shapeMarkup(item) {
 	const size = itemSize(item);
 	const width = size.width * plan.scale;
 	const depth = size.depth * plan.scale;
-	const fill = colors[item.type];
+	const fill = size.color || colors[item.type];
+	const round = size.shape === "round" || ["desk_chair", "night_lamp", "floor_lamp_3_spot", "floor_lamp", "wall_spotlight", "wireless_charger", "mouse"].includes(item.type);
 	let shape;
 	if (item.type === "sofa") {
 		shape = `<path class="body" fill="${fill}" d="${roomPath(localShape(item))}"/>`;
-	} else if (["desk_chair", "night_lamp", "floor_lamp_3_spot", "floor_lamp", "wall_spotlight", "wireless_charger", "mouse"].includes(item.type)) {
+	} else if (round) {
 		shape = `<ellipse class="body" fill="${fill}" cx="0" cy="0" rx="${width / 2}" ry="${depth / 2}"/>`;
 	} else {
 		const radius = ["dining_table", "dining_chair"].includes(item.type) ? 0 : 1;
@@ -717,10 +718,11 @@ function shapeMarkup(item) {
 	}
 	const fontSize = Math.min(10, Math.min(width, depth) * .9 / (item.type.length * .6));
 	const label = fontSize < 6 ? "" : `<text x="0" y="0" style="font-size:${fontSize}px">${item.type}</text>`;
-	const ring = selectedId !== item.id ? "" : ["desk_chair", "night_lamp", "floor_lamp_3_spot", "floor_lamp", "wall_spotlight", "wireless_charger", "mouse"].includes(item.type)
+	const ring = selectedId !== item.id ? "" : round
 		? `<ellipse class="selection-ring" cx="0" cy="0" rx="${width / 2 + 5}" ry="${depth / 2 + 5}"/>`
 		: `<rect class="selection-ring" x="${-width / 2 - 5}" y="${-depth / 2 - 5}" width="${width + 10}" height="${depth + 10}" rx="${["dining_table", "dining_chair"].includes(item.type) ? 0 : 4}"/>`;
-	return `<g class="furniture${selectedId === item.id ? " selected" : ""}" data-id="${item.id}" transform="translate(${format(item.x)} ${format(item.y)}) rotate(${format(item.angle)})"><title>${item.type}: ${size.width} × ${size.depth} cm</title>${shape}${label}${ring}</g>`;
+	const dimensions = size.shape === "round" ? `diameter ${size.width} cm` : `${size.width} × ${size.depth} cm`;
+	return `<g class="furniture${selectedId === item.id ? " selected" : ""}" data-id="${item.id}" transform="translate(${format(item.x)} ${format(item.y)}) rotate(${format(item.angle)})"><title>${item.type}: ${dimensions}</title>${shape}${label}${ring}</g>`;
 }
 
 function drawerMarkup(item) {
@@ -749,8 +751,8 @@ function renderCatalogue() {
 	const sofaVariant = items.find(piece => piece.type === "sofa")?.variant;
 	cataloguePanel.innerHTML = data.catalogue.map(item => {
 		const swatch = item.name === "sofa" ? sofaVariant === "straight" ? "straight" : sofaVariant === "left_chaise" ? "left" : "" : "";
-		const detail = item.variants?.length > 1 ? `${item.variants.length} options` : `${item.width} × ${item.depth} cm`;
-		return `<div class="catalogue-row"><span class="swatch ${item.name} ${swatch}" style="background:${colors[item.name]}"></span>`
+		const detail = item.variants?.length > 1 ? `${item.variants.length} options` : item.shape === "round" ? `diameter ${item.width} cm` : `${item.width} × ${item.depth} cm`;
+		return `<div class="catalogue-row"><span class="swatch ${item.name} ${swatch}" style="background:${item.color || colors[item.name]}${item.shape === "round" ? ";border-radius:50%" : ""}"></span>`
 			+ `<div><div class="catalogue-title" title="${item.name}">${item.name}</div>`
 			+ `<div class="catalogue-sub">${detail} · ${counts[item.name]}/${item.count} placed</div></div>`
 			+ `<button class="add-button" data-add="${item.name}" title="add ${item.name}" ${counts[item.name] >= item.count ? "disabled" : ""}>+</button></div>`;
@@ -764,7 +766,7 @@ function renderSelection() {
 		return;
 	}
 	const size = itemSize(item);
-	const dimensions = `${size.width} × ${size.depth} cm`;
+	const dimensions = size.shape === "round" ? `diameter ${size.width} cm` : `${size.width} × ${size.depth} cm`;
 	const options = catalogue[item.type].variants?.length > 1 ? catalogue[item.type].variants.map(variant => {
 		const label = `${variant.name} · ${variant.width} × ${variant.depth} cm`;
 		return `<option value="${variant.name}" ${(item.variant || catalogue[item.type].variants[0].name) === variant.name ? "selected" : ""}>${label}</option>`;
