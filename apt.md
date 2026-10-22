@@ -10,6 +10,8 @@ apple_mobile_app: true
 nav:
   - name: furniture
     link: /apt.html?view=furniture
+  - name: hang
+    link: /apt.html?view=hang
   - name: info
     link: /apt.html?view=info
   - name: plan
@@ -107,6 +109,7 @@ nav:
 .info-view .markdown { max-width: 760px; }
 .info-view .document-tools, .info-view .document-editor { max-width: 760px; }
 .info-view .md-row span:first-child { width: 34%; }
+.hang-view .md-table { min-width: 900px; }
 .markdown h1, .markdown h2, .markdown h3 { line-height: 1.25; margin: 1.2em 0 .55em; }
 .markdown h1:first-child { margin-top: 0; }
 .markdown h1 { font-size: 22px; }.markdown h2 { font-size: 17px; }.markdown h3 { font-size: 14px; }
@@ -257,7 +260,7 @@ function highlightMarkdown(source) {
 }
 
 const requestedView = new URLSearchParams(location.search).get("view");
-const view = ["furniture", "info"].includes(requestedView) ? requestedView : "plan";
+const view = ["furniture", "hang", "info"].includes(requestedView) ? requestedView : "plan";
 const syncApi = "https://api.apt-save.workers.dev";
 
 function authRedirect() {
@@ -291,6 +294,7 @@ try { sessionToken = sessionStorage.getItem("apt_online_session"); } catch (_) {
 document.querySelector("#plan-view").hidden = view !== "plan";
 document.querySelector("#document-view").hidden = view === "plan";
 document.querySelector("#document-view").classList.toggle("info-view", view === "info");
+document.querySelector("#document-view").classList.toggle("hang-view", view === "hang");
 document.querySelectorAll("#navlist a").forEach(link => {
 	if (new URL(link.href).searchParams.get("view") === view) link.setAttribute("aria-current", "page");
 });

@@ -11,7 +11,7 @@ const settings = {
 };
 const planKey = "libertytowers_E1801";
 const filePath = "files/apt/data.json";
-const documentPaths = { furniture: "files/apt/markdown/furniture.md", info: "files/apt/markdown/info.md" };
+const documentPaths = { furniture: "files/apt/markdown/furniture.md", hang: "files/apt/markdown/hang.md", info: "files/apt/markdown/info.md" };
 const sessionLifetime = 30 * 60;
 const apiVersion = "2026-03-10";
 const encoder = new TextEncoder();
@@ -122,7 +122,7 @@ async function startAuth(request, env) {
 	const nonce = url.searchParams.get("nonce");
 	const view = url.searchParams.get("view") || "plan";
 	if (url.searchParams.get("origin") !== env.SITE_ORIGIN || !nonce || !/^[A-Za-z0-9_-]{20,128}$/.test(nonce)
-		|| !["plan", "furniture", "info"].includes(view)) throw new HttpError(400, "invalid login request");
+		|| !["plan", "furniture", "hang", "info"].includes(view)) throw new HttpError(400, "invalid login request");
 	const state = randomValue();
 	const verifier = randomValue();
 	const cookie = await signAuthCookie({ state, verifier, nonce, view, created: Date.now() }, env);
@@ -151,7 +151,7 @@ async function finishAuth(request, env) {
 	if (!profile.ok) throw new HttpError(502, "could not verify github account");
 	const user = await profile.json();
 	if (String(user.id) !== String(env.GITHUB_USER_ID)) throw new HttpError(403, "this github account cannot edit the apartment plan");
-	const view = ["plan", "furniture", "info"].includes(saved.view) ? saved.view : "plan";
+	const view = ["plan", "furniture", "hang", "info"].includes(saved.view) ? saved.view : "plan";
 	const destination = new URL(`/apt.html?view=${view}`, env.SITE_ORIGIN);
 	destination.hash = new URLSearchParams({ apt_session: await signSession(env), apt_nonce: saved.nonce }).toString();
 	return new Response(null, { status: 302, headers: { Location: destination.href, "Set-Cookie": cookieHeader("", url.protocol === "https:").replace("Max-Age=600", "Max-Age=0"), "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" } });
